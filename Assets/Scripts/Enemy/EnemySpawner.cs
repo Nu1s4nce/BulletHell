@@ -2,15 +2,15 @@
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private EnemyDescriptions _mobDescriptions;
+    [SerializeField] private LevelConfigData levelConfigData;
 
     private EnemyFactory _factory;
 
     private void Start()
     {
         _factory = new EnemyFactory();
-        _factory.Init(_mobDescriptions);
+        _factory.Init(levelConfigData);
 
-        _factory.CreateMobModel("MeleeMob", 1);
+       // _factory.CreateMob("MeleeMob", 1);
     }
 }
