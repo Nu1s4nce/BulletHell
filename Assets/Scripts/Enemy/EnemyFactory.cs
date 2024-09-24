@@ -1,24 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-
 public class EnemyFactory
 {
-    //private Dictionary<string, Func<int, EnemyModel>> enemyFactory;
-
-    public void Init(LevelConfigData descriptions)
+    private List<EnemyConfigData> _enemyFactory;
+    
+    public void Init(List<EnemyConfigData> enemyConfigData)
     {
-        // enemyFactory = new Dictionary<string, Func<int, EnemyModel>>()
-        // {
-        //     {"RangeMob", (level) => new EnemyModel(descriptions.ListRange[level])},
-        //     {"MeleeMob", (level) => new EnemyModel(descriptions.ListMelee[level])}
-        // };
-
+        _enemyFactory = enemyConfigData;
     }
 
-    // public EnemyModel CreateMob(string nameMob, int level)
-    // {
-    //     Debug.Log($"Моб: {nameMob}, на сложности {level}");
-    //     return enemyFactory[nameMob](level);
-    // }
+    public EnemyConfigData CreateEnemy(int enemyId)
+    {
+        Debug.Log($"хп моба: {_enemyFactory[enemyId].MaxHp}, дмг {_enemyFactory[enemyId].Damage}");
+        return _enemyFactory[enemyId];
+    }
 }

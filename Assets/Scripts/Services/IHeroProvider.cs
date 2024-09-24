@@ -1,4 +1,6 @@
-﻿public interface IHeroProvider
+﻿using UnityEngine;
+
+public interface IHeroProvider
 {
-    public void GetHero();
+    public Transform HeroPosition { get; set; }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 [Serializable]
 public class EnemyConfigData
@@ -7,6 +8,8 @@ public class EnemyConfigData
     public float Speed;
     public int MaxHp;
     public int Damage;
+
+    public GameObject EnemyPrefab;
     public AttackType AttackType;
 }
 
