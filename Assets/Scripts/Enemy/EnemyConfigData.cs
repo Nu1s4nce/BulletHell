@@ -10,10 +10,10 @@ public class EnemyConfigData
     public int Damage;
 
     public GameObject EnemyPrefab;
-    public AttackType AttackType;
+    public EnemyAttackType AttackType;
 }
 
-public enum AttackType
+public enum EnemyAttackType
 {
     Range = 0,
     Melee = 1

@@ -2,5 +2,5 @@
 
 public interface IHeroProvider
 {
-    public Transform HeroPosition { get; set; }
+    public GameObject HeroPosition { get; set; }
 }

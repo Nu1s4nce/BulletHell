@@ -10,4 +10,13 @@ public class ConfigProvider : IConfigProvider
         LevelConfig = Resources.Load<LevelConfigData>(LevelConfigPath);
         Debug.Log(LevelConfig);
     }
+
+    public EnemyConfigData GetEnemyConfig(int id)
+    {
+        return LevelConfig.Enemies[id];
+    }
+    public HeroConfigData GetHeroConfig()
+    {
+        return LevelConfig.HeroConfigData;
+    }
 }

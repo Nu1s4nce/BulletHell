@@ -1,4 +1,6 @@
-﻿public interface ITargetFinder
+﻿using UnityEngine;
+
+public interface ITargetFinder
 {
-    public void GetNearestTarget();
+    public Transform GetNearestTarget();
 }

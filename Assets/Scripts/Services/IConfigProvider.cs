@@ -2,4 +2,6 @@
 {
     LevelConfigData LevelConfig { get; }
     public void Load();
+    EnemyConfigData GetEnemyConfig(int id);
+    HeroConfigData GetHeroConfig();
 }

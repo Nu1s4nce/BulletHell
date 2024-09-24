@@ -25,3 +25,10 @@ MonoBehaviour:
     Damage: 2
     EnemyPrefab: {fileID: 0}
     AttackType: 0
+  HeroConfigData:
+    Damage: 0
+    MoveSpeed: 0
+    Health: 0
+    DashSpeed: 0
+    AttackType: 0
+    HeroPrefab: {fileID: 1858068814687193572, guid: e74e03dbd5589004f8c54aedf86f929e, type: 3}
