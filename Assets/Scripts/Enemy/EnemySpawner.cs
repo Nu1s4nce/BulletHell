@@ -8,26 +8,39 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private Transform _enemiesPoolParent;
     
     private IGameFactory _factory;
+    private IConfigProvider _configProvider;
 
     private List<GameObject> _enemiesPool = new();
     
     [Inject]
-    public void Construct(IGameFactory gameFactory)
+    public void Construct(IGameFactory gameFactory, IConfigProvider configProvider)
     {
         _factory = gameFactory;
+        _configProvider = configProvider;
     }
     private void Start()
     {
-        SetupEnemiesPool();
+        SetupEnemiesPool(0);
     }
 
-    private void SetupEnemiesPool()
+    private void SetupEnemiesPool(int enemyId)
     {
         for (var i = 0; i < _enemiesPoolCount; i++)
         {
-            var enemy = _factory.CreateEnemy(0, Vector3.zero, _enemiesPoolParent);
-            enemy.SetActive(false);
+            var enemy = _factory.CreateEnemy(enemyId, Vector3.zero, _enemiesPoolParent);
+            SetupEnemyStats(enemy, enemyId);
+            //enemy.SetActive(false);
             _enemiesPool.Add(enemy);
         }
+    }
+
+    private void SetupEnemyStats(GameObject enemy, int enemyId)
+    {
+        enemy.GetComponent<EnemyStats>().SetupEnemyStats(
+            _configProvider.GetEnemyConfig(enemyId).MaxHp,
+            _configProvider.GetEnemyConfig(enemyId).Damage,
+            _configProvider.GetEnemyConfig(enemyId).Speed,
+            _configProvider.GetEnemyConfig(enemyId).AttackType
+            );
     }
 }

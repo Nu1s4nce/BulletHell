@@ -20,6 +20,6 @@ public class LevelInitializer : IInitializable
     public void Initialize()
     {
         _configProvider.Load();
-        _gameFactory.CreateHero(Vector3.zero);
+        _gameFactory.CreateHero(new Vector3(1,1,0));
     }
 }
