@@ -14,21 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Enemies:
   - EnemyId: 0
-    Speed: 2
+    Speed: 0.2
     MaxHp: 5
     Damage: 1
+    DistanceToAttack: 0.1
     EnemyPrefab: {fileID: 5188283514391703684, guid: 09c4277ef2e06c548aefa91176ce15bf, type: 3}
     AttackType: 1
   - EnemyId: 1
-    Speed: 1
+    Speed: 0.1
     MaxHp: 7
     Damage: 2
+    DistanceToAttack: 0.6
     EnemyPrefab: {fileID: 0}
     AttackType: 0
   HeroConfigData:
-    Damage: 0
-    MoveSpeed: 0
-    Health: 0
-    DashSpeed: 0
-    AttackType: 0
+    Damage: 1
+    MoveSpeed: 1
+    Health: 10
+    DashSpeed: 3
+    AttackType: 1
+    WeaponPrefab: {fileID: 3997604137571920375, guid: e1832286d9f10c54f87e41b2371b58ff, type: 3}
     HeroPrefab: {fileID: 1858068814687193572, guid: e74e03dbd5589004f8c54aedf86f929e, type: 3}

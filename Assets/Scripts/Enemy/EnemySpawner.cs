@@ -9,12 +9,14 @@ public class EnemySpawner : MonoBehaviour
     
     private IGameFactory _factory;
     private IConfigProvider _configProvider;
+    private ITargetFinder _targetFinder;
 
     private List<GameObject> _enemiesPool = new();
-    
+
     [Inject]
-    public void Construct(IGameFactory gameFactory, IConfigProvider configProvider)
+    public void Construct(IGameFactory gameFactory, IConfigProvider configProvider, ITargetFinder targetFinder)
     {
+        _targetFinder = targetFinder;
         _factory = gameFactory;
         _configProvider = configProvider;
     }
@@ -28,6 +30,7 @@ public class EnemySpawner : MonoBehaviour
         for (var i = 0; i < _enemiesPoolCount; i++)
         {
             var enemy = _factory.CreateEnemy(enemyId, Vector3.zero, _enemiesPoolParent);
+            _targetFinder.AddTarget(enemy.transform);
             SetupEnemyStats(enemy, enemyId);
             //enemy.SetActive(false);
             _enemiesPool.Add(enemy);

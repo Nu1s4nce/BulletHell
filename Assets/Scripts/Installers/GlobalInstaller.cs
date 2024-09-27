@@ -7,6 +7,9 @@ public class GlobalInstaller : MonoInstaller
         Container.Bind<IConfigProvider>().To<ConfigProvider>().AsSingle();
         Container.Bind<IHeroProvider>().To<HeroProvider>().AsSingle();
         Container.Bind<ITargetFinder>().To<TargetFinder>().AsSingle();
+        Container.Bind<ICameraProvider>().To<CameraProvider>().AsSingle();
+        
+        
         Container.Bind<IGameFactory>().To<GameFactory>().AsSingle();
         
         Container.Bind<IInitializable>().To<LevelInitializer>().AsSingle();

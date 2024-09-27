@@ -1,27 +1,39 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class GameFactory : IGameFactory
 {
-    private IConfigProvider _configProvider;
-    private IHeroProvider _heroProvider;
+    private readonly IConfigProvider _configProvider;
+    private readonly IHeroProvider _heroProvider;
+    private readonly DiContainer _diContainer;
+    
     private List<EnemyConfigData> _enemyFactory;
     
-    public GameFactory(IConfigProvider configProvider, IHeroProvider heroProvider)
+    public GameFactory(IConfigProvider configProvider, IHeroProvider heroProvider, DiContainer diContainer)
     {
         _configProvider = configProvider;
         _heroProvider = heroProvider;
+        _diContainer = diContainer;
     }
 
     public GameObject CreateEnemy(int enemyId, Vector3 pos, Transform enemiesPoolParent)
     {
-        Debug.Log($"хп моба: {_configProvider.GetEnemyConfig(enemyId).MaxHp}, дмг {_configProvider.GetEnemyConfig(enemyId).Damage}");
-        return Object.Instantiate(_configProvider.GetEnemyConfig(enemyId).EnemyPrefab, pos, Quaternion.identity, enemiesPoolParent);
+        EnemyConfigData config = _configProvider.GetEnemyConfig(enemyId);
+        GameObject enemy = _diContainer.InstantiatePrefab(config.EnemyPrefab, pos, Quaternion.identity, enemiesPoolParent);
+        return enemy;
     }
     public GameObject CreateHero(Vector3 pos)
     {
-        GameObject heroGO = Object.Instantiate(_configProvider.GetHeroConfig().HeroPrefab, pos, Quaternion.identity);
+        HeroConfigData config = _configProvider.GetHeroConfig();
+        GameObject heroGO = _diContainer.InstantiatePrefab(config.HeroPrefab, pos, Quaternion.identity, null);
         _heroProvider.HeroPosition = heroGO;
         return heroGO;
+    }
+    public GameObject CreateProjectile(Vector3 pos)
+    {
+        HeroConfigData config = _configProvider.GetHeroConfig();
+        GameObject projectile = _diContainer.InstantiatePrefab(config.WeaponPrefab, pos, Quaternion.identity, null);
+        return projectile;
     }
 }
