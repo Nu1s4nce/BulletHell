@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using Zenject;
 
 public class HeroAttack : MonoBehaviour
@@ -7,7 +8,6 @@ public class HeroAttack : MonoBehaviour
     private ITargetFinder _targetFinder;
     private IGameFactory _gameFactory;
     
-    private float attackRate = 1;
     private float timer;
 
     [SerializeField] private GameObject weaponPrefab;
@@ -23,16 +23,34 @@ public class HeroAttack : MonoBehaviour
 
     private void Awake()
     {
-        timer = attackRate;
+        timer = GetHeroStats().AttackRate;
     }
 
     private void Update()
     {
+        Attack();
+    }
+
+    private void Attack()
+    {
         timer -= Time.deltaTime;
         if (timer <= 0)
         {
-            timer = attackRate;
-            _gameFactory.CreateProjectile(transform.position);
+            List<Transform> nearestTargets = _targetFinder.GetXNearestTargets(GetHeroStats().MultishotTargets);
+            if(nearestTargets.Count == 0) return;
+            if(Vector3.Distance(nearestTargets[0].position, transform.position) > GetHeroStats().AttackRange) return;
+            
+            timer = GetHeroStats().AttackRate;
+            foreach (var target in nearestTargets)
+            {
+                GameObject proj = _gameFactory.CreateProjectile(transform.position);
+                proj.GetComponent<ProjectileMovement>().SetTarget(target);
+            }
         }
+    }
+    
+    private HeroConfigData GetHeroStats()
+    {
+        return _configProvider.GetHeroConfig();
     }
 }

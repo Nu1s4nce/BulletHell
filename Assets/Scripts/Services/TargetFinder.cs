@@ -4,7 +4,7 @@ using UnityEngine;
 public class TargetFinder : ITargetFinder
 {
     private readonly IHeroProvider _heroProvider;
-    private HashSet<Transform> _targetedEnemies = new();
+    private List<Transform> _targetedEnemies = new();
     
     public TargetFinder(IHeroProvider heroProvider)
     {
@@ -16,6 +16,40 @@ public class TargetFinder : ITargetFinder
         float closestDistance = float.MaxValue;
 
         foreach (var element in _targetedEnemies)
+        {
+            Vector3 elementPosition = element.position;
+            float distance = Vector3.Distance(_heroProvider.HeroPosition.transform.position, elementPosition);
+            
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestElement = element;
+            }
+        }
+
+        return closestElement;
+    }
+
+    public List<Transform> GetXNearestTargets(int numberOfTargets)
+    {
+        List<Transform> tempList = new List<Transform>(_targetedEnemies);
+        List<Transform> resList = new();
+        if (_targetedEnemies.Count < numberOfTargets) numberOfTargets = _targetedEnemies.Count;
+        for (int i = 0; i < numberOfTargets; i++)
+        {
+            Transform nearest = GetNearestTargetHelp(tempList);
+            resList.Add(nearest);
+            tempList.Remove(nearest);
+        }
+
+        return resList;
+    }
+    private Transform GetNearestTargetHelp(List<Transform> list)
+    {
+        Transform closestElement = default;
+        float closestDistance = float.MaxValue;
+
+        foreach (var element in list)
         {
             Vector3 elementPosition = element.position;
             float distance = Vector3.Distance(_heroProvider.HeroPosition.transform.position, elementPosition);

@@ -36,4 +36,11 @@ public class GameFactory : IGameFactory
         GameObject projectile = _diContainer.InstantiatePrefab(config.WeaponPrefab, pos, Quaternion.identity, null);
         return projectile;
     }
+    
+    public GameObject CreateTextPopup(Vector3 pos)
+    {
+        GameObject textPrefab = _configProvider.GetTextPrefab();
+        GameObject textPopup = _diContainer.InstantiatePrefab(textPrefab, pos, Quaternion.identity, null);
+        return textPopup;
+    }
 }

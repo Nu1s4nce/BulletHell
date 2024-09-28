@@ -1,49 +1,42 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
+using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private int _enemiesPoolCount;
+    [SerializeField] private int _enemiesStartPoolCount;
     [SerializeField] private Transform _enemiesPoolParent;
+
+    private List<Vector2> _pointsPool = new();
     
-    private IGameFactory _factory;
-    private IConfigProvider _configProvider;
-    private ITargetFinder _targetFinder;
-
-    private List<GameObject> _enemiesPool = new();
-
+    private IEnemyPoolProvider _enemyPoolProvider;
+    
     [Inject]
-    public void Construct(IGameFactory gameFactory, IConfigProvider configProvider, ITargetFinder targetFinder)
+    public void Construct(IEnemyPoolProvider enemyPoolProvider)
     {
-        _targetFinder = targetFinder;
-        _factory = gameFactory;
-        _configProvider = configProvider;
-    }
-    private void Start()
-    {
-        SetupEnemiesPool(0);
+        _enemyPoolProvider = enemyPoolProvider;
     }
 
-    private void SetupEnemiesPool(int enemyId)
+    private void Awake()
     {
-        for (var i = 0; i < _enemiesPoolCount; i++)
+        _enemyPoolProvider.Init();
+        for (int i = 0; i <= _enemiesStartPoolCount; i++)
         {
-            var enemy = _factory.CreateEnemy(enemyId, Vector3.zero, _enemiesPoolParent);
-            _targetFinder.AddTarget(enemy.transform);
-            SetupEnemyStats(enemy, enemyId);
-            //enemy.SetActive(false);
-            _enemiesPool.Add(enemy);
+            var randPoint = new Vector2(Random.Range(-0.7f, 0f), Random.Range(0f, -0.7f));
+            _pointsPool.Add(randPoint);
         }
     }
 
-    private void SetupEnemyStats(GameObject enemy, int enemyId)
+    private void Start()
     {
-        enemy.GetComponent<EnemyStats>().SetupEnemyStats(
-            _configProvider.GetEnemyConfig(enemyId).MaxHp,
-            _configProvider.GetEnemyConfig(enemyId).Damage,
-            _configProvider.GetEnemyConfig(enemyId).Speed,
-            _configProvider.GetEnemyConfig(enemyId).AttackType
-            );
+        for (int i = 0; i <= _enemiesStartPoolCount; i++)
+        {
+            GameObject enemy = _enemyPoolProvider.GetEnemy();
+            enemy.transform.position = _pointsPool[i];
+        }
     }
+    
+
+    
 }

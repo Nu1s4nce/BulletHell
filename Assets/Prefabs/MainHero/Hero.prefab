@@ -16,7 +16,8 @@ GameObject:
   - component: {fileID: 2337594033734371040}
   - component: {fileID: 6810779477389557868}
   - component: {fileID: 2123630480895312169}
-  m_Layer: 0
+  - component: {fileID: -2242101783022434766}
+  m_Layer: 6
   m_Name: Hero
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,8 +223,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf778ffe9d0041239a39cce323f3b110, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolParent: {fileID: 0}
   weaponPrefab: {fileID: 3997604137571920375, guid: e1832286d9f10c54f87e41b2371b58ff, type: 3}
+--- !u!114 &-2242101783022434766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1858068814687193572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4784ae4dd3a46e1b0f0c21331d9ecf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3464675279504803970
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,7 +246,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3605996748133939503}
   - component: {fileID: 8557341015699319826}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CollisionWithEnemies
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -268,7 +280,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0

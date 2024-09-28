@@ -19,4 +19,8 @@ public class ConfigProvider : IConfigProvider
     {
         return LevelConfig.HeroConfigData;
     }
+    public GameObject GetTextPrefab()
+    {
+        return LevelConfig.textPopUp;
+    }
 }

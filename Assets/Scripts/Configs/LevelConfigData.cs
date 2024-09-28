@@ -6,4 +6,6 @@ public class LevelConfigData : ScriptableObject
 {
     public List<EnemyConfigData> Enemies = new();
     public HeroConfigData HeroConfigData = new();
+
+    public GameObject textPopUp;
 }

@@ -9,7 +9,9 @@ public class HeroConfigData
     public int MoveSpeed;
     public int Health;
     public int DashSpeed;
-    public HeroAttackType AttackType;
+    public float AttackRate;
+    public float AttackRange;
+    public int MultishotTargets;
     
     public GameObject WeaponPrefab;
     public GameObject HeroPrefab;
