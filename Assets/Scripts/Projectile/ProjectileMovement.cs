@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using Zenject;
 using Random = UnityEngine.Random;
 
 public class ProjectileMovement : MonoBehaviour
@@ -7,27 +6,21 @@ public class ProjectileMovement : MonoBehaviour
     private Vector3 _startPoint;
     private Vector3 _middlePoint;
     
-    private Transform _target; 
+    public Transform _target; 
     
-    private float _projectileSpeed = 1f;
+    private float _projectileSpeed;
     private float _startTime;
     private float _flightDistance;
 
     private Animator _animator;
-    
-    private ITargetFinder _targetFinder;
-    
-    
-
-    [Inject]
-    public void Construct(ITargetFinder targetFinder)
-    {
-        _targetFinder = targetFinder;
-    }
 
     public void SetTarget(Transform target)
     {
         _target = target;
+    }
+    public void SetProjectileSpeed(float projSpeed)
+    {
+        _projectileSpeed = projSpeed;
     }
 
     private void Awake()
@@ -49,6 +42,7 @@ public class ProjectileMovement : MonoBehaviour
     void Update()
     {
         AngleThrowing();
+        OnTargetLostDestroy();
     }
 
     private void AngleThrowing()
@@ -60,5 +54,10 @@ public class ProjectileMovement : MonoBehaviour
         Vector3 m2 = Vector3.Lerp( _middlePoint, _target.position, flightFraction );
         transform.position = Vector3.Lerp(m1, m2, flightFraction);
 
+    }
+
+    private void OnTargetLostDestroy()
+    {
+        if(!_target.gameObject.activeSelf) Destroy(gameObject); 
     }
 }

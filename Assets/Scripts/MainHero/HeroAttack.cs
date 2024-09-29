@@ -45,7 +45,9 @@ public class HeroAttack : MonoBehaviour
             {
                 GameObject proj = _gameFactory.CreateProjectile(transform.position);
                 proj.GetComponent<ProjectileMovement>().SetTarget(target);
+                proj.GetComponent<ProjectileMovement>().SetProjectileSpeed(GetHeroStats().ProjectileSpeed);
                 proj.GetComponent<Projectile>().SetDamage(GetHeroStats().Damage);
+                
             }
         }
     }

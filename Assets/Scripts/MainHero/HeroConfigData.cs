@@ -11,16 +11,11 @@ public class HeroConfigData
     public int DashSpeed;
     public float AttackRate;
     public float AttackRange;
+    public float ProjectileSpeed;
     public int MultishotTargets;
     
     public GameObject WeaponPrefab;
     public GameObject HeroPrefab;
-}
-
-public enum HeroAttackType
-{
-    Range = 0,
-    Melee = 1
 }
 
 public enum Weapon
