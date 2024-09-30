@@ -2,5 +2,10 @@
 
 public class CameraProvider : ICameraProvider
 {
-    public GameObject Camera { get; set; }
+    public Camera Camera { get; set; }
+
+    public CameraProvider(Camera camera)
+    {
+        Camera = camera;
+    }
 }

@@ -4,7 +4,6 @@ public class EnemyStats : MonoBehaviour
 {
     public int health;
     public int damage;
-    
     public float speed;
     
     public EnemyAttackType attackType;

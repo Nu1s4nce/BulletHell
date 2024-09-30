@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Zenject;
 
 public class EnemyMovement : MonoBehaviour
@@ -21,6 +22,10 @@ public class EnemyMovement : MonoBehaviour
         _enemyData = _configProvider.GetEnemyConfig(0);
         _sprite = GetComponent<SpriteRenderer>();
     }
+    private void OnEnable()
+    {
+        _enemyData = _configProvider.GetEnemyConfig(0);
+    }
 
     private void Update()
     {
@@ -40,6 +45,8 @@ public class EnemyMovement : MonoBehaviour
             //Attack
         }
     }
+
+    
 
     private void FlipSprite()
     {

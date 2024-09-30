@@ -2,5 +2,5 @@
 
 public interface ICameraProvider
 {
-    public GameObject Camera { get; set; }
+    public Camera Camera { get; set; }
 }

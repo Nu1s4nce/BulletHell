@@ -36,13 +36,14 @@ public class HeroAttack : MonoBehaviour
         timer -= Time.deltaTime;
         if (timer <= 0)
         {
-            List<Transform> nearestTargets = _targetFinder.GetXNearestTargets(GetHeroStats().MultishotTargets);
-            if(nearestTargets.Count == 0) return;
-            if(Vector3.Distance(nearestTargets[0].position, transform.position) > GetHeroStats().AttackRange) return;
-            
             timer = GetHeroStats().AttackRate;
+            List<Transform> nearestTargets = _targetFinder.GetXNearestTargets(GetHeroStats().MultishotTargets, GetHeroStats().AttackRange);
+            Debug.Log(nearestTargets.Count);
+            if(nearestTargets.Count == 0) return; 
+            //if(Vector3.Distance(nearestTargets[0].position, transform.position) > GetHeroStats().AttackRange) return;
             foreach (var target in nearestTargets)
             {
+                //if(Vector3.Distance(target.position, transform.position) > GetHeroStats().AttackRange) continue;
                 GameObject proj = _gameFactory.CreateProjectile(transform.position);
                 proj.GetComponent<ProjectileMovement>().SetTarget(target);
                 proj.GetComponent<ProjectileMovement>().SetProjectileSpeed(GetHeroStats().ProjectileSpeed);

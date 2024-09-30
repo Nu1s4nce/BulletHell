@@ -3,8 +3,7 @@ using UnityEngine;
 
 public interface ITargetFinder
 {
-    public Transform GetNearestTarget();
-    public List<Transform> GetXNearestTargets(int numberOfTargets);
+    public List<Transform> GetXNearestTargets(int numberOfTargets, float attackRange);
     void AddTarget(Transform target);
     void RemoveTarget(Transform target);
 }

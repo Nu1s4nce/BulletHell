@@ -5,6 +5,9 @@ using Zenject;
 public class Enemy : MonoBehaviour, IDamageable
 {
     private int _currentHp;
+    
+    private Animator _animator;
+    
     private IConfigProvider _configProvider;
     private ITargetFinder _targetFinder;
     private IEnemyPoolProvider _enemyPoolProvider;
@@ -20,6 +23,12 @@ public class Enemy : MonoBehaviour, IDamageable
     }
     private void Awake()
     {
+        _animator = GetComponent<Animator>();
+        _currentHp = _configProvider.GetEnemyConfig(0).MaxHp;
+    }
+
+    private void OnEnable()
+    {
         _currentHp = _configProvider.GetEnemyConfig(0).MaxHp;
     }
 
@@ -30,9 +39,10 @@ public class Enemy : MonoBehaviour, IDamageable
             Dead();
             return;
         }
-
-        HandleTextPopup(damage);
+        _animator.Play("OnDamage");
+        HandleTextPopup(_currentHp);
         _currentHp -= damage;
+        
     }
 
     private void HandleTextPopup(int dmg)

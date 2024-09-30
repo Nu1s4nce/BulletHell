@@ -10,50 +10,30 @@ public class TargetFinder : ITargetFinder
     {
         _heroProvider = heroProvider;
     }
-    public Transform GetNearestTarget()
-    {
-        Transform closestElement = default;
-        float closestDistance = float.MaxValue;
 
-        foreach (var element in _targetedEnemies)
-        {
-            Vector3 elementPosition = element.position;
-            float distance = Vector3.Distance(_heroProvider.HeroPosition.transform.position, elementPosition);
-            
-            if (distance < closestDistance)
-            {
-                closestDistance = distance;
-                closestElement = element;
-            }
-        }
-
-        return closestElement;
-    }
-
-    public List<Transform> GetXNearestTargets(int numberOfTargets)
+    public List<Transform> GetXNearestTargets(int numberOfTargets, float attackRange)
     {
         List<Transform> tempList = new List<Transform>(_targetedEnemies);
         List<Transform> resList = new();
         if (_targetedEnemies.Count < numberOfTargets) numberOfTargets = _targetedEnemies.Count;
         for (int i = 0; i < numberOfTargets; i++)
         {
-            Transform nearest = GetNearestTargetHelp(tempList);
+            Transform nearest = GetNearestTarget(tempList, attackRange);
             resList.Add(nearest);
             tempList.Remove(nearest);
         }
 
         return resList;
     }
-    private Transform GetNearestTargetHelp(List<Transform> list)
+    private Transform GetNearestTarget(List<Transform> list, float attackRange)
     {
         Transform closestElement = default;
         float closestDistance = float.MaxValue;
 
         foreach (var element in list)
         {
-            Vector3 elementPosition = element.position;
-            float distance = Vector3.Distance(_heroProvider.HeroPosition.transform.position, elementPosition);
-            
+            float distance = Vector3.Distance(_heroProvider.HeroPosition.transform.position, element.position);
+            if (distance > attackRange) continue;
             if (distance < closestDistance)
             {
                 closestDistance = distance;
