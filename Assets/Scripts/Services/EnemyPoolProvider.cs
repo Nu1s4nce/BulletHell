@@ -45,7 +45,6 @@ public class EnemyPoolProvider : IEnemyPoolProvider
     private GameObject CreateEnemy()
     {
         var enemy = _gameFactory.CreateEnemy(0, Vector3.zero, null);
-        _targetFinder.AddTarget(enemy.transform);
         //SetupEnemyStats(enemy, 0);
         return enemy;
     }
@@ -63,6 +62,7 @@ public class EnemyPoolProvider : IEnemyPoolProvider
     {
         GameObject enemyTemp = _enemiesPool.Get();
         _targetFinder.AddTarget(enemyTemp.transform);
+        Debug.Log("сработал гет");
         //SetupEnemyStats(enemyTemp, 0);
         return enemyTemp;
     }

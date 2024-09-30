@@ -11,21 +11,21 @@ public class TargetFinder : ITargetFinder
         _heroProvider = heroProvider;
     }
 
-    public List<Transform> GetXNearestTargets(int numberOfTargets, float attackRange)
+    public List<Transform> GetXNearestTargets(int numberOfTargets)
     {
         List<Transform> tempList = new List<Transform>(_targetedEnemies);
         List<Transform> resList = new();
         if (_targetedEnemies.Count < numberOfTargets) numberOfTargets = _targetedEnemies.Count;
         for (int i = 0; i < numberOfTargets; i++)
         {
-            Transform nearest = GetNearestTarget(tempList, attackRange);
+            Transform nearest = GetNearestTarget(tempList);
             resList.Add(nearest);
             tempList.Remove(nearest);
         }
 
         return resList;
     }
-    private Transform GetNearestTarget(List<Transform> list, float attackRange)
+    private Transform GetNearestTarget(List<Transform> list)
     {
         Transform closestElement = default;
         float closestDistance = float.MaxValue;
@@ -33,7 +33,7 @@ public class TargetFinder : ITargetFinder
         foreach (var element in list)
         {
             float distance = Vector3.Distance(_heroProvider.HeroPosition.transform.position, element.position);
-            if (distance > attackRange) continue;
+            
             if (distance < closestDistance)
             {
                 closestDistance = distance;

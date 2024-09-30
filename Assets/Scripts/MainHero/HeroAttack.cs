@@ -37,18 +37,18 @@ public class HeroAttack : MonoBehaviour
         if (timer <= 0)
         {
             timer = GetHeroStats().AttackRate;
-            List<Transform> nearestTargets = _targetFinder.GetXNearestTargets(GetHeroStats().MultishotTargets, GetHeroStats().AttackRange);
-            Debug.Log(nearestTargets.Count);
+            List<Transform> nearestTargets = _targetFinder.GetXNearestTargets(GetHeroStats().MultishotTargets);
             if(nearestTargets.Count == 0) return; 
             //if(Vector3.Distance(nearestTargets[0].position, transform.position) > GetHeroStats().AttackRange) return;
             foreach (var target in nearestTargets)
             {
-                //if(Vector3.Distance(target.position, transform.position) > GetHeroStats().AttackRange) continue;
-                GameObject proj = _gameFactory.CreateProjectile(transform.position);
-                proj.GetComponent<ProjectileMovement>().SetTarget(target);
-                proj.GetComponent<ProjectileMovement>().SetProjectileSpeed(GetHeroStats().ProjectileSpeed);
-                proj.GetComponent<Projectile>().SetDamage(GetHeroStats().Damage);
-                
+                if (Vector3.Distance(transform.position, target.position) <= GetHeroStats().AttackRange)
+                {
+                    GameObject proj = _gameFactory.CreateProjectile(transform.position);
+                    proj.GetComponent<ProjectileMovement>().SetTarget(target);
+                    proj.GetComponent<ProjectileMovement>().SetProjectileSpeed(GetHeroStats().ProjectileSpeed);
+                    proj.GetComponent<Projectile>().SetDamage(GetHeroStats().Damage);
+                }
             }
         }
     }
