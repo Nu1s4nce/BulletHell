@@ -32,7 +32,7 @@ public class TargetFinder : ITargetFinder
 
         foreach (var element in list)
         {
-            float distance = Vector3.Distance(_heroProvider.HeroPosition.transform.position, element.position);
+            float distance = Vector3.Distance(_heroProvider.Hero.transform.position, element.position);
             
             if (distance < closestDistance)
             {

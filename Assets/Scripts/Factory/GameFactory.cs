@@ -26,9 +26,9 @@ public class GameFactory : IGameFactory
     public GameObject CreateHero(Vector3 pos)
     {
         HeroConfigData config = _configProvider.GetHeroConfig();
-        GameObject heroGO = _diContainer.InstantiatePrefab(config.HeroPrefab, pos, Quaternion.identity, null);
-        _heroProvider.HeroPosition = heroGO;
-        return heroGO;
+        GameObject hero = _diContainer.InstantiatePrefab(config.HeroPrefab, pos, Quaternion.identity, null);
+        _heroProvider.Hero = hero;
+        return hero;
     }
     public GameObject CreateProjectile(Vector3 pos)
     {
@@ -42,5 +42,11 @@ public class GameFactory : IGameFactory
         GameObject textPrefab = _configProvider.GetTextPrefab();
         GameObject textPopup = _diContainer.InstantiatePrefab(textPrefab, pos, Quaternion.identity, null);
         return textPopup;
+    }
+    public GameObject CreateCollectable(Vector3 pos)
+    {
+        GameObject collectablePrefab = _configProvider.GetCollectablePrefab();
+        GameObject collectable = _diContainer.InstantiatePrefab(collectablePrefab, pos, Quaternion.identity, null);
+        return collectable;
     }
 }

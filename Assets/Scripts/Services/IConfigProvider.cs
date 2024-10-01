@@ -7,4 +7,5 @@ public interface IConfigProvider
     EnemyConfigData GetEnemyConfig(int id);
     HeroConfigData GetHeroConfig();
     GameObject GetTextPrefab();
+    GameObject GetCollectablePrefab();
 }

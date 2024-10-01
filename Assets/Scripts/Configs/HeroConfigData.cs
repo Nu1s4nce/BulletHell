@@ -6,13 +6,18 @@ using UnityEngine;
 public class HeroConfigData
 {
     public int Damage;
-    public int MoveSpeed;
+    
     public int Health;
-    public int DashSpeed;
+    
+    public int MultishotTargets;
+    
     public float AttackRate;
     public float AttackRange;
+    public float MoveSpeed;
+    public float DashSpeed;
     public float ProjectileSpeed;
-    public int MultishotTargets;
+    public float CollectablesPickRange;
+    
     
     public GameObject WeaponPrefab;
     public GameObject HeroPrefab;

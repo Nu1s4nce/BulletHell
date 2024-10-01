@@ -69,26 +69,30 @@ public class EnemySpawner : MonoBehaviour
         return res;
     }
     
-    
 
     private Vector3 GetRandomSpawnPointOffScreen()
     {
-        Vector3 randPoint = new();
         Vector3 cameraPos = _cameraProvider.Camera.transform.position;
         
-        float spawnPosX = cameraPos.x + spawnPositionOffset; // 2 по x \\ должно быть от 2 до 4 и от -2 до -4
-        float spawnPosY = cameraPos.y + spawnPositionOffset; // 2 по y \\ должно быть от 2 до 4 и от -2 до -4
+        float spawnPosX = cameraPos.x + spawnPositionOffset;
+        float spawnPosY = cameraPos.y + spawnPositionOffset;
+
+        float randFinalX = Random.Range(-spawnPosX - spawnPositionDistance, spawnPosX + spawnPositionDistance);
+        float randFinalY;
+
+        if (randFinalX >= -spawnPosY && randFinalX <= spawnPosY)
+        {
+            randFinalY = Random.value < 0.5f ?
+                Random.Range(spawnPosY, spawnPosY + spawnPositionDistance) :
+                Random.Range(-spawnPosY, -spawnPosY - spawnPositionDistance);
+        }
+        else
+        {
+            randFinalY = Random.Range(-spawnPosY - spawnPositionDistance, spawnPosY + spawnPositionDistance);
+        }
         
-        float randFinalX = Random.value < 0.5f ?
-            Random.Range(spawnPosX, spawnPosX + spawnPositionDistance) :
-            Random.Range(-spawnPosX, -spawnPosX - spawnPositionDistance);
-        float randFinalY = Random.value < 0.5f ?
-            Random.Range(spawnPosY, spawnPosY + spawnPositionDistance) :
-            Random.Range(-spawnPosY, -spawnPosY - spawnPositionDistance);
 
-        randPoint = new Vector3(randFinalX, randFinalY, 0);
-
-        return randPoint;
+        return new Vector3(randFinalX, randFinalY, 0);
     }
     
 }

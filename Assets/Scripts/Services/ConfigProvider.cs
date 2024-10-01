@@ -23,4 +23,8 @@ public class ConfigProvider : IConfigProvider
     {
         return LevelConfig.textPopUp;
     }
+    public GameObject GetCollectablePrefab()
+    {
+        return LevelConfig.collectable;
+    }
 }

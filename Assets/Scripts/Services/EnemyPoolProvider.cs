@@ -44,26 +44,13 @@ public class EnemyPoolProvider : IEnemyPoolProvider
 
     private GameObject CreateEnemy()
     {
-        var enemy = _gameFactory.CreateEnemy(0, Vector3.zero, null);
-        //SetupEnemyStats(enemy, 0);
+        var enemy = _gameFactory.CreateEnemy(1, Vector3.zero, null);
         return enemy;
     }
-    // private void SetupEnemyStats(GameObject enemy, int enemyId)
-    // {
-    //     enemy.GetComponent<EnemyStats>().SetupEnemyStats(
-    //         _configProvider.GetEnemyConfig(enemyId).MaxHp,
-    //         _configProvider.GetEnemyConfig(enemyId).Damage,
-    //         _configProvider.GetEnemyConfig(enemyId).Speed,
-    //         _configProvider.GetEnemyConfig(enemyId).AttackType
-    //     );
-    // }
-    
     public GameObject GetEnemy()
     {
         GameObject enemyTemp = _enemiesPool.Get();
         _targetFinder.AddTarget(enemyTemp.transform);
-        Debug.Log("сработал гет");
-        //SetupEnemyStats(enemyTemp, 0);
         return enemyTemp;
     }
 

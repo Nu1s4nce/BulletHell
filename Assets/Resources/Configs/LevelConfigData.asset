@@ -22,20 +22,22 @@ MonoBehaviour:
     AttackType: 1
   - EnemyId: 1
     Speed: 0.1
-    MaxHp: 7
+    MaxHp: 5
     Damage: 2
     DistanceToAttack: 0.6
-    EnemyPrefab: {fileID: 0}
+    EnemyPrefab: {fileID: 4004352357968353039, guid: 0f8c55d5354d64647936a882203c3d13, type: 3}
     AttackType: 0
   HeroConfigData:
     Damage: 5
-    MoveSpeed: 2
     Health: 10
-    DashSpeed: 3
-    AttackRate: 0.2
+    MultishotTargets: 2
+    AttackRate: 1
     AttackRange: 1
-    ProjectileSpeed: 2
-    MultishotTargets: 100
+    MoveSpeed: 1
+    DashSpeed: 3
+    ProjectileSpeed: 1.6
+    CollectablesPickRange: 0.3
     WeaponPrefab: {fileID: 3997604137571920375, guid: e1832286d9f10c54f87e41b2371b58ff, type: 3}
     HeroPrefab: {fileID: 1858068814687193572, guid: e74e03dbd5589004f8c54aedf86f929e, type: 3}
   textPopUp: {fileID: 4011174951360883237, guid: 06145494c249e344c8dfa02fee2a0caf, type: 3}
+  collectable: {fileID: 615511723435171864, guid: cd9cce3bbe120514c944a53cb6e96085, type: 3}

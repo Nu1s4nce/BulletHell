@@ -37,6 +37,7 @@ public class Enemy : MonoBehaviour, IDamageable
         if (_currentHp <= 0)
         {
             Dead();
+            SpawnCollectableAfterDeath();
             return;
         }
         _animator.Play("OnDamage");
@@ -56,5 +57,10 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         _targetFinder.RemoveTarget(transform);
         _enemyPoolProvider.ReturnEnemy(gameObject);
+    }
+
+    private void SpawnCollectableAfterDeath()
+    {
+        _gameFactory.CreateCollectable(transform.position);
     }
 }

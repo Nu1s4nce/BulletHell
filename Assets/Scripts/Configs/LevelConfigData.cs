@@ -8,4 +8,5 @@ public class LevelConfigData : ScriptableObject
     public HeroConfigData HeroConfigData = new();
 
     public GameObject textPopUp;
+    public GameObject collectable;
 }
