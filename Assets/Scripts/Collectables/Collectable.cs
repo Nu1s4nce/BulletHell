@@ -5,6 +5,8 @@ using Zenject;
 
 public class Collectable : MonoBehaviour, ICollectable
 {
+    private Vector3 _startPos;
+    
     private IHeroProvider _heroProvider;
     private IConfigProvider _configProvider;
 
@@ -13,6 +15,11 @@ public class Collectable : MonoBehaviour, ICollectable
     {
         _configProvider = configProvider;
         _heroProvider = heroProvider;
+    }
+
+    private void Awake()
+    {
+        _startPos = transform.position;
     }
 
     public void Update()
@@ -28,7 +35,7 @@ public class Collectable : MonoBehaviour, ICollectable
 
     private void OnCollectAnimation()
     {
-        if (Vector3.Distance(transform.position, GetHeroTransform().position) <=
+        if (Vector3.Distance(_startPos, GetHeroTransform().position) <=
             _configProvider.GetHeroConfig().CollectablesPickRange)
         {
             FlyToHeroPosition();
@@ -37,7 +44,7 @@ public class Collectable : MonoBehaviour, ICollectable
 
     private void FlyToHeroPosition()
     {
-        transform.DOMove(GetHeroTransform().position, 0.6f);
+        transform.DOMove(GetHeroTransform().position, 0.4f);
         if (Vector3.Distance(transform.position, GetHeroTransform().position) <= 0.05)
         {
             Destroy(gameObject);
