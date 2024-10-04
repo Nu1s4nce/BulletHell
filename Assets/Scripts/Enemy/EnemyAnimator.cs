@@ -1,9 +1,9 @@
-﻿using UnityEngine;
+using UnityEngine;
 
-public class HeroAnimator : MonoBehaviour
+public class EnemyAnimator : MonoBehaviour
 {
-    private Animator _animator;
     private SpriteRenderer _spriteRenderer;
+    private Animator _animator;
 
     private void Awake()
     {
@@ -11,15 +11,10 @@ public class HeroAnimator : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    public void PlayIdle()
+    public void PlayDamageReceive()
     {
-        _animator.Play("Idle");
+        _animator.Play("OnDamage");
     }
-    public void PlayRun()
-    {
-        _animator.Play("Run");
-    }
-
     public void LookAt(Vector3 target)
     {
         _spriteRenderer.flipX = target.x < transform.position.x;

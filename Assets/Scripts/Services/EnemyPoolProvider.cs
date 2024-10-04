@@ -3,15 +3,13 @@ using UnityEngine.Pool;
 
 public class EnemyPoolProvider : IEnemyPoolProvider
 {
-    private IGameFactory _gameFactory;
-    private ITargetFinder _targetFinder;
+    private readonly IGameFactory _gameFactory;
+    private readonly ITargetFinder _targetFinder;
 
     private ObjectPool<GameObject> _enemiesPool;
-    private IConfigProvider _configProvider;
 
-    public EnemyPoolProvider(IGameFactory gameFactory, ITargetFinder targetFinder, IConfigProvider configProvider)
+    public EnemyPoolProvider(IGameFactory gameFactory, ITargetFinder targetFinder)
     {
-        _configProvider = configProvider;
         _targetFinder = targetFinder;
         _gameFactory = gameFactory;
     }
@@ -43,8 +41,8 @@ public class EnemyPoolProvider : IEnemyPoolProvider
     }
 
     private GameObject CreateEnemy()
-    {
-        var enemy = _gameFactory.CreateEnemy(1, Vector3.zero, null);
+    { 
+        GameObject enemy = _gameFactory.CreateEnemy(0, Vector3.zero, null);
         return enemy;
     }
     public GameObject GetEnemy()

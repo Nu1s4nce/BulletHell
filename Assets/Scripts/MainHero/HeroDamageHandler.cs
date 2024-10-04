@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Zenject;
 
-public class Hero : MonoBehaviour, IDamageable
+public class HeroDamageHandler : MonoBehaviour, IDamageable
 {
     private int _currentHp;
     private IConfigProvider _configProvider;
@@ -16,7 +16,7 @@ public class Hero : MonoBehaviour, IDamageable
         _currentHp = _configProvider.GetHeroConfig().Health;
     }
 
-    public void Damage(int damage)
+    public void ApplyDamage(int damage)
     {
         if (_currentHp <= 0)
         {

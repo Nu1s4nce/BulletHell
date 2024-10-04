@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using TMPro;
 using UnityEngine;
 using Zenject;
 
@@ -7,8 +7,6 @@ public class GameFactory : IGameFactory
     private readonly IConfigProvider _configProvider;
     private readonly IHeroProvider _heroProvider;
     private readonly DiContainer _diContainer;
-    
-    private List<EnemyConfigData> _enemyFactory;
     
     public GameFactory(IConfigProvider configProvider, IHeroProvider heroProvider, DiContainer diContainer)
     {
@@ -30,17 +28,21 @@ public class GameFactory : IGameFactory
         _heroProvider.Hero = hero;
         return hero;
     }
-    public GameObject CreateProjectile(Vector3 pos)
+    public GameObject CreateProjectile(Vector3 pos, Transform target, float speed, int damage)
     {
         HeroConfigData config = _configProvider.GetHeroConfig();
         GameObject projectile = _diContainer.InstantiatePrefab(config.WeaponPrefab, pos, Quaternion.identity, null);
+        projectile.GetComponent<ProjectileMovement>().SetTarget(target);
+        projectile.GetComponent<ProjectileMovement>().SetProjectileSpeed(speed);
+        projectile.GetComponent<ProjectileDamageHandler>().SetDamage(damage);
         return projectile;
     }
     
-    public GameObject CreateTextPopup(Vector3 pos)
+    public GameObject CreateTextPopup(int dmg, Vector3 pos)
     {
         GameObject textPrefab = _configProvider.GetTextPrefab();
         GameObject textPopup = _diContainer.InstantiatePrefab(textPrefab, pos, Quaternion.identity, null);
+        textPopup.GetComponentInChildren<TMP_Text>().text = dmg.ToString();
         return textPopup;
     }
     public GameObject CreateCollectable(Vector3 pos)

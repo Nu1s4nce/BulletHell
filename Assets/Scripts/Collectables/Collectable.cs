@@ -1,11 +1,11 @@
-﻿using System;
-using DG.Tweening;
+﻿using DG.Tweening;
 using UnityEngine;
 using Zenject;
 
 public class Collectable : MonoBehaviour, ICollectable
 {
     private Vector3 _startPos;
+    private bool _isFlying;
     
     private IHeroProvider _heroProvider;
     private IConfigProvider _configProvider;
@@ -22,37 +22,42 @@ public class Collectable : MonoBehaviour, ICollectable
         _startPos = transform.position;
     }
 
-    public void Update()
+    private void OnEnable()
     {
-        OnCollectAnimation();
+        
     }
 
-
+    public void Update()
+    {
+        if (CanCollect())
+        {
+            Collect();
+        }
+    }
+    
     public void OnCollect()
     {
         
     }
 
-    private void OnCollectAnimation()
+    private bool CanCollect()
     {
-        if (Vector3.Distance(_startPos, GetHeroTransform().position) <=
-            _configProvider.GetHeroConfig().CollectablesPickRange)
-        {
-            FlyToHeroPosition();
-        }
+        if (_isFlying) return false;
+        
+        var distanceToHero = Vector3.Distance(_startPos, _heroProvider.GetHeroPosition());
+        return distanceToHero <= _configProvider.GetHeroConfig().CollectablesPickRange;
+    }
+    private void Collect()
+    {
+        _isFlying = true;
+
+        DOVirtual
+            .Float(0f, 1f, 0.4f, UpdateFly)
+            .OnComplete(() => Destroy(gameObject));
     }
 
-    private void FlyToHeroPosition()
+    private void UpdateFly(float flyProgress)
     {
-        transform.DOMove(GetHeroTransform().position, 0.4f);
-        if (Vector3.Distance(transform.position, GetHeroTransform().position) <= 0.05)
-        {
-            Destroy(gameObject);
-        }
-    }
-
-    private Transform GetHeroTransform()
-    {
-        return _heroProvider.Hero.transform;
+        transform.position = Vector3.Lerp(_startPos, _heroProvider.GetHeroPosition(), flyProgress);
     }
 }

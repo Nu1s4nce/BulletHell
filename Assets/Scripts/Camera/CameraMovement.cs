@@ -4,6 +4,7 @@ using Zenject;
 public class CameraMovement : MonoBehaviour
 {
     private IHeroProvider _heroProvider;
+    private Vector3 _heroPosition;
     
     [Inject]
     public void Construct(IHeroProvider heroProvider)
@@ -13,6 +14,9 @@ public class CameraMovement : MonoBehaviour
 
     public void Update()
     {
-        transform.position = new Vector3(_heroProvider.GetHeroPosition().x, _heroProvider.GetHeroPosition().y, -10) ;
+        _heroPosition = _heroProvider.GetHeroPosition();
+        transform.position = new Vector3(_heroPosition.x, _heroPosition.y, -10) ;
     }
+    
+    
 }

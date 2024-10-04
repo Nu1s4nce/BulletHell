@@ -7,11 +7,9 @@ public class HeroAttack : MonoBehaviour
     private IConfigProvider _configProvider;
     private ITargetFinder _targetFinder;
     private IGameFactory _gameFactory;
-    
-    private float timer;
 
-    [SerializeField] private GameObject weaponPrefab;
-    
+    private float _timer;
+
 
     [Inject]
     private void Construct(IConfigProvider configProvider, ITargetFinder targetFinder, IGameFactory gameFactory)
@@ -23,36 +21,52 @@ public class HeroAttack : MonoBehaviour
 
     private void Awake()
     {
-        timer = GetHeroStats().AttackRate;
+        _timer = GetHeroStats().AttackRate;
     }
 
     private void Update()
     {
-        Attack();
+        UpdateTimer();
+        if (IsTimerReached())
+        {
+            Attack();
+            RestartTimer();
+        }
     }
 
     private void Attack()
     {
-        timer -= Time.deltaTime;
-        if (timer <= 0)
+        List<Transform> nearestTargets = _targetFinder.GetXNearestTargets(GetHeroStats().MultishotTargets);
+        if (nearestTargets.Count == 0) return;
+        foreach (var target in nearestTargets)
         {
-            timer = GetHeroStats().AttackRate;
-            List<Transform> nearestTargets = _targetFinder.GetXNearestTargets(GetHeroStats().MultishotTargets);
-            if(nearestTargets.Count == 0) return; 
-            //if(Vector3.Distance(nearestTargets[0].position, transform.position) > GetHeroStats().AttackRange) return;
-            foreach (var target in nearestTargets)
+            if (Vector3.Distance(transform.position, target.position) <= GetHeroStats().AttackRange)
             {
-                if (Vector3.Distance(transform.position, target.position) <= GetHeroStats().AttackRange)
-                {
-                    GameObject proj = _gameFactory.CreateProjectile(transform.position);
-                    proj.GetComponent<ProjectileMovement>().SetTarget(target);
-                    proj.GetComponent<ProjectileMovement>().SetProjectileSpeed(GetHeroStats().ProjectileSpeed);
-                    proj.GetComponent<Projectile>().SetDamage(GetHeroStats().Damage);
-                }
+                _gameFactory.CreateProjectile(
+                    transform.position, 
+                    target, 
+                    GetHeroStats().ProjectileSpeed, 
+                    GetHeroStats().Damage
+                    );
             }
         }
     }
-    
+
+    private bool IsTimerReached()
+    {
+        return _timer <= 0;
+    }
+
+    private void UpdateTimer()
+    {
+        _timer -= Time.deltaTime;
+    }
+
+    private void RestartTimer()
+    {
+        _timer = GetHeroStats().AttackRate;
+    }
+
     private HeroConfigData GetHeroStats()
     {
         return _configProvider.GetHeroConfig();

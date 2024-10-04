@@ -1,12 +1,11 @@
-﻿using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 using Zenject;
 
-public class Enemy : MonoBehaviour, IDamageable
+public class EnemyDamageHandler : MonoBehaviour, IDamageable
 {
     private int _currentHp;
     
-    private Animator _animator;
+    private EnemyAnimator _enemyAnimator;
     
     private IConfigProvider _configProvider;
     private ITargetFinder _targetFinder;
@@ -23,7 +22,6 @@ public class Enemy : MonoBehaviour, IDamageable
     }
     private void Awake()
     {
-        _animator = GetComponent<Animator>();
         _currentHp = _configProvider.GetEnemyConfig(0).MaxHp;
     }
 
@@ -32,7 +30,7 @@ public class Enemy : MonoBehaviour, IDamageable
         _currentHp = _configProvider.GetEnemyConfig(0).MaxHp;
     }
 
-    public void Damage(int damage)
+    public void ApplyDamage(int damage)
     {
         if (_currentHp <= 0)
         {
@@ -40,7 +38,7 @@ public class Enemy : MonoBehaviour, IDamageable
             SpawnCollectableAfterDeath();
             return;
         }
-        _animator.Play("OnDamage");
+        _enemyAnimator.PlayDamageReceive();
         HandleTextPopup(_currentHp);
         _currentHp -= damage;
         
@@ -49,8 +47,7 @@ public class Enemy : MonoBehaviour, IDamageable
     private void HandleTextPopup(int dmg)
     {
         Vector3 textPos = new Vector3(transform.position.x, transform.position.y, -2);
-        GameObject textPopup = _gameFactory.CreateTextPopup(textPos);
-        textPopup.GetComponentInChildren<TMP_Text>().text = dmg.ToString();
+        _gameFactory.CreateTextPopup(dmg, textPos);
     }
 
     private void Dead()

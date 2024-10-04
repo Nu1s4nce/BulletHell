@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
 
@@ -8,7 +7,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private int enemiesStartPoolCount;
     [SerializeField] private float spawnPositionOffset;
     [SerializeField] private float spawnPositionDistance = 2;
-    [SerializeField] private float spawnEveryXSeconds = 2;
+    [SerializeField] private float spawnInterval = 2;
     [SerializeField] private int numberOfEnemiesToSpawn;
 
     private float _timer;
@@ -25,7 +24,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Awake()
     {
-        _timer = spawnEveryXSeconds;
+        _timer = spawnInterval;
         _enemyPoolProvider.Init();
     }
 
@@ -36,40 +35,38 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
-        SpawnEnemiesWithTimer(numberOfEnemiesToSpawn);
-    }
-
-    private void SpawnEnemiesWithTimer(int count)
-    {
-        _timer -= Time.deltaTime;
-        if (!(_timer <= 0)) return;
-        _timer = spawnEveryXSeconds;
-        SpawnEnemies(count);
-    }
-
-    private void SpawnEnemies(int count)
-    {
-        List<Vector3> res = CreatePointsPool(count);
-
-        foreach (var pos in res)
+        UpdateTimer();
+        if (IsTimerReached())
         {
-            GameObject enemy = _enemyPoolProvider.GetEnemy();
-            enemy.transform.position = pos;
+            SpawnEnemies(numberOfEnemiesToSpawn);
+            RestartTimer();
         }
-    }
-
-    private List<Vector3> CreatePointsPool(int count)
-    {
-        List<Vector3> res = new List<Vector3>();
-        for (int i = 0; i < count; i++)
-        {
-            res.Add(GetRandomSpawnPointOffScreen());
-        }
-
-        return res;
     }
     
+    private void SpawnEnemies(int count)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            GameObject enemy = _enemyPoolProvider.GetEnemy();
+            enemy.transform.position = GetRandomSpawnPointOffScreen();
+        }
+    }
+    
+    private bool IsTimerReached()
+    {
+        return _timer <= 0;
+    }
 
+    private void UpdateTimer()
+    {
+        _timer -= Time.deltaTime;
+    }
+
+    private void RestartTimer()
+    {
+        _timer = spawnInterval;
+    }
+    
     private Vector3 GetRandomSpawnPointOffScreen()
     {
         Vector3 cameraPos = _cameraProvider.Camera.transform.position;
