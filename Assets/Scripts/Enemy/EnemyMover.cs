@@ -1,12 +1,20 @@
 ﻿using UnityEngine;
+using Zenject;
 
 public class EnemyMover : MonoBehaviour
 {
+    private EnemyAnimator _enemyAnimator;
     private EnemyConfigData _enemyData;
+    
     private IHeroProvider _heroProvider;
     private IConfigProvider _configProvider;
 
-    private EnemyAnimator _enemyAnimator;
+    [Inject]
+    public void Construct(IHeroProvider heroProvider, IConfigProvider configProvider)
+    {
+        _configProvider = configProvider;
+        _heroProvider = heroProvider;
+    }
 
     private void Awake()
     {

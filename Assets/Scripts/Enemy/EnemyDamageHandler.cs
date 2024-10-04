@@ -23,6 +23,7 @@ public class EnemyDamageHandler : MonoBehaviour, IDamageable
     private void Awake()
     {
         _currentHp = _configProvider.GetEnemyConfig(0).MaxHp;
+        _enemyAnimator = GetComponent<EnemyAnimator>();
     }
 
     private void OnEnable()
