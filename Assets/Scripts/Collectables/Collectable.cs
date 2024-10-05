@@ -9,10 +9,12 @@ public class Collectable : MonoBehaviour, ICollectable
     
     private IHeroProvider _heroProvider;
     private IConfigProvider _configProvider;
+    private IPointsProvider _pointsProvider;
 
     [Inject]
-    public void Construct(IHeroProvider heroProvider, IConfigProvider configProvider)
+    public void Construct(IHeroProvider heroProvider, IConfigProvider configProvider, IPointsProvider pointsProvider)
     {
+        _pointsProvider = pointsProvider;
         _configProvider = configProvider;
         _heroProvider = heroProvider;
     }
@@ -32,6 +34,7 @@ public class Collectable : MonoBehaviour, ICollectable
         if (CanCollect())
         {
             Collect();
+            AddCurrency(1);
         }
     }
     
@@ -55,6 +58,12 @@ public class Collectable : MonoBehaviour, ICollectable
             .Float(0f, 1f, 0.4f, UpdateFly)
             .OnComplete(() => Destroy(gameObject));
     }
+
+    private void AddCurrency(int points)
+    {
+        _pointsProvider.MainCurrency += points;
+    }
+    
 
     private void UpdateFly(float flyProgress)
     {

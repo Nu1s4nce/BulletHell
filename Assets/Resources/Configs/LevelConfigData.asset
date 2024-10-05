@@ -30,13 +30,13 @@ MonoBehaviour:
   HeroConfigData:
     Damage: 5
     Health: 10
-    MultishotTargets: 2
-    AttackRate: 1
+    MultishotTargets: 6
+    AttackRate: 0.6
     AttackRange: 1
     MoveSpeed: 1
     DashSpeed: 3
     ProjectileSpeed: 1.6
-    CollectablesPickRange: 0.6
+    CollectablesPickRange: 0.2
     WeaponPrefab: {fileID: 3997604137571920375, guid: e1832286d9f10c54f87e41b2371b58ff, type: 3}
     HeroPrefab: {fileID: 1858068814687193572, guid: e74e03dbd5589004f8c54aedf86f929e, type: 3}
   textPopUp: {fileID: 4011174951360883237, guid: 06145494c249e344c8dfa02fee2a0caf, type: 3}

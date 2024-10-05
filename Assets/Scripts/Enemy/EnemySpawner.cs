@@ -47,8 +47,9 @@ public class EnemySpawner : MonoBehaviour
     {
         for (int i = 0; i < count; i++)
         {
+            var pos = GetRandomSpawnPointOffScreen();
             GameObject enemy = _enemyPoolProvider.GetEnemy();
-            enemy.transform.position = GetRandomSpawnPointOffScreen();
+            enemy.transform.position = pos;
         }
     }
     
@@ -70,26 +71,25 @@ public class EnemySpawner : MonoBehaviour
     private Vector3 GetRandomSpawnPointOffScreen()
     {
         Vector3 cameraPos = _cameraProvider.Camera.transform.position;
+
+        float spawnPosX = Random.Range(
+            cameraPos.x + spawnPositionOffset + spawnPositionDistance,
+            cameraPos.x - spawnPositionOffset - spawnPositionDistance
+            );
         
-        float spawnPosX = cameraPos.x + spawnPositionOffset;
-        float spawnPosY = cameraPos.y + spawnPositionOffset;
+        float spawnPosY;
 
-        float randFinalX = Random.Range(-spawnPosX - spawnPositionDistance, spawnPosX + spawnPositionDistance);
-        float randFinalY;
-
-        if (randFinalX >= -spawnPosY && randFinalX <= spawnPosY)
+        if (spawnPosX >= cameraPos.x - spawnPositionOffset && spawnPosX <= cameraPos.x + spawnPositionOffset)
         {
-            randFinalY = Random.value < 0.5f ?
-                Random.Range(spawnPosY, spawnPosY + spawnPositionDistance) :
-                Random.Range(-spawnPosY, -spawnPosY - spawnPositionDistance);
+            spawnPosY = Random.value < 0.5f ?
+                Random.Range(cameraPos.y + spawnPositionOffset, cameraPos.y + spawnPositionOffset + spawnPositionDistance) :
+                Random.Range(cameraPos.y - spawnPositionOffset, cameraPos.y - spawnPositionOffset - spawnPositionDistance);
         }
         else
         {
-            randFinalY = Random.Range(-spawnPosY - spawnPositionDistance, spawnPosY + spawnPositionDistance);
+            spawnPosY = Random.Range(cameraPos.y - spawnPositionOffset - spawnPositionDistance, cameraPos.y + spawnPositionOffset + spawnPositionDistance);
         }
         
-
-        return new Vector3(randFinalX, randFinalY, 0);
+        return new Vector3(spawnPosX, spawnPosY, 0);
     }
-    
 }
