@@ -32,9 +32,13 @@ public class GameFactory : IGameFactory
     {
         HeroConfigData config = _configProvider.GetHeroConfig();
         GameObject projectile = _diContainer.InstantiatePrefab(config.WeaponPrefab, pos, Quaternion.identity, null);
-        projectile.GetComponent<ProjectileMovement>().SetTarget(target);
-        projectile.GetComponent<ProjectileMovement>().SetProjectileSpeed(speed);
-        projectile.GetComponent<ProjectileDamageHandler>().SetDamage(damage);
+        if (projectile.TryGetComponent(out ProjectileMovement projectileMovement))
+        {
+            projectileMovement.SetTarget(target);
+            projectileMovement.SetProjectileSpeed(speed);
+        }
+        if(projectile.TryGetComponent(out ProjectileDamageHandler projectileDamageHandler)) 
+            projectileDamageHandler.SetDamage(damage);
         return projectile;
     }
     

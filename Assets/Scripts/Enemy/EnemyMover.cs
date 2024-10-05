@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Zenject;
 
+[RequireComponent(typeof(EnemyAnimator))]
 public class EnemyMover : MonoBehaviour
 {
     private EnemyAnimator _enemyAnimator;
