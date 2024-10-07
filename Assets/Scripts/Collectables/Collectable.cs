@@ -34,7 +34,7 @@ public class Collectable : MonoBehaviour, ICollectable
         if (CanCollect())
         {
             Collect();
-            AddCurrency(1);
+            _progressService.GetProgressData.AddMainCurrency(1);
         }
     }
     
@@ -61,7 +61,7 @@ public class Collectable : MonoBehaviour, ICollectable
 
     private void AddCurrency(int points)
     {
-        //_progressService.CurrencyAmountChanged += AddCurrency
+        
     }
     
 

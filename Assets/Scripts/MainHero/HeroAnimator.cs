@@ -20,8 +20,8 @@ public class HeroAnimator : MonoBehaviour
         _animator.Play("Run");
     }
 
-    public void LookAt(Vector3 target)
+    public void LookAt(Vector3 direction)
     {
-        _spriteRenderer.flipX = target.x < transform.position.x;
+        _spriteRenderer.flipX = direction.x < 0;
     }
 }

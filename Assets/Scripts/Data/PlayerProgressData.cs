@@ -12,6 +12,6 @@ public class PlayerProgressData
     public void AddMainCurrency(int count)
     {
         MainCurrency += count;
-        CurrencyAmountChanged.Invoke();
+        CurrencyAmountChanged?.Invoke();
     }
 }
