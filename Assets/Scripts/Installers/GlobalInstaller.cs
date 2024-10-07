@@ -6,6 +6,6 @@ public class GlobalInstaller : MonoInstaller
     {
         Container.Bind<IConfigProvider>().To<ConfigProvider>().AsSingle();
         Container.Bind<IInputService>().To<InputService>().AsSingle();
-        Container.Bind<IPointsProvider>().To<PointsProvider>().AsSingle();
+        Container.Bind<IProgressService>().To<ProgressService>().AsSingle();
     }
 }

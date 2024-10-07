@@ -9,12 +9,12 @@ public class Collectable : MonoBehaviour, ICollectable
     
     private IHeroProvider _heroProvider;
     private IConfigProvider _configProvider;
-    private IPointsProvider _pointsProvider;
+    private IProgressService _progressService;
 
     [Inject]
-    public void Construct(IHeroProvider heroProvider, IConfigProvider configProvider, IPointsProvider pointsProvider)
+    public void Construct(IHeroProvider heroProvider, IConfigProvider configProvider, IProgressService progressService)
     {
-        _pointsProvider = pointsProvider;
+        _progressService = progressService;
         _configProvider = configProvider;
         _heroProvider = heroProvider;
     }
@@ -61,7 +61,7 @@ public class Collectable : MonoBehaviour, ICollectable
 
     private void AddCurrency(int points)
     {
-        _pointsProvider.MainCurrency += points;
+        //_progressService.CurrencyAmountChanged += AddCurrency
     }
     
 
