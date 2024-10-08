@@ -15,7 +15,7 @@ public class UIHandler : MonoBehaviour
     }
     void Awake()
     {
-        _progressService.GetProgressData.CurrencyAmountChanged += UpdateMainCurrencyText;
+        _progressService.ProgressData.CurrencyAmountChanged += UpdateMainCurrencyText;
     }
     
     private void UpdateMainCurrencyText()
