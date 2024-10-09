@@ -7,7 +7,7 @@ public class GameFactory : IGameFactory
     private readonly IConfigProvider _configProvider;
     private readonly IHeroProvider _heroProvider;
     private readonly DiContainer _diContainer;
-    
+
     public GameFactory(IConfigProvider configProvider, IHeroProvider heroProvider, DiContainer diContainer)
     {
         _configProvider = configProvider;
@@ -18,9 +18,11 @@ public class GameFactory : IGameFactory
     public GameObject CreateEnemy(int enemyId, Vector3 pos, Transform enemiesPoolParent)
     {
         EnemyConfigData config = _configProvider.GetEnemyConfig(enemyId);
-        GameObject enemy = _diContainer.InstantiatePrefab(config.EnemyPrefab, pos, Quaternion.identity, enemiesPoolParent);
+        GameObject enemy =
+            _diContainer.InstantiatePrefab(config.EnemyPrefab, pos, Quaternion.identity, enemiesPoolParent);
         return enemy;
     }
+
     public GameObject CreateHero(Vector3 pos)
     {
         HeroConfigData config = _configProvider.GetHeroConfig();
@@ -28,20 +30,20 @@ public class GameFactory : IGameFactory
         _heroProvider.Hero = hero;
         return hero;
     }
+
     public GameObject CreateProjectile(Vector3 pos, Transform target, float speed, int damage)
     {
         HeroConfigData config = _configProvider.GetHeroConfig();
         GameObject projectile = _diContainer.InstantiatePrefab(config.WeaponPrefab, pos, Quaternion.identity, null);
         if (projectile.TryGetComponent(out ProjectileMovement projectileMovement))
-        {
-            projectileMovement.SetTarget(target);
-            projectileMovement.SetProjectileSpeed(speed);
-        }
-        if(projectile.TryGetComponent(out ProjectileDamageHandler projectileDamageHandler)) 
+            projectileMovement.SetTarget(target, speed);
+
+        if (projectile.TryGetComponent(out ProjectileDamageHandler projectileDamageHandler))
             projectileDamageHandler.SetDamage(damage);
+        
         return projectile;
     }
-    
+
     public GameObject CreateTextPopup(int dmg, Vector3 pos)
     {
         GameObject textPrefab = _configProvider.GetTextPrefab();
@@ -49,6 +51,7 @@ public class GameFactory : IGameFactory
         textPopup.GetComponentInChildren<TMP_Text>().text = dmg.ToString();
         return textPopup;
     }
+
     public GameObject CreateCollectable(Vector3 pos)
     {
         GameObject collectablePrefab = _configProvider.GetCollectablePrefab();

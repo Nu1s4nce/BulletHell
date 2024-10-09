@@ -4,11 +4,9 @@ public class ProjectileDamageHandler : MonoBehaviour
 {
     private int _damage;
 
-    private void OnTriggerEnter2D(Collider2D col)
+    public void DealDamage(Transform target)
     {
-        if (col.GetComponentInParent<IDamageable>() != null)
-            col.GetComponentInParent<IDamageable>().ApplyDamage(_damage);
-        Destroy(gameObject);
+        target.GetComponent<IDamageable>().ApplyDamage(_damage);
     }
 
     public void SetDamage(int damage)

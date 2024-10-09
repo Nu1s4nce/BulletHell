@@ -6,6 +6,7 @@ public class UIHandler : MonoBehaviour
 {
     [SerializeField] private TMP_Text _mainCurrencyTextContainer;
     
+    
     private IProgressService _progressService;
 
     [Inject]

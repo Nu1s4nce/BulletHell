@@ -11,11 +11,4 @@ public class EnemyConfigData
     public float DistanceToAttack;
 
     public GameObject EnemyPrefab;
-    public EnemyAttackType AttackType;
-}
-
-public enum EnemyAttackType
-{
-    Range = 0,
-    Melee = 1
 }

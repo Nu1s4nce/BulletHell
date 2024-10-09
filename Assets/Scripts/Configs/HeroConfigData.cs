@@ -14,7 +14,6 @@ public class HeroConfigData
     public float AttackRate;
     public float AttackRange;
     public float MoveSpeed;
-    public float DashSpeed;
     public float ProjectileSpeed;
     public float CollectablesPickRange;
     

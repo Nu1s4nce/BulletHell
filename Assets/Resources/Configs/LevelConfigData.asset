@@ -15,7 +15,7 @@ MonoBehaviour:
   Enemies:
   - EnemyId: 0
     Speed: 0.2
-    MaxHp: 5
+    MaxHp: 10
     Damage: 1
     DistanceToAttack: 0.1
     EnemyPrefab: {fileID: 5188283514391703684, guid: 09c4277ef2e06c548aefa91176ce15bf, type: 3}

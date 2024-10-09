@@ -2,7 +2,7 @@
 using UnityEngine;
 using Zenject;
 
-public class Collectable : MonoBehaviour, ICollectable
+public class Collectable : MonoBehaviour
 {
     private Vector3 _startPos;
     private Vector3 _startScale;
@@ -26,11 +26,6 @@ public class Collectable : MonoBehaviour, ICollectable
         _startScale = transform.localScale;
     }
 
-    private void OnEnable()
-    {
-        
-    }
-
     public void Update()
     {
         if (CanCollect())
@@ -38,11 +33,6 @@ public class Collectable : MonoBehaviour, ICollectable
             Collect();
             _progressService.ProgressData.AddMainCurrency(1);
         }
-    }
-    
-    public void OnCollect()
-    {
-        
     }
 
     private bool CanCollect()
@@ -57,9 +47,9 @@ public class Collectable : MonoBehaviour, ICollectable
         _isFlying = true;
 
         DOVirtual
-            .Float(0f, 1f, 0.2f, UpdateScale)
+            .Float(0f, 1f, 0.1f, UpdateScale)
             .OnComplete(() => DOVirtual
-                .Float(0f, 1f, 0.4f, UpdateFly)
+                .Float(0f, 1f, 0.5f, UpdateFly)
                 .OnComplete(() => Destroy(gameObject)));
     }
 

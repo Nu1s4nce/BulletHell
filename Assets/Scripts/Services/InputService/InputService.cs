@@ -8,4 +8,9 @@ public class InputService : IInputService
     {
         return new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
     }
+
+    public bool E_Clicked()
+    {
+        return Input.GetKeyDown(KeyCode.E);
+    }
 }

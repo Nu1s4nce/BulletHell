@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Zenject;
 
+[RequireComponent(typeof(EnemyAnimator))]
 public class EnemyDamageHandler : MonoBehaviour, IDamageable
 {
     private int _currentHp;
@@ -33,16 +34,15 @@ public class EnemyDamageHandler : MonoBehaviour, IDamageable
 
     public void ApplyDamage(int damage)
     {
-        if (_currentHp <= 0)
-        {
-            Dead();
-            SpawnCollectableAfterDeath();
-            return;
-        }
         _enemyAnimator.PlayDamageReceive();
         HandleTextPopup(_currentHp);
         _currentHp -= damage;
         
+        if (_currentHp <= 0)
+        {
+            Dead();
+            SpawnCollectableAfterDeath();
+        }
     }
 
     private void HandleTextPopup(int dmg)
