@@ -2,7 +2,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class CardHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class CardHandler : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler, IPointerExitHandler
 {
     private RectTransform _rectTransform;
 
@@ -11,16 +11,10 @@ public class CardHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         _rectTransform = GetComponent<RectTransform>();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
+    
     public void OnPointerEnter(PointerEventData eventData)
     {
         _rectTransform.transform.DOScale(1.1f, 0.2f);
-        //DOVirtual.Float(0f, 1f, 0.4f, UpdateScale);
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -32,5 +26,10 @@ public class CardHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     private void UpdateScale(float progress)
     {
         
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        //
     }
 }
