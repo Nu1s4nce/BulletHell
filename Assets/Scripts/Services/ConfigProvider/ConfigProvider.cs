@@ -11,13 +11,17 @@ public class ConfigProvider : IConfigProvider
         Debug.Log(LevelConfig);
     }
 
+    public HeroConfigData GetHeroConfig()
+    {
+        return LevelConfig.HeroConfigData;
+    }
     public EnemyConfigData GetEnemyConfig(int id)
     {
         return LevelConfig.Enemies[id];
     }
-    public HeroConfigData GetHeroConfig()
+    public WeaponsConfigData GetWeaponsConfig(int id)
     {
-        return LevelConfig.HeroConfigData;
+        return LevelConfig.Weapons[id];
     }
     public GameObject GetTextPrefab()
     {
@@ -27,4 +31,5 @@ public class ConfigProvider : IConfigProvider
     {
         return LevelConfig.collectable;
     }
+    
 }

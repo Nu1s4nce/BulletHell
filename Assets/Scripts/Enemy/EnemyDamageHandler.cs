@@ -35,7 +35,7 @@ public class EnemyDamageHandler : MonoBehaviour, IDamageable
     public void ApplyDamage(int damage)
     {
         _enemyAnimator.PlayDamageReceive();
-        HandleTextPopup(_currentHp);
+        HandleTextPopup(damage);
         _currentHp -= damage;
         
         if (_currentHp <= 0)

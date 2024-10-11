@@ -4,8 +4,9 @@ public interface IConfigProvider
 {
     LevelConfigData LevelConfig { get; }
     public void Load();
-    EnemyConfigData GetEnemyConfig(int id);
     HeroConfigData GetHeroConfig();
+    EnemyConfigData GetEnemyConfig(int id);
+    WeaponsConfigData GetWeaponsConfig(int id);
     GameObject GetTextPrefab();
     GameObject GetCollectablePrefab();
 }

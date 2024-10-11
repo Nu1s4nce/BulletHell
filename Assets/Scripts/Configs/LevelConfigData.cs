@@ -4,8 +4,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "LevelConfigData", menuName = "LevelConfigData")]
 public class LevelConfigData : ScriptableObject
 {
-    public List<EnemyConfigData> Enemies = new();
     public HeroConfigData HeroConfigData = new();
+    public List<EnemyConfigData> Enemies = new();
+    public List<WeaponsConfigData> Weapons = new();
 
     public GameObject textPopUp;
     public GameObject collectable;

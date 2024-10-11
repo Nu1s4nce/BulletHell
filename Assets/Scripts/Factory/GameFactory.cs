@@ -30,16 +30,25 @@ public class GameFactory : IGameFactory
         _heroProvider.Hero = hero;
         return hero;
     }
+    
 
-    public GameObject CreateProjectile(Vector3 pos, Transform target, float speed, int damage)
+    public GameObject CreateProjectile(Vector3 pos, Transform target, int damage, float speed)
     {
         HeroConfigData config = _configProvider.GetHeroConfig();
         GameObject projectile = _diContainer.InstantiatePrefab(config.WeaponPrefab, pos, Quaternion.identity, null);
-        if (projectile.TryGetComponent(out ProjectileMovement projectileMovement))
-            projectileMovement.SetTarget(target, speed);
-
-        if (projectile.TryGetComponent(out ProjectileDamageHandler projectileDamageHandler))
-            projectileDamageHandler.SetDamage(damage);
+        if (projectile.TryGetComponent(out TargetProjectileMovement targetProjectileMovement))
+        {
+            targetProjectileMovement.Target = target;
+            targetProjectileMovement.ProjectileDamage = damage;
+            targetProjectileMovement.ProjectileSpeed = speed;
+        }
+        
+        return projectile;
+    }
+    public GameObject CreateAuraWeapon(Vector3 pos, Transform target, float speed, int damage)
+    {
+        HeroConfigData config = _configProvider.GetHeroConfig();
+        GameObject projectile = _diContainer.InstantiatePrefab(config.WeaponPrefab, pos, Quaternion.identity, null);
         
         return projectile;
     }

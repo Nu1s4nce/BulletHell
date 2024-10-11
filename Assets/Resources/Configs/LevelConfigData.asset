@@ -12,21 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f73fa5b602b4290aaa2bdffe5b49c6a, type: 3}
   m_Name: LevelConfigData
   m_EditorClassIdentifier: 
-  Enemies:
-  - EnemyId: 0
-    Speed: 0.2
-    MaxHp: 10
-    Damage: 1
-    DistanceToAttack: 0.1
-    EnemyPrefab: {fileID: 5188283514391703684, guid: 09c4277ef2e06c548aefa91176ce15bf, type: 3}
-    AttackType: 1
-  - EnemyId: 1
-    Speed: 0.1
-    MaxHp: 5
-    Damage: 2
-    DistanceToAttack: 0.6
-    EnemyPrefab: {fileID: 4004352357968353039, guid: 0f8c55d5354d64647936a882203c3d13, type: 3}
-    AttackType: 0
   HeroConfigData:
     Damage: 5
     Health: 10
@@ -34,10 +19,37 @@ MonoBehaviour:
     AttackRate: 0.6
     AttackRange: 1
     MoveSpeed: 1
-    DashSpeed: 3
     ProjectileSpeed: 1.6
     CollectablesPickRange: 0.2
     WeaponPrefab: {fileID: 3997604137571920375, guid: e1832286d9f10c54f87e41b2371b58ff, type: 3}
     HeroPrefab: {fileID: 1858068814687193572, guid: e74e03dbd5589004f8c54aedf86f929e, type: 3}
+  Enemies:
+  - EnemyId: 0
+    Speed: 0.2
+    MaxHp: 10
+    Damage: 1
+    DistanceToAttack: 0.1
+    EnemyPrefab: {fileID: 5188283514391703684, guid: 09c4277ef2e06c548aefa91176ce15bf, type: 3}
+  - EnemyId: 1
+    Speed: 0.1
+    MaxHp: 5
+    Damage: 2
+    DistanceToAttack: 0.6
+    EnemyPrefab: {fileID: 4004352357968353039, guid: 0f8c55d5354d64647936a882203c3d13, type: 3}
+  Weapons:
+  - Id: 0
+    Damage: 5
+    MultishotTargets: 4
+    AttackRange: 1
+    AttackRate: 1
+    ProjectileSpeed: 1
+    weaponPrefab: {fileID: 3997604137571920375, guid: e1832286d9f10c54f87e41b2371b58ff, type: 3}
+  - Id: 1
+    Damage: 1
+    MultishotTargets: 0
+    AttackRange: 0.5
+    AttackRate: 0.4
+    ProjectileSpeed: 0
+    weaponPrefab: {fileID: 6677493759275679445, guid: 1a195c46fffb95b4ca3a35bc3833df3f, type: 3}
   textPopUp: {fileID: 4011174951360883237, guid: 06145494c249e344c8dfa02fee2a0caf, type: 3}
   collectable: {fileID: 615511723435171864, guid: cd9cce3bbe120514c944a53cb6e96085, type: 3}

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,11 +7,17 @@ public class TargetFinder : ITargetFinder
     private readonly IHeroProvider _heroProvider;
     private List<Transform> _targetedEnemies = new();
     
+    public event Action targetsChanged;
+    
     public TargetFinder(IHeroProvider heroProvider)
     {
         _heroProvider = heroProvider;
     }
 
+    public List<Transform> GetEnemiesList()
+    {
+        return _targetedEnemies;
+    }
     public List<Transform> GetXNearestTargets(int numberOfTargets)
     {
         List<Transform> tempList = new List<Transform>(_targetedEnemies);
@@ -47,10 +54,12 @@ public class TargetFinder : ITargetFinder
     public void AddTarget(Transform target)
     {
         _targetedEnemies.Add(target);
+        targetsChanged?.Invoke();
     }
 
     public void RemoveTarget(Transform target)
     {
         _targetedEnemies.Remove(target);
+        targetsChanged?.Invoke();
     }
 }
