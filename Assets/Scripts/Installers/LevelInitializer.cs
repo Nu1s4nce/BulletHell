@@ -7,8 +7,6 @@ public class LevelInitializer : IInitializable
     private IGameFactory _gameFactory;
     private IHpProvider _hpProvider;
 
-    private CardsGenerator _cardsGenerator;
-
     [Inject]
     private void Construct(IConfigProvider configProvider, IGameFactory gameFactory, IHpProvider hpProvider)
     {
@@ -22,7 +20,6 @@ public class LevelInitializer : IInitializable
         _configProvider.Load();
         _gameFactory.CreateHero(new Vector3(0,0,0));
         _hpProvider.SetHeroHp(_hpProvider.GetHeroMaxHp());
-        _cardsGenerator = new CardsGenerator();
-        _cardsGenerator.GenerateCard();
+        
     }
 }

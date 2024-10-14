@@ -3,14 +3,28 @@ using UnityEngine;
 public class ConfigProvider : IConfigProvider
 {
     private const string LevelConfigPath = "Configs/LevelConfigData";
+    private const string CardsChancesConfigPath = "Configs/CardsChancesConfig";
+    private const string CardsConfigPath = "Configs/CardsConfig";
     public LevelConfigData LevelConfig { get; private set; }
-    
+    public CardsChancesConfig CardsChancesConfig { get; private set; }
+    public CardsConfig CardsConfig { get; private set; }
+
     public void Load()
     {
         LevelConfig = Resources.Load<LevelConfigData>(LevelConfigPath);
-        Debug.Log(LevelConfig);
+        CardsChancesConfig = Resources.Load<CardsChancesConfig>(CardsChancesConfigPath);
+        CardsConfig = Resources.Load<CardsConfig>(CardsConfigPath);
     }
 
+    public CardsChancesConfig GetCardsChancesConfig()
+    {
+        return CardsChancesConfig;
+    }
+    public CardsConfig GetCardsConfig()
+    {
+        return CardsConfig;
+    }
+    
     public HeroConfigData GetHeroConfig()
     {
         return LevelConfig.HeroConfigData;

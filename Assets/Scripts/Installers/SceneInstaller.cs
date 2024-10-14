@@ -14,6 +14,7 @@ public class SceneInstaller : MonoInstaller
         Container.Bind<IHeroProvider>().To<HeroProvider>().AsSingle();
         Container.Bind<ITargetFinder>().To<TargetFinder>().AsSingle();
         Container.Bind<IHpProvider>().To<HPProvider>().AsSingle();
+        Container.Bind<ICardsGenerator>().To<CardsGenerator>().AsSingle();
         
         Container.Bind<IInitializable>().To<LevelInitializer>().AsSingle();
     }
