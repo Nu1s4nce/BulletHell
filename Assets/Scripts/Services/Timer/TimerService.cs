@@ -7,13 +7,17 @@ public class TimerService
     
     public TimerService(float timerTime)
     {
-        _timerTime = timerTime;
-        _currentTime = _timerTime;
+        _timerTime = _currentTime = timerTime;
     }
 
     public void UpdateTimer()
     {
         _currentTime -= Time.deltaTime;
+    }
+
+    public float GetCurrentTime()
+    {
+        return _currentTime;
     }
 
     public bool CheckTimerEnd()

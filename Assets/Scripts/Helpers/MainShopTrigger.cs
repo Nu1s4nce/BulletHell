@@ -36,13 +36,16 @@ public class MainShopTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        _shopEnterTextContainer.SetActive(true);
         _isInShopZone = true;
+        _shopEnterTextContainer.SetActive(_isInShopZone);
     }
 
     private void OnTriggerExit2D(Collider2D col)
     {
-        _shopEnterTextContainer.SetActive(false);
         _isInShopZone = false;
+        _isShopOpened = false;
+        _shopEnterTextContainer.SetActive(_isInShopZone);
+        _powerUpPanel.SetActive(_isShopOpened);
+        
     }
 }

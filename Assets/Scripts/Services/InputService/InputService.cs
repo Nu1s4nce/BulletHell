@@ -13,4 +13,8 @@ public class InputService : IInputService
     {
         return Input.GetKeyDown(KeyCode.E);
     }
+    public bool Esc_Clicked()
+    {
+        return Input.GetKeyDown(KeyCode.Escape);
+    }
 }

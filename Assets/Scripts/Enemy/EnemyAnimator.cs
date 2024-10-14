@@ -13,7 +13,8 @@ public class EnemyAnimator : MonoBehaviour
 
     public void PlayDamageReceive()
     {
-        _animator.Play("OnDamage");
+        if(gameObject.activeSelf)
+            _animator.Play("OnDamage", 0, 0);
     }
     public void LookAt(Vector3 target)
     {

@@ -5,9 +5,10 @@ using UnityEngine;
 [Serializable]
 public class HeroConfigData
 {
-    public int Damage;
+    public float Damage;
     
-    public int Health;
+    public float MaxHealth;
+    public float CurrentHealth;
     
     public int MultishotTargets;
     

@@ -19,7 +19,6 @@ public class CardHandler : MonoBehaviour, IPointerEnterHandler, IPointerClickHan
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        DOTween.KillAll();
         _rectTransform.transform.DOScale(1f, 0.2f);
     }
 

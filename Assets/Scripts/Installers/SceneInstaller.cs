@@ -13,6 +13,7 @@ public class SceneInstaller : MonoInstaller
         Container.Bind<IEnemyPoolProvider>().To<EnemyPoolProvider>().AsSingle();
         Container.Bind<IHeroProvider>().To<HeroProvider>().AsSingle();
         Container.Bind<ITargetFinder>().To<TargetFinder>().AsSingle();
+        Container.Bind<IHpProvider>().To<HPProvider>().AsSingle();
         
         Container.Bind<IInitializable>().To<LevelInitializer>().AsSingle();
     }

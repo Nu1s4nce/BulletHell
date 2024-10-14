@@ -6,7 +6,6 @@ public class UIHandler : MonoBehaviour
 {
     [SerializeField] private TMP_Text _mainCurrencyTextContainer;
     
-    
     private IProgressService _progressService;
 
     [Inject]
@@ -14,7 +13,7 @@ public class UIHandler : MonoBehaviour
     {
         _progressService = progressService;
     }
-    void Awake()
+    private void Awake()
     {
         _progressService.ProgressData.CurrencyAmountChanged += UpdateMainCurrencyText;
     }

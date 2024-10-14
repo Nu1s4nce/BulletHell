@@ -31,5 +31,4 @@ public class ConfigProvider : IConfigProvider
     {
         return LevelConfig.collectable;
     }
-    
 }

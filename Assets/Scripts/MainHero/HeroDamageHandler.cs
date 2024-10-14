@@ -3,32 +3,30 @@ using Zenject;
 
 public class HeroDamageHandler : MonoBehaviour, IDamageable
 {
-    private int _currentHp;
-    private IConfigProvider _configProvider;
+    private float _currentHp;
+    
+    private IHpProvider _hpProvider;
 
     [Inject]
-    public void Construct(IConfigProvider configProvider)
+    public void Construct(IHpProvider hpProvider)
     {
-        _configProvider = configProvider;
-    }
-    private void Awake()
-    {
-        _currentHp = _configProvider.GetHeroConfig().Health;
+        _hpProvider = hpProvider;
     }
 
     public void ApplyDamage(int damage)
     {
-        if (_currentHp <= 0)
+        if (_hpProvider.GetHeroCurrentHp() <= 0)
         {
             Dead();
             return;
         }
         
-        _currentHp -= damage;
+        float curHp = _hpProvider.GetHeroCurrentHp() - damage;
+        _hpProvider.SetHeroHp(curHp);
     }
 
     private void Dead()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

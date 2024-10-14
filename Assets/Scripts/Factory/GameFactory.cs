@@ -36,7 +36,7 @@ public class GameFactory : IGameFactory
     {
         HeroConfigData config = _configProvider.GetHeroConfig();
         GameObject projectile = _diContainer.InstantiatePrefab(config.WeaponPrefab, pos, Quaternion.identity, null);
-        if (projectile.TryGetComponent(out TargetProjectileMovement targetProjectileMovement))
+        if (projectile.TryGetComponent(out TargetProjectileMover targetProjectileMovement))
         {
             targetProjectileMovement.Target = target;
             targetProjectileMovement.ProjectileDamage = damage;

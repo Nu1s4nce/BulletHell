@@ -9,6 +9,7 @@ public class EnemyConfigData
     public int MaxHp;
     public int Damage;
     public float DistanceToAttack;
+    public float AttackRate;
 
     public GameObject EnemyPrefab;
 }

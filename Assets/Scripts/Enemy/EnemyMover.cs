@@ -37,9 +37,5 @@ public class EnemyMover : MonoBehaviour
         {
             transform.position += distanceFromPlayer * (_enemyData.Speed * Time.deltaTime);
         }
-        else
-        {
-            //Attack
-        }
     }
 }

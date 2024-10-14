@@ -49,7 +49,7 @@ public class Collectable : MonoBehaviour
         DOVirtual
             .Float(0f, 1f, 0.1f, UpdateScale)
             .OnComplete(() => DOVirtual
-                .Float(0f, 1f, 0.5f, UpdateFly)
+                .Float(0f, 1f, 0.25f, UpdateFly).SetEase(Ease.OutCubic)
                 .OnComplete(() => Destroy(gameObject)));
     }
 
