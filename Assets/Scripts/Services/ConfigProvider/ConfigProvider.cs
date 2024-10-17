@@ -24,7 +24,6 @@ public class ConfigProvider : IConfigProvider
     {
         return CardsConfig;
     }
-    
     public HeroConfigData GetHeroConfig()
     {
         return LevelConfig.HeroConfigData;

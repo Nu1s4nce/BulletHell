@@ -13,7 +13,7 @@ public class HeroDamageHandler : MonoBehaviour, IDamageable
         _hpProvider = hpProvider;
     }
 
-    public void ApplyDamage(int damage)
+    public void ApplyDamage(float damage)
     {
         if (_hpProvider.GetHeroCurrentHp() <= 0)
         {

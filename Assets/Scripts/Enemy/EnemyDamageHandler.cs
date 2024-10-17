@@ -4,7 +4,7 @@ using Zenject;
 [RequireComponent(typeof(EnemyAnimator))]
 public class EnemyDamageHandler : MonoBehaviour, IDamageable
 {
-    private int _currentHp;
+    private float _currentHp;
     
     private EnemyAnimator _enemyAnimator;
     
@@ -32,7 +32,7 @@ public class EnemyDamageHandler : MonoBehaviour, IDamageable
         _currentHp = _configProvider.GetEnemyConfig(0).MaxHp;
     }
 
-    public void ApplyDamage(int damage)
+    public void ApplyDamage(float damage)
     {
         _enemyAnimator.PlayDamageReceive();
         HandleTextPopup(damage);
@@ -45,7 +45,7 @@ public class EnemyDamageHandler : MonoBehaviour, IDamageable
         }
     }
 
-    private void HandleTextPopup(int dmg)
+    private void HandleTextPopup(float dmg)
     {
         Vector3 textPos = new Vector3(transform.position.x, transform.position.y, -2);
         _gameFactory.CreateTextPopup(dmg, textPos);

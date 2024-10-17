@@ -1,8 +1,9 @@
+using System;
 using TMPro;
 using UnityEngine;
 using Zenject;
 
-public class UIHandler : MonoBehaviour
+public class CurrencyUIHandler : MonoBehaviour
 {
     [SerializeField] private TMP_Text _mainCurrencyTextContainer;
     
@@ -15,9 +16,14 @@ public class UIHandler : MonoBehaviour
     }
     private void Awake()
     {
-        _progressService.ProgressData.CurrencyAmountChanged += UpdateMainCurrencyText;
+        _progressService.CurrencyAmountChanged += UpdateMainCurrencyText;
     }
-    
+
+    private void Start()
+    {
+        _mainCurrencyTextContainer.text = _progressService.GetMainCurrency().ToString();
+    }
+
     private void UpdateMainCurrencyText()
     {
         _mainCurrencyTextContainer.text = _progressService.GetMainCurrency().ToString();

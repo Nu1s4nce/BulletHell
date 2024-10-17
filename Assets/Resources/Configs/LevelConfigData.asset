@@ -13,21 +13,15 @@ MonoBehaviour:
   m_Name: LevelConfigData
   m_EditorClassIdentifier: 
   HeroConfigData:
-    Damage: 5
-    MaxHealth: 100
-    CurrentHealth: 100
-    MultishotTargets: 6
-    AttackRate: 0.6
-    AttackRange: 1
+    MaxHealth: 75
     MoveSpeed: 1
-    ProjectileSpeed: 1.6
-    CollectablesPickRange: 1
+    CollectablesPickRange: 0.4
     WeaponPrefab: {fileID: 3997604137571920375, guid: e1832286d9f10c54f87e41b2371b58ff, type: 3}
     HeroPrefab: {fileID: 1858068814687193572, guid: e74e03dbd5589004f8c54aedf86f929e, type: 3}
   Enemies:
   - EnemyId: 0
     Speed: 0.2
-    MaxHp: 100
+    MaxHp: 10
     Damage: 1
     DistanceToAttack: 0.1
     AttackRate: 1
@@ -43,7 +37,7 @@ MonoBehaviour:
   - Id: 0
     Damage: 5
     MultishotTargets: 4
-    AttackRange: 1
+    AttackRange: 3
     AttackRate: 1
     ProjectileSpeed: 1
     weaponPrefab: {fileID: 3997604137571920375, guid: e1832286d9f10c54f87e41b2371b58ff, type: 3}

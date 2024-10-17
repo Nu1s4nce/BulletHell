@@ -24,6 +24,7 @@ MonoBehaviour:
     - {fileID: 1191575939, guid: c94278db7b3ac9f42bcfa4650aa84669, type: 3}
     - {fileID: -1254974027, guid: 9c877e2df3af03d46a3bbdf93415ec9b, type: 3}
     - {fileID: -1120357794, guid: c94278db7b3ac9f42bcfa4650aa84669, type: 3}
+    - {fileID: 1745155543, guid: 9c877e2df3af03d46a3bbdf93415ec9b, type: 3}
     - {fileID: -1679160312, guid: c94278db7b3ac9f42bcfa4650aa84669, type: 3}
     - {fileID: 630977601, guid: 9c877e2df3af03d46a3bbdf93415ec9b, type: 3}
     SerializedBytesString: 
@@ -91,7 +92,10 @@ MonoBehaviour:
     - Name: DamageBoost
       Entry: 4
       Data: 1
-    - Name: HealthBoost
+    - Name: MaxHealthBoost
+      Entry: 4
+      Data: 0
+    - Name: MoveSpeedBoost
       Entry: 4
       Data: 0
     - Name: AttackRangeBoost
@@ -101,6 +105,9 @@ MonoBehaviour:
       Entry: 4
       Data: 0
     - Name: ProjectileSpeedBoost
+      Entry: 4
+      Data: 0
+    - Name: CollectablesPickRangeBoost
       Entry: 4
       Data: 0
     - Name: MultiShotBoost
@@ -123,7 +130,7 @@ MonoBehaviour:
       Data: 
     - Name: CardName
       Entry: 1
-      Data: The beginner's book
+      Data: Beginner's book
     - Name: CardsInPool
       Entry: 3
       Data: 100
@@ -136,9 +143,12 @@ MonoBehaviour:
     - Name: DamageBoost
       Entry: 4
       Data: 0
-    - Name: HealthBoost
+    - Name: MaxHealthBoost
       Entry: 4
-      Data: 30
+      Data: 10
+    - Name: MoveSpeedBoost
+      Entry: 4
+      Data: 0
     - Name: AttackRangeBoost
       Entry: 4
       Data: 0
@@ -146,6 +156,9 @@ MonoBehaviour:
       Entry: 4
       Data: 0
     - Name: ProjectileSpeedBoost
+      Entry: 4
+      Data: 0
+    - Name: CollectablesPickRangeBoost
       Entry: 4
       Data: 0
     - Name: MultiShotBoost
@@ -203,7 +216,10 @@ MonoBehaviour:
     - Name: DamageBoost
       Entry: 4
       Data: 2
-    - Name: HealthBoost
+    - Name: MaxHealthBoost
+      Entry: 4
+      Data: 0
+    - Name: MoveSpeedBoost
       Entry: 4
       Data: 0
     - Name: AttackRangeBoost
@@ -213,6 +229,9 @@ MonoBehaviour:
       Entry: 4
       Data: 0.02
     - Name: ProjectileSpeedBoost
+      Entry: 4
+      Data: 0
+    - Name: CollectablesPickRangeBoost
       Entry: 4
       Data: 0
     - Name: MultiShotBoost
@@ -257,7 +276,7 @@ MonoBehaviour:
       Data: 
     - Name: CardName
       Entry: 1
-      Data: The white crow's feather
+      Data: White crow's feather
     - Name: CardsInPool
       Entry: 3
       Data: 10
@@ -270,7 +289,10 @@ MonoBehaviour:
     - Name: DamageBoost
       Entry: 4
       Data: 0
-    - Name: HealthBoost
+    - Name: MaxHealthBoost
+      Entry: 4
+      Data: 0
+    - Name: MoveSpeedBoost
       Entry: 4
       Data: 0
     - Name: AttackRangeBoost
@@ -280,6 +302,9 @@ MonoBehaviour:
       Entry: 4
       Data: 0
     - Name: ProjectileSpeedBoost
+      Entry: 4
+      Data: 0
+    - Name: CollectablesPickRangeBoost
       Entry: 4
       Data: 0
     - Name: MultiShotBoost
@@ -337,9 +362,12 @@ MonoBehaviour:
     - Name: DamageBoost
       Entry: 4
       Data: 15
-    - Name: HealthBoost
+    - Name: MaxHealthBoost
       Entry: 4
-      Data: 40
+      Data: 30
+    - Name: MoveSpeedBoost
+      Entry: 4
+      Data: 0
     - Name: AttackRangeBoost
       Entry: 4
       Data: 10
@@ -347,6 +375,9 @@ MonoBehaviour:
       Entry: 4
       Data: 0.1
     - Name: ProjectileSpeedBoost
+      Entry: 4
+      Data: 0
+    - Name: CollectablesPickRangeBoost
       Entry: 4
       Data: 0
     - Name: MultiShotBoost
@@ -387,8 +418,8 @@ MonoBehaviour:
       Entry: 10
       Data: 7
     - Name: CardBorder
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 8
     - Name: CardName
       Entry: 1
       Data: Ace
@@ -404,9 +435,12 @@ MonoBehaviour:
     - Name: DamageBoost
       Entry: 4
       Data: 60
-    - Name: HealthBoost
+    - Name: MaxHealthBoost
       Entry: 4
-      Data: 10
+      Data: 0
+    - Name: MoveSpeedBoost
+      Entry: 4
+      Data: 0
     - Name: AttackRangeBoost
       Entry: 4
       Data: 0
@@ -414,6 +448,9 @@ MonoBehaviour:
       Entry: 4
       Data: 0.2
     - Name: ProjectileSpeedBoost
+      Entry: 4
+      Data: 0
+    - Name: CollectablesPickRangeBoost
       Entry: 4
       Data: 0
     - Name: MultiShotBoost
@@ -430,10 +467,10 @@ MonoBehaviour:
       Data: 81
     - Name: CardImage
       Entry: 10
-      Data: 8
+      Data: 9
     - Name: CardBorder
       Entry: 10
-      Data: 9
+      Data: 10
     - Name: CardName
       Entry: 1
       Data: Diamond
@@ -449,9 +486,12 @@ MonoBehaviour:
     - Name: DamageBoost
       Entry: 4
       Data: 10
-    - Name: HealthBoost
+    - Name: MaxHealthBoost
       Entry: 4
-      Data: 500
+      Data: 10
+    - Name: MoveSpeedBoost
+      Entry: 4
+      Data: 0
     - Name: AttackRangeBoost
       Entry: 4
       Data: 0
@@ -459,6 +499,9 @@ MonoBehaviour:
       Entry: 4
       Data: 0
     - Name: ProjectileSpeedBoost
+      Entry: 4
+      Data: 0
+    - Name: CollectablesPickRangeBoost
       Entry: 4
       Data: 0
     - Name: MultiShotBoost
@@ -595,6 +638,287 @@ MonoBehaviour:
       Data: 0
     - Name: 
       Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: AllCardColorsByRareness
+      Entry: 7
+      Data: 20|System.Collections.Generic.Dictionary`2[[RarenessOfCard, Assembly-CSharp],[CardsRarenessColors,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 21|System.Collections.Generic.EnumEqualityComparer`1[[RarenessOfCard,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 5
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 7
+      Data: 22|CardsRarenessColors, Assembly-CSharp
+    - Name: PrimaryColor
+      Entry: 7
+      Data: UnityEngine.Color, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: SecondaryColor
+      Entry: 7
+      Data: UnityEngine.Color, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 7
+      Data: 23|CardsRarenessColors, Assembly-CSharp
+    - Name: PrimaryColor
+      Entry: 7
+      Data: UnityEngine.Color, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.28773582
+    - Name: 
+      Entry: 4
+      Data: 0.3677957
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: SecondaryColor
+      Entry: 7
+      Data: UnityEngine.Color, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 7
+      Data: 24|CardsRarenessColors, Assembly-CSharp
+    - Name: PrimaryColor
+      Entry: 7
+      Data: UnityEngine.Color, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.8113208
+    - Name: 
+      Entry: 4
+      Data: 0.241100043
+    - Name: 
+      Entry: 4
+      Data: 0.241100043
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: SecondaryColor
+      Entry: 7
+      Data: UnityEngine.Color, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 3
+    - Name: $v
+      Entry: 7
+      Data: 25|CardsRarenessColors, Assembly-CSharp
+    - Name: PrimaryColor
+      Entry: 7
+      Data: UnityEngine.Color, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.9245283
+    - Name: 
+      Entry: 4
+      Data: 0.647813737
+    - Name: 
+      Entry: 4
+      Data: 0.248575985
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: SecondaryColor
+      Entry: 7
+      Data: UnityEngine.Color, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 4
+    - Name: $v
+      Entry: 7
+      Data: 26|CardsRarenessColors, Assembly-CSharp
+    - Name: PrimaryColor
+      Entry: 7
+      Data: UnityEngine.Color, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.186098233
+    - Name: 
+      Entry: 4
+      Data: 0.7735849
+    - Name: 
+      Entry: 4
+      Data: 0.2349774
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: SecondaryColor
+      Entry: 7
+      Data: UnityEngine.Color, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.8490566
+    - Name: 
+      Entry: 4
+      Data: 0.707297862
+    - Name: 
+      Entry: 4
+      Data: 0.100124583
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
       Data: 
     - Name: 
       Entry: 8

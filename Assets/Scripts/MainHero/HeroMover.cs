@@ -3,25 +3,24 @@ using Zenject;
 
 public class HeroMover : MonoBehaviour
 {
-    [SerializeField] private int speed;
-    
     private Vector2 _direction;
-    private bool b_shift;
 
     private Rigidbody2D rb;
     private HeroAnimator _heroAnimator;
-
-    private IConfigProvider _configProvider;
+    
     private IInputService _inputService;
+    private IProgressService _progressService;
+    private IConfigProvider _configProvider;
 
     [Inject]
-    public void Construct(IConfigProvider configProvider, IInputService inputService)
+    public void Construct(IProgressService progressService, IInputService inputService, IConfigProvider configProvider)
     {
-        _inputService = inputService;
         _configProvider = configProvider;
+        _progressService = progressService;
+        _inputService = inputService;
     }
 
-    void Awake()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         _heroAnimator = GetComponent<HeroAnimator>();
@@ -41,6 +40,10 @@ public class HeroMover : MonoBehaviour
     {
         return _configProvider.GetHeroConfig();
     }
+    private HeroProgressData GetHeroStatsBonus()
+    {
+        return _progressService.GetHeroData();
+    }
 
     private void MovementDirection()
     {
@@ -54,6 +57,6 @@ public class HeroMover : MonoBehaviour
     private void MovePlayer()
     {
         _direction = Vector2.ClampMagnitude(_direction, 1);
-        rb.MovePosition(rb.position + GetHeroStats().MoveSpeed * Time.fixedDeltaTime * _direction);
+        rb.MovePosition(rb.position + (GetHeroStats().MoveSpeed + GetHeroStatsBonus().MoveSpeedBonus) * Time.fixedDeltaTime * _direction);
     }
 }

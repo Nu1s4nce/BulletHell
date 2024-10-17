@@ -30,9 +30,8 @@ public class GameFactory : IGameFactory
         _heroProvider.Hero = hero;
         return hero;
     }
-    
 
-    public GameObject CreateProjectile(Vector3 pos, Transform target, int damage, float speed)
+    public GameObject CreateProjectile(Vector3 pos, Transform target, float damage, float speed)
     {
         HeroConfigData config = _configProvider.GetHeroConfig();
         GameObject projectile = _diContainer.InstantiatePrefab(config.WeaponPrefab, pos, Quaternion.identity, null);
@@ -53,7 +52,7 @@ public class GameFactory : IGameFactory
         return projectile;
     }
 
-    public GameObject CreateTextPopup(int dmg, Vector3 pos)
+    public GameObject CreateTextPopup(float dmg, Vector3 pos)
     {
         GameObject textPrefab = _configProvider.GetTextPrefab();
         GameObject textPopup = _diContainer.InstantiatePrefab(textPrefab, pos, Quaternion.identity, null);

@@ -31,7 +31,7 @@ public class Collectable : MonoBehaviour
         if (CanCollect())
         {
             Collect();
-            _progressService.ProgressData.AddMainCurrency(1);
+            _progressService.AddMainCurrency(1 + GetProgressData().CollectablesValueBonus);
         }
     }
 
@@ -40,25 +40,32 @@ public class Collectable : MonoBehaviour
         if (_isFlying) return false;
         
         var distanceToHero = Vector3.Distance(_startPos, _heroProvider.GetHeroPosition());
-        return distanceToHero <= _configProvider.GetHeroConfig().CollectablesPickRange;
+        return distanceToHero <= _configProvider.GetHeroConfig().CollectablesPickRange +
+            GetProgressData().CollectablesPickRangeBonus;
     }
     private void Collect()
     {
         _isFlying = true;
 
         DOVirtual
-            .Float(0f, 1f, 0.1f, UpdateScale)
+            .Float(0f, 1f, 0.25f, UpdateScale)
             .OnComplete(() => DOVirtual
-                .Float(0f, 1f, 0.25f, UpdateFly).SetEase(Ease.OutCubic)
+                .Float(0f, 1f, 0.5f, UpdateFly).SetEase(Ease.OutCubic)
                 .OnComplete(() => Destroy(gameObject)));
     }
 
     private void UpdateFly(float flyProgress)
     {
         transform.position = Vector3.Lerp(_startPos, _heroProvider.GetHeroPosition(), flyProgress);
+        transform.localScale = Vector3.Lerp(_startScale, new Vector3(0.15f,0.15f,0.15f), flyProgress);
     }
     private void UpdateScale(float scaleProgress)
     {
-        transform.localScale = Vector3.Lerp(_startScale, new Vector3(0.6f,0.6f,0.6f), scaleProgress);
+        transform.localScale = Vector3.Lerp(_startScale, new Vector3(0.5f,0.5f,0), scaleProgress);
+    }
+
+    private HeroProgressData GetProgressData()
+    {
+        return _progressService.GetHeroData();
     }
 }

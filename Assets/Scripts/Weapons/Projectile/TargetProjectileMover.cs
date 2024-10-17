@@ -16,7 +16,7 @@ public class TargetProjectileMover : MonoBehaviour
     
     public float ProjectileSpeed { private get;set; }
     public Transform Target { private get;set; }
-    public int ProjectileDamage { private get;set; }
+    public float ProjectileDamage { private get;set; }
 
     private Tweener _tweener;
     
@@ -57,7 +57,7 @@ public class TargetProjectileMover : MonoBehaviour
     private void UpdateFly(float progress)
     {
         if(!Target.gameObject.activeSelf) return;
-        float distanceFlied = (Time.time - _startTime) * ProjectileSpeed;
+        float distanceFlied = (Time.time - _startTime) * ProjectileSpeed ;
         float flightFraction = distanceFlied / _flightDistance;
 
         Vector3 m1 = Vector3.Lerp(_startPoint, _middlePoint, flightFraction);

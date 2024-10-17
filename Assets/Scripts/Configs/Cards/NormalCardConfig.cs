@@ -1,23 +1,15 @@
 ﻿using UnityEngine;
 
-public class NormalCardConfig
+public class NormalCardConfig : Card
 {
-    [Header("Card Information")]
-    public int CardId;
-    public Sprite CardImage;
-    public Sprite CardBorder;
-    public string CardName;
-    public int CardsInPool;
-    
-    [Header("Price tag")]
-    public int CardCost;
-    public Sprite CardCostImage;
-    
     [Header("Buffs")]
     public float DamageBoost;
-    public float HealthBoost;
+    public float MaxHealthBoost;
+    public float MoveSpeedBoost;
     public float AttackRangeBoost;
     public float AttackRateBoost;
     public float ProjectileSpeedBoost;
+    public float CollectablesPickRangeBoost;
+    public int CollectablesValueBoost;
     public int MultiShotBoost;
 }

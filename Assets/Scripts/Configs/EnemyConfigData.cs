@@ -6,8 +6,8 @@ public class EnemyConfigData
 {
     public int EnemyId;
     public float Speed;
-    public int MaxHp;
-    public int Damage;
+    public float MaxHp;
+    public float Damage;
     public float DistanceToAttack;
     public float AttackRate;
 

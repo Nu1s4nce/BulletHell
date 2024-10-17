@@ -6,6 +6,8 @@ using Zenject;
 [RequireComponent(typeof(WeaponDamageHandler))]
 public class AuraWeaponAttacker : MonoBehaviour
 {
+    [SerializeField] private int _weaponId;
+    
     private TimerService _timer;
     private List<Transform> _targetsList;
     
@@ -14,10 +16,12 @@ public class AuraWeaponAttacker : MonoBehaviour
     private ITargetFinder _targetFinder;
     private IHeroProvider _heroProvider;
     private IConfigProvider _configProvider;
+    private IProgressService _progressService;
 
     [Inject]
-    public void Construct(IHeroProvider heroProvider, ITargetFinder targetFinder, IConfigProvider configProvider)
+    public void Construct(IHeroProvider heroProvider, ITargetFinder targetFinder, IConfigProvider configProvider, IProgressService progressService)
     {
+        _progressService = progressService;
         _configProvider = configProvider;
         _heroProvider = heroProvider;
         _targetFinder = targetFinder;
@@ -25,8 +29,10 @@ public class AuraWeaponAttacker : MonoBehaviour
     private void Awake()
     {
         _weaponDamageHandler = GetComponent<WeaponDamageHandler>();
+
+        _targetsList = new List<Transform>();
         
-        _timer = new TimerService(GetWeaponStats().AttackRate);
+        _timer = new TimerService(GetWeaponStats().AttackRate - _progressService.GetHeroData().AttackRateBonus);
         _targetFinder.targetsChanged += UpdateTargetsList;
     }
     
@@ -45,7 +51,8 @@ public class AuraWeaponAttacker : MonoBehaviour
         if(_targetsList.Count <= 0) return;
         foreach (var target in _targetsList.ToList())
         {
-            if (Vector3.Distance(_heroProvider.GetHeroPosition(), target.position) <= GetWeaponStats().AttackRange)
+            if (Vector3.Distance(_heroProvider.GetHeroPosition(), target.position) 
+                <= GetWeaponStats().AttackRange + _progressService.GetHeroData().AttackRangeBonus)
             {
                 if(target.gameObject.activeSelf)
                     _weaponDamageHandler.DealDamage(target, GetWeaponStats().Damage);
@@ -55,7 +62,7 @@ public class AuraWeaponAttacker : MonoBehaviour
 
     private WeaponsConfigData GetWeaponStats()
     {
-        return _configProvider.GetWeaponsConfig(1);
+        return _configProvider.GetWeaponsConfig(_weaponId);
     }
 
     private void UpdateTargetsList()

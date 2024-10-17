@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class CardsGenerator : ICardsGenerator
@@ -15,17 +14,25 @@ public class CardsGenerator : ICardsGenerator
     {
         return GetRandomItemByChance(GetCardsChancesConfig().TypeOfCard);
     }
-    
-    public NormalCardConfig GenerateNormalCard()
+
+    public RarenessOfCard GetRandomRarenessOfCard()
     {
-        var cardRareness = GetRandomItemByChance(GetCardsChancesConfig().RarenessOfCards);
-        return GetRandomItem(GetCardsConfig().AllNormalCardsByRareness[cardRareness]);
+        return GetRandomItemByChance(GetCardsChancesConfig().RarenessOfCards);
+    }
+    
+    public CardsRarenessColors GetColorByRareness(RarenessOfCard rarenessOfCard)
+    {
+        return GetCardsConfig().AllCardColorsByRareness[rarenessOfCard];
+    }
+    
+    public NormalCardConfig GenerateNormalCard(RarenessOfCard rarenessOfCard)
+    {
+        return GetRandomItem(GetCardsConfig().AllNormalCardsByRareness[rarenessOfCard]);
     }
 
-    public UniqueCardConfig GenerateUniqueCard()
+    public UniqueCardConfig GenerateUniqueCard(RarenessOfCard rarenessOfCard)
     {
-        var cardRareness = GetRandomItemByChance(GetCardsChancesConfig().RarenessOfCards);
-        return GetRandomItem(GetCardsConfig().AllUniqueCardsByRareness[cardRareness]);
+        return GetRandomItem(GetCardsConfig().AllUniqueCardsByRareness[rarenessOfCard]);
     }
     
     private CardsChancesConfig GetCardsChancesConfig()
@@ -54,7 +61,6 @@ public class CardsGenerator : ICardsGenerator
         }
 
         int index = Choose(tempChancesList.ToArray());
-        Debug.Log(tempItem[index]);
         return tempItem[index];
     }
     
