@@ -78,15 +78,15 @@ public class ShopHandler : MonoBehaviour
         {
             NormalCardConfig normalCard = (NormalCardConfig)card;
             
-            GetHeroProgressData().DamageBonus += normalCard.DamageBoost;
-            GetHeroProgressData().AttackRangeBonus += normalCard.AttackRangeBoost;
-            GetHeroProgressData().AttackRateBonus += normalCard.AttackRateBoost;
-            GetHeroProgressData().MaxHealthBonus += normalCard.MaxHealthBoost;
-            GetHeroProgressData().MoveSpeedBonus += normalCard.MoveSpeedBoost;
-            GetHeroProgressData().ProjectileSpeedBonus += normalCard.ProjectileSpeedBoost;
-            GetHeroProgressData().MultishotTargetsBonus += normalCard.MultiShotBoost;
-            GetHeroProgressData().CollectablesPickRangeBonus += normalCard.CollectablesPickRangeBoost;
-            GetHeroProgressData().CollectablesValueBonus += normalCard.CollectablesValueBoost;
+            _progressService.AddProgressDamage(normalCard.DamageBoost);
+            _progressService.AddProgressAttackRange(normalCard.AttackRangeBoost);
+            _progressService.AddProgressAttackRate(normalCard.AttackRateBoost);
+            _progressService.AddProgressMaxHealth(normalCard.MaxHealthBoost);
+            _progressService.AddProgressMoveSpeed(normalCard.MoveSpeedBoost);
+            _progressService.AddProgressCollectablesPickRange(normalCard.CollectablesPickRangeBoost);
+            _progressService.AddProgressCollectablesValueBoost(normalCard.CollectablesValueBoost);
+            _progressService.AddProgressProjectileSpeed(normalCard.ProjectileSpeedBoost);
+            _progressService.AddProgresstMultiShot(normalCard.MultiShotBoost);
         }
         if (card.GetType() == typeof(UniqueCardConfig))
         {
@@ -114,10 +114,6 @@ public class ShopHandler : MonoBehaviour
             _cards.Add(nc);
             _cardHandlers[index].SetupUniqueCard((UniqueCardConfig)nc, _rarenessOfCard);
         }
-    }
-    private HeroProgressData GetHeroProgressData()
-    {
-        return _progressService.GetHeroData();
     }
     private PlayerProgressData GetProgressData()
     {

@@ -37,7 +37,7 @@ MonoBehaviour:
   - Id: 0
     Damage: 5
     MultishotTargets: 4
-    AttackRange: 3
+    AttackRange: 1
     AttackRate: 1
     ProjectileSpeed: 1
     weaponPrefab: {fileID: 3997604137571920375, guid: e1832286d9f10c54f87e41b2371b58ff, type: 3}

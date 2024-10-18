@@ -40,7 +40,7 @@ public class HPHandler : MonoBehaviour
         var padding = _rectMask2D.padding;
         padding.z = newRightMask;
         _rectMask2D.padding = padding;
-        _healthBarText.SetText(value.ToString(CultureInfo.InvariantCulture));
+        _healthBarText.SetText(value.ToString(CultureInfo.InvariantCulture) + "/" + _hpProvider.GetHeroMaxHp());
     }
 
     private void UpdateHp()
