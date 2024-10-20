@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 using Zenject;
 
@@ -40,7 +39,7 @@ public class MainShopTrigger : MonoBehaviour
         _shopEnterTextContainer.SetActive(_isInShopZone);
     }
 
-    private void OnTriggerExit2D(Collider2D col)
+    private void OnTriggerExit2D(Collider2D col) 
     {
         _isInShopZone = false;
         _isShopOpened = false;

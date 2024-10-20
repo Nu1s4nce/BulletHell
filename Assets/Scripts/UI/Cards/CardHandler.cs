@@ -41,11 +41,6 @@ public class CardHandler : MonoBehaviour, IPointerEnterHandler, IPointerClickHan
     {
         _rectTransform = GetComponent<RectTransform>();
     }
-
-    private void Start()
-    {
-    }
-
     public void OnPointerEnter(PointerEventData eventData)
     {
         _rectTransform.transform.DOScale(1.1f, 0.2f);
@@ -54,10 +49,6 @@ public class CardHandler : MonoBehaviour, IPointerEnterHandler, IPointerClickHan
     public void OnPointerExit(PointerEventData eventData)
     {
         _rectTransform.transform.DOScale(1f, 0.2f);
-    }
-
-    private void UpdateScale(float progress)
-    {
     }
 
     public void OnPointerClick(PointerEventData eventData)

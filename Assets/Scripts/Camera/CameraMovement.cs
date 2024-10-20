@@ -17,6 +17,4 @@ public class CameraMovement : MonoBehaviour
         _heroPosition = _heroProvider.GetHeroPosition();
         transform.position = new Vector3(_heroPosition.x, _heroPosition.y, -10) ;
     }
-    
-    
 }

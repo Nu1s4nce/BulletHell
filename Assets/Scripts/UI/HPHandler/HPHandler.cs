@@ -35,7 +35,7 @@ public class HPHandler : MonoBehaviour
 
     private void SetValue(float value)
     {
-        var targetWidth = value * _maxRightMask / GetHeroStats().MaxHealth;
+        var targetWidth = value * _maxRightMask / _hpProvider.GetHeroMaxHp();
         var newRightMask = _maxRightMask + _initialRightMask - targetWidth;
         var padding = _rectMask2D.padding;
         padding.z = newRightMask;

@@ -19,9 +19,10 @@ public class HPProvider : IHpProvider
         PlayerHpChanged?.Invoke();
     }
 
-    public void AddHeroMaxHp(float hp)
+    public void AddHeroMaxAndCurrentHp(float hp)
     {
         _progressService.GetHeroData().MaxHealthBonus += hp;
+        _progressService.GetHeroData().CurrentHealth += hp;
         PlayerHpChanged?.Invoke();
     }
     public void RemoveHeroMaxHp(float hp)

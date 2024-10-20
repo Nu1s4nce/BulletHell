@@ -11,7 +11,6 @@ public interface IProgressService
     public void RemoveMainCurrency(int count);
     public HeroProgressData GetHeroData();
     void AddProgressDamage(float dmg);
-    void AddProgressMaxHealth(float hp);
     void AddProgressMoveSpeed(float ms);
     void AddProgressAttackRange(float atkRange);
     void AddProgressAttackRate(float atkRate);

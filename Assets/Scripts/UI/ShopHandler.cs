@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using Zenject;
 
@@ -19,10 +18,12 @@ public class ShopHandler : MonoBehaviour
     
     private ICardsGenerator _cardsGenerator;
     private IProgressService _progressService;
+    private IHpProvider _hpProvider;
 
     [Inject]
-    private void Construct(ICardsGenerator cardsGenerator, IProgressService progressService)
+    private void Construct(ICardsGenerator cardsGenerator, IProgressService progressService, IHpProvider hpProvider)
     {
+        _hpProvider = hpProvider;
         _progressService = progressService;
         _cardsGenerator = cardsGenerator;
     }
@@ -81,12 +82,13 @@ public class ShopHandler : MonoBehaviour
             _progressService.AddProgressDamage(normalCard.DamageBoost);
             _progressService.AddProgressAttackRange(normalCard.AttackRangeBoost);
             _progressService.AddProgressAttackRate(normalCard.AttackRateBoost);
-            _progressService.AddProgressMaxHealth(normalCard.MaxHealthBoost);
             _progressService.AddProgressMoveSpeed(normalCard.MoveSpeedBoost);
             _progressService.AddProgressCollectablesPickRange(normalCard.CollectablesPickRangeBoost);
             _progressService.AddProgressCollectablesValueBoost(normalCard.CollectablesValueBoost);
             _progressService.AddProgressProjectileSpeed(normalCard.ProjectileSpeedBoost);
             _progressService.AddProgresstMultiShot(normalCard.MultiShotBoost);
+            
+            _hpProvider.AddHeroMaxAndCurrentHp(normalCard.MaxHealthBoost);
         }
         if (card.GetType() == typeof(UniqueCardConfig))
         {
