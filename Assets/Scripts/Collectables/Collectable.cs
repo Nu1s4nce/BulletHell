@@ -31,7 +31,7 @@ public class Collectable : MonoBehaviour
         if (CanCollect())
         {
             Collect();
-            _progressService.AddMainCurrency(1 + GetProgressData().CollectablesValueBonus);
+            _progressService.AddMainCurrency(1 + (int)GetProgressData().HeroStatsData[StatId.CollectablesValue]);
         }
     }
 
@@ -41,7 +41,7 @@ public class Collectable : MonoBehaviour
         
         var distanceToHero = Vector3.Distance(_startPos, _heroProvider.GetHeroPosition());
         return distanceToHero <= _configProvider.GetHeroConfig().CollectablesPickRange +
-            GetProgressData().CollectablesPickRangeBonus;
+            GetProgressData().HeroStatsData[StatId.CollectablesPickRange];
     }
     private void Collect()
     {

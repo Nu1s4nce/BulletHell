@@ -67,6 +67,7 @@ public class ShopHandler : MonoBehaviour
         if (cardCost <= _progressService.GetMainCurrency())
         {
             _progressService.RemoveMainCurrency(cardCost);
+            _progressService.ProgressData.PurchasedCardCount[_cards[id].CardId] += 1;
             AddStats(id);
             _cards.Clear();
             RefreshShop();
@@ -79,16 +80,13 @@ public class ShopHandler : MonoBehaviour
         {
             NormalCardConfig normalCard = (NormalCardConfig)card;
             
-            _progressService.AddProgressDamage(normalCard.DamageBoost);
-            _progressService.AddProgressAttackRange(normalCard.AttackRangeBoost);
-            _progressService.AddProgressAttackRate(normalCard.AttackRateBoost);
-            _progressService.AddProgressMoveSpeed(normalCard.MoveSpeedBoost);
-            _progressService.AddProgressCollectablesPickRange(normalCard.CollectablesPickRangeBoost);
-            _progressService.AddProgressCollectablesValueBoost(normalCard.CollectablesValueBoost);
-            _progressService.AddProgressProjectileSpeed(normalCard.ProjectileSpeedBoost);
-            _progressService.AddProgresstMultiShot(normalCard.MultiShotBoost);
+            foreach (var stat in normalCard.Stats)
+            {
+                _progressService.AddStat(stat.Key, stat.Value);
+            }
             
-            _hpProvider.AddHeroMaxAndCurrentHp(normalCard.MaxHealthBoost);
+            //_hpProvider.AddHeroMaxAndCurrentHp(normalCard.MaxHealthBoost);
+            
         }
         if (card.GetType() == typeof(UniqueCardConfig))
         {
@@ -104,15 +102,21 @@ public class ShopHandler : MonoBehaviour
         
         if (_cardType == CardType.Normal)
         {
-            Card nc = _cardsGenerator.GenerateNormalCard(_rarenessOfCard);
-            if(nc.CardsInPool <= 0) GenerateCard(index);
-            _cards.Add(nc);
-            _cardHandlers[index].SetupNormalCard((NormalCardConfig)nc, _rarenessOfCard);
+            Card newCard = _cardsGenerator.GenerateNormalCard(_rarenessOfCard);
+            if (_progressService.ProgressData.PurchasedCardCount[newCard.CardId] >= newCard.PoolLimit)
+            {
+                GenerateCard(index);
+            }
+            _cards.Add(newCard);
+            _cardHandlers[index].SetupNormalCard((NormalCardConfig)newCard, _rarenessOfCard);
         }
         else if(_cardType == CardType.Unique)
         {
             Card nc = _cardsGenerator.GenerateUniqueCard(_rarenessOfCard);
-            if(nc.CardsInPool <= 0) GenerateCard(index);
+            if (nc.PoolLimit <= 0)
+            {
+                GenerateCard(index);
+            }
             _cards.Add(nc);
             _cardHandlers[index].SetupUniqueCard((UniqueCardConfig)nc, _rarenessOfCard);
         }

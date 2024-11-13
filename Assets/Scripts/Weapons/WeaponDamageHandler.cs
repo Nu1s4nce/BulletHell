@@ -14,6 +14,6 @@ public class WeaponDamageHandler : MonoBehaviour
     public void DealDamage(Transform target, float damage)
     {
         if(target.TryGetComponent(out IDamageable damageable))
-            damageable.ApplyDamage(damage + _progressService.GetHeroData().DamageBonus);
+            damageable.ApplyDamage(damage + _progressService.GetHeroData().HeroStatsData[StatId.Damage]);
     }
 }

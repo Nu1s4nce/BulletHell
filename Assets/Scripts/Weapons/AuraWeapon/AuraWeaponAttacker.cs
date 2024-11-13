@@ -32,7 +32,7 @@ public class AuraWeaponAttacker : MonoBehaviour
 
         _targetsList = new List<Transform>();
         
-        _timer = new TimerService(GetWeaponStats().AttackRate - _progressService.GetHeroData().AttackRateBonus);
+        _timer = new TimerService(GetWeaponStats().AttackRate - _progressService.GetHeroData().HeroStatsData[StatId.AttackRate]);
         _targetFinder.targetsChanged += UpdateTargetsList;
     }
     
@@ -52,7 +52,7 @@ public class AuraWeaponAttacker : MonoBehaviour
         foreach (var target in _targetsList.ToList())
         {
             if (Vector3.Distance(_heroProvider.GetHeroPosition(), target.position) 
-                <= GetWeaponStats().AttackRange + _progressService.GetHeroData().AttackRangeBonus)
+                <= GetWeaponStats().AttackRange + _progressService.GetHeroData().HeroStatsData[StatId.AttackRange])
             {
                 if(target.gameObject.activeSelf)
                     _weaponDamageHandler.DealDamage(target, GetWeaponStats().Damage);

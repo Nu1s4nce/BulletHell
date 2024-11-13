@@ -10,6 +10,8 @@ public class EnemyConfigData
     public float Damage;
     public float DistanceToAttack;
     public float AttackRate;
+    public float ProjectileSpeed;
 
     public GameObject EnemyPrefab;
+    public GameObject EnemyProjectilePrefab;
 }

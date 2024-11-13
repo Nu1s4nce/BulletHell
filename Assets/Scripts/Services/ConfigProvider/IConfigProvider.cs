@@ -6,6 +6,7 @@ public interface IConfigProvider
     CardsChancesConfig CardsChancesConfig { get; }
     public void Load();
     CardsChancesConfig GetCardsChancesConfig();
+    CurrenciesConfigData GetCurrenciesConfig();
     CardsConfig GetCardsConfig();
     HeroConfigData GetHeroConfig();
     EnemyConfigData GetEnemyConfig(int id);

@@ -2,7 +2,7 @@
 
 public class TimerService
 {
-    private readonly float _timerTime;
+    private float _timerTime;
     private float _currentTime;
     
     public TimerService(float timerTime)
@@ -13,6 +13,10 @@ public class TimerService
     public void UpdateTimer()
     {
         _currentTime -= Time.deltaTime;
+    }
+    public void ChangeTimerMaxTime(float time)
+    {
+        _timerTime = time;
     }
 
     public float GetCurrentTime()

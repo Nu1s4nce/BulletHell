@@ -8,24 +8,24 @@ public class TargetProjectileMover : MonoBehaviour
 {
     private Vector3 _startPoint;
     private Vector3 _middlePoint;
-    
+
     private float _startTime;
     private float _flightDistance;
-    
+
     private WeaponDamageHandler _weaponDamageHandler;
-    
-    public float ProjectileSpeed { private get;set; }
-    public Transform Target { private get;set; }
-    public float ProjectileDamage { private get;set; }
+
+    public float ProjectileSpeed { private get; set; }
+    public Transform Target { private get; set; }
+    public float ProjectileDamage { private get; set; }
 
     private Tweener _tweener;
-    
-    
+
+
     private void Awake()
     {
         _startTime = Time.time;
         _startPoint = transform.position;
-        
+
         _weaponDamageHandler = GetComponent<WeaponDamageHandler>();
     }
 
@@ -33,13 +33,13 @@ public class TargetProjectileMover : MonoBehaviour
     {
         _flightDistance = Vector3.Distance(transform.position, Target.position);
         _middlePoint = _startPoint + (Target.position - _startPoint) / 2 + Vector3.up * Random.Range(-0.4f, 0.4f);
-        
+
         AngleThrowing();
     }
 
     private void Update()
     {
-        DestroyOnTargetLoss();
+        
     }
 
     private void AngleThrowing()
@@ -48,16 +48,16 @@ public class TargetProjectileMover : MonoBehaviour
             .Float(0f, 1f, 0.5f, UpdateFly)
             .OnComplete(() =>
             {
-                if(Target.gameObject.activeSelf)
-                    _weaponDamageHandler.DealDamage(Target, ProjectileDamage);
+                _weaponDamageHandler.DealDamage(Target, ProjectileDamage);
                 Destroy(gameObject);
             });
     }
 
     private void UpdateFly(float progress)
     {
-        if(!Target.gameObject.activeSelf) return;
-        float distanceFlied = (Time.time - _startTime) * ProjectileSpeed ;
+        DestroyOnTargetLoss();
+        if (!Target) return;
+        float distanceFlied = (Time.time - _startTime) * ProjectileSpeed;
         float flightFraction = distanceFlied / _flightDistance;
 
         Vector3 m1 = Vector3.Lerp(_startPoint, _middlePoint, flightFraction);
@@ -65,11 +65,16 @@ public class TargetProjectileMover : MonoBehaviour
         transform.position = Vector3.Lerp(m1, m2, progress);
     }
 
+    private void OnDestroy()
+    {
+        _tweener.Kill();
+    }
+
     private void DestroyOnTargetLoss()
     {
-        if (!Target.gameObject.activeSelf)
+        if (!Target)
         {
-            DOTween.Kill(_tweener, true);
+            _tweener.Kill();
         }
     }
 }

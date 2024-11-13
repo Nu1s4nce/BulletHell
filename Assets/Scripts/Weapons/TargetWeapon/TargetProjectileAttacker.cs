@@ -24,7 +24,8 @@ public class TargetProjectileAttacker : MonoBehaviour
     
     private void Awake()
     {
-        _timer = new TimerService(GetWeaponStats().AttackRate - _progressService.GetHeroData().AttackRateBonus);
+        _progressService.AttackRateChanged += UpdateAttackRate;
+        _timer = new TimerService(GetWeaponStats().AttackRate - _progressService.GetHeroData().HeroStatsData[StatId.AttackRate]);
     }
     private void Update()
     {
@@ -36,19 +37,25 @@ public class TargetProjectileAttacker : MonoBehaviour
         }
     }
     
+    private void UpdateAttackRate()
+    {
+        _timer.ChangeTimerMaxTime(GetWeaponStats().AttackRate - _progressService.GetHeroData().HeroStatsData[StatId.AttackRate]);
+    }
+    
     private void Attack()
     {
-        List<Transform> nearestTargets = _targetFinder.GetXNearestTargets(GetWeaponStats().MultishotTargets + _progressService.GetHeroData().MultishotTargetsBonus);
+        List<Transform> nearestTargets = _targetFinder.GetXNearestTargets(GetWeaponStats().MultishotTargets + (int)_progressService.GetHeroData().HeroStatsData[StatId.MultiShotTargets]);
         if (nearestTargets.Count == 0) return;
         foreach (var target in nearestTargets)
         {
-            if (Vector3.Distance(transform.position, target.position) <= GetWeaponStats().AttackRange + _progressService.GetHeroData().AttackRangeBonus)
+            if (Vector3.Distance(transform.position, target.position) <= GetWeaponStats().AttackRange + _progressService.GetHeroData().HeroStatsData[StatId.AttackRange])
             {
-                _gameFactory.CreateProjectile(
+                _gameFactory.CreateTargetProjectile(
+                    GetWeaponStats().weaponProjectilePrefab,
                     transform.position, 
                     target,
                     GetWeaponStats().Damage,
-                    GetWeaponStats().ProjectileSpeed + _progressService.GetHeroData().ProjectileSpeedBonus
+                    GetWeaponStats().ProjectileSpeed + _progressService.GetHeroData().HeroStatsData[StatId.ProjectileSpeed]
                 );
             }
         }

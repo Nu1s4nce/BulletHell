@@ -8,64 +8,65 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float spawnPositionOffset;
     [SerializeField] private float spawnPositionDistance = 2;
     [SerializeField] private float spawnInterval = 2;
+    [SerializeField] private float difficultyTimerInterval = 10;
     [SerializeField] private int numberOfEnemiesToSpawn;
 
-    private float _timer;
+    private TimerService _spawnTimer;
+    private TimerService _difficultyTimer;
     
-    private IEnemyPoolProvider _enemyPoolProvider;
+    private IGameFactory _gameFactory;
     private ICameraProvider _cameraProvider;
 
     [Inject]
-    public void Construct(IEnemyPoolProvider enemyPoolProvider, ICameraProvider cameraProvider)
+    public void Construct(IGameFactory gameFactory, ICameraProvider cameraProvider)
     {
         _cameraProvider = cameraProvider;
-        _enemyPoolProvider = enemyPoolProvider;
+        _gameFactory = gameFactory;
     }
 
     private void Awake()
     {
-        _timer = spawnInterval;
-        _enemyPoolProvider.Init();
+        _spawnTimer = new TimerService(spawnInterval);
+        _difficultyTimer = new TimerService(difficultyTimerInterval);
     }
 
     private void Start()
     {
-        SpawnEnemies(enemiesStartPoolCount);
+        SpawnEnemies(0, enemiesStartPoolCount);
+        SpawnEnemies(1,enemiesStartPoolCount);
     }
 
     private void Update()
     {
-        UpdateTimer();
-        if (IsTimerReached())
+        _spawnTimer.UpdateTimer();
+        _difficultyTimer.UpdateTimer();
+        if (_spawnTimer.CheckTimerEnd())
         {
-            SpawnEnemies(numberOfEnemiesToSpawn);
-            RestartTimer();
+            SpawnEnemies(0,numberOfEnemiesToSpawn);
+            SpawnEnemies(1,numberOfEnemiesToSpawn);
+            _spawnTimer.ResetTimer();
+        }
+
+        if (_difficultyTimer.CheckTimerEnd())
+        {
+            //ChangeSpawnDifficulty();
+            _difficultyTimer.ResetTimer();
         }
     }
     
-    private void SpawnEnemies(int count)
+    private void SpawnEnemies(int id, int count)
     {
         for (int i = 0; i < count; i++)
         {
             var pos = GetRandomSpawnPointOffScreen();
-            GameObject enemy = _enemyPoolProvider.GetEnemy();
-            enemy.transform.position = pos;
+            GameObject enemy = _gameFactory.CreateEnemy(id, pos, null);
         }
     }
-    
-    private bool IsTimerReached()
-    {
-        return _timer <= 0;
-    }
 
-    private void UpdateTimer()
+    private void ChangeSpawnDifficulty()
     {
-        _timer -= Time.deltaTime;
-    }
-
-    private void RestartTimer()
-    {
-        _timer = spawnInterval;
+        numberOfEnemiesToSpawn += 1;
+        spawnInterval -= 0.02f;
     }
     
     private Vector3 GetRandomSpawnPointOffScreen()

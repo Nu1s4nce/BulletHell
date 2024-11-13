@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -20,20 +21,32 @@ public class CardHandler : MonoBehaviour, IPointerEnterHandler, IPointerClickHan
 
     [SerializeField] private int _cardId;
 
+    private Dictionary<StatId, string> _statsTextPresentation = new()
+    {
+        {StatId.Damage, "Урон"},
+        {StatId.MaxHealth, "Макс. HP"},
+        {StatId.MoveSpeed, "Скорость"},
+        {StatId.AttackRange, "Радиус атаки"},
+        {StatId.AttackRate, "Скорость атаки"},
+        {StatId.ProjectileSpeed, "Скорость снарядов"},
+        {StatId.CollectablesPickRange, "Дальность сбора"},
+        {StatId.CollectablesValue, "Валюта"},
+        {StatId.MultiShotTargets, "Количество целей"},
+    };
+
     private int _cardCost;
 
     private Card _card;
-    //private UniqueCardConfig _uniqueCard;
 
     private ICardsGenerator _cardsGenerator;
-    private IProgressService _progressService;
+    private IConfigProvider _configProvider;
 
     public event Action<int> CardClicked;
 
     [Inject]
-    public void Construct(ICardsGenerator cardsGenerator, IProgressService progressService)
+    public void Construct(ICardsGenerator cardsGenerator, IConfigProvider configProvider)
     {
-        _progressService = progressService;
+        _configProvider = configProvider;
         _cardsGenerator = cardsGenerator;
     }
 
@@ -88,7 +101,8 @@ public class CardHandler : MonoBehaviour, IPointerEnterHandler, IPointerClickHan
         }
         else _cardBorderIcon.gameObject.SetActive(false);
 
-        _cardCostIcon.sprite = cardConfig.CardCostImage;
+        
+        _cardCostIcon.sprite = _configProvider.GetCurrenciesConfig().CurrenciesConfig[cardConfig.CurrencyType];
     }
 
     private void SetupUniqueCardUI(UniqueCardConfig cardConfig, RarenessOfCard rarenessOfCard)
@@ -110,51 +124,16 @@ public class CardHandler : MonoBehaviour, IPointerEnterHandler, IPointerClickHan
         }
         else _cardBorderIcon.gameObject.SetActive(false);
 
-        _cardCostIcon.sprite = cardConfig.CardCostImage;
+        _cardCostIcon.sprite = _configProvider.GetCurrenciesConfig().CurrenciesConfig[cardConfig.CurrencyType];
     }
 
 
     private void HandleNormalCardStatsToShow(NormalCardConfig normalCardConfig, TMP_Text descriptionText)
     {
         descriptionText.text = "";
-        if (normalCardConfig.DamageBoost != 0)
+        foreach (var stat in normalCardConfig.Stats)
         {
-            descriptionText.text += "Damage + " + normalCardConfig.DamageBoost + "\n";
-        }
-
-        if (normalCardConfig.MaxHealthBoost != 0)
-        {
-            descriptionText.text += "Health + " + normalCardConfig.MaxHealthBoost + "\n";
-        }
-
-        if (normalCardConfig.AttackRangeBoost != 0)
-        {
-            descriptionText.text += "Attack range + " + normalCardConfig.AttackRangeBoost + "\n";
-        }
-
-        if (normalCardConfig.AttackRateBoost != 0)
-        {
-            descriptionText.text += "Attack rate + " + normalCardConfig.AttackRateBoost + "\n";
-        }
-
-        if (normalCardConfig.ProjectileSpeedBoost != 0)
-        {
-            descriptionText.text += "Projectile speed + " + normalCardConfig.ProjectileSpeedBoost + "\n";
-        }
-
-        if (normalCardConfig.MultiShotBoost != 0)
-        {
-            descriptionText.text += "Multishot targets + " + normalCardConfig.MultiShotBoost + "\n";
-        }
-
-        if (normalCardConfig.MoveSpeedBoost != 0)
-        {
-            descriptionText.text += "Move speed + " + normalCardConfig.MoveSpeedBoost + "\n";
-        }
-
-        if (normalCardConfig.CollectablesPickRangeBoost != 0)
-        {
-            descriptionText.text += "Pick-up range + " + normalCardConfig.CollectablesPickRangeBoost + "\n";
+            descriptionText.text += _statsTextPresentation[stat.Key] + " + " + stat.Value + "\n";
         }
     }
 

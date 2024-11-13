@@ -7,9 +7,9 @@ public class Card
     public Sprite CardImage;
     public Sprite CardBorder;
     public string CardName;
-    public int CardsInPool;
+    public int PoolLimit;
     
     [Header("Price tag")]
     public int CardCost;
-    public Sprite CardCostImage;
+    public Currencies CurrencyType;
 }

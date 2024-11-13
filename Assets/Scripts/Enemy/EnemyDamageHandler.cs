@@ -2,34 +2,33 @@
 using Zenject;
 
 [RequireComponent(typeof(EnemyAnimator))]
-public class EnemyDamageHandler : MonoBehaviour, IDamageable
+public class EnemyDamageHandler : MonoBehaviour, IDamageable, IIdHolder
 {
+    private int _enemyId;
     private float _currentHp;
     
     private EnemyAnimator _enemyAnimator;
     
     private IConfigProvider _configProvider;
     private ITargetFinder _targetFinder;
-    private IEnemyPoolProvider _enemyPoolProvider;
     private IGameFactory _gameFactory;
 
     [Inject]
-    public void Construct(IConfigProvider configProvider, ITargetFinder targetFinder, IEnemyPoolProvider enemyPoolProvider, IGameFactory gameFactory)
+    public void Construct(IConfigProvider configProvider, ITargetFinder targetFinder, IGameFactory gameFactory)
     {
         _gameFactory = gameFactory;
-        _enemyPoolProvider = enemyPoolProvider;
         _targetFinder = targetFinder;
         _configProvider = configProvider;
     }
     private void Awake()
     {
-        _currentHp = _configProvider.GetEnemyConfig(0).MaxHp;
+        _currentHp = _configProvider.GetEnemyConfig(_enemyId).MaxHp;
         _enemyAnimator = GetComponent<EnemyAnimator>();
     }
 
     private void OnEnable()
     {
-        _currentHp = _configProvider.GetEnemyConfig(0).MaxHp;
+        _currentHp = _configProvider.GetEnemyConfig(_enemyId).MaxHp;
     }
 
     public void ApplyDamage(float damage)
@@ -47,18 +46,23 @@ public class EnemyDamageHandler : MonoBehaviour, IDamageable
 
     private void HandleTextPopup(float dmg)
     {
-        Vector3 textPos = new Vector3(transform.position.x, transform.position.y, -2);
+        Vector3 textPos = new Vector3(transform.position.x, transform.position.y + 0.8f, 0);
         _gameFactory.CreateTextPopup(dmg, textPos);
     }
 
     private void Dead()
     {
         _targetFinder.RemoveTarget(transform);
-        _enemyPoolProvider.ReturnEnemy(gameObject);
+        Destroy(gameObject);
     }
 
     private void SpawnCollectableAfterDeath()
     {
         _gameFactory.CreateCollectable(transform.position);
+    }
+
+    public void SetId(int id)
+    {
+        _enemyId = id;
     }
 }

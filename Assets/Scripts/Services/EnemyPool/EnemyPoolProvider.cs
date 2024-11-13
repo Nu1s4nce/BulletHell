@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Pool;
 
 public class EnemyPoolProvider : IEnemyPoolProvider
@@ -6,7 +7,9 @@ public class EnemyPoolProvider : IEnemyPoolProvider
     private readonly IGameFactory _gameFactory;
     private readonly ITargetFinder _targetFinder;
 
+    private List<ObjectPool<GameObject>> _allPools;
     private ObjectPool<GameObject> _enemiesPool;
+    private ObjectPool<GameObject> _hobbitsPool;
 
     public EnemyPoolProvider(IGameFactory gameFactory, ITargetFinder targetFinder)
     {
@@ -42,7 +45,7 @@ public class EnemyPoolProvider : IEnemyPoolProvider
 
     private GameObject CreateEnemy()
     { 
-        GameObject enemy = _gameFactory.CreateEnemy(0, Vector3.zero, null);
+        GameObject enemy = _gameFactory.CreateEnemy(2, Vector3.zero, null);
         return enemy;
     }
     public GameObject GetEnemy()

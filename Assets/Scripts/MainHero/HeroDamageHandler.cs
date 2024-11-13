@@ -15,14 +15,13 @@ public class HeroDamageHandler : MonoBehaviour, IDamageable
 
     public void ApplyDamage(float damage)
     {
+        _hpProvider.RemoveHeroCurrentHp(damage);
+        
         if (_hpProvider.GetHeroCurrentHp() <= 0)
         {
             Dead();
             return;
         }
-        
-        float curHp = _hpProvider.GetHeroCurrentHp() - damage;
-        _hpProvider.SetHeroHp(curHp);
     }
 
     private void Dead()

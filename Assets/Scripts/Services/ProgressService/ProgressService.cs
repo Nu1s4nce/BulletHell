@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 
 public class ProgressService : IProgressService
 {
     public PlayerProgressData ProgressData { get; set; } = new();
     
     public event Action CurrencyAmountChanged;
+    public event Action AttackRateChanged;
 
     public int GetMainCurrency()
     {
@@ -15,47 +17,37 @@ public class ProgressService : IProgressService
         ProgressData.CurrenciesData[Currencies.MainCurrency] = count;
         CurrencyAmountChanged?.Invoke();
     }
+    
     public void AddMainCurrency(int count)
     {
         ProgressData.CurrenciesData[Currencies.MainCurrency] += count;
         CurrencyAmountChanged?.Invoke();
     }
+    
     public void RemoveMainCurrency(int count)
     {
         ProgressData.CurrenciesData[Currencies.MainCurrency] -= count;
         CurrencyAmountChanged?.Invoke();
     }
-    public void AddProgressDamage(float dmg)
+    
+    public void AddStat(StatId statId, float value)
     {
-        ProgressData.HeroData.DamageBonus += dmg;
+        ProgressData.HeroData.HeroStatsData[statId] += value;
     }
-    public void AddProgressMoveSpeed(float ms)
+
+    public void InitStats()
     {
-        ProgressData.HeroData.MoveSpeedBonus += ms;
+        foreach (StatId stat in (StatId[]) Enum.GetValues(typeof(StatId)))
+        {
+            ProgressData.HeroData.HeroStatsData.Add(stat, 0);
+        }
     }
-    public void AddProgressAttackRange(float atkRange)
+    public void InitPurchasedCardCount(List<int> allIds)
     {
-        ProgressData.HeroData.AttackRangeBonus += atkRange;
-    }
-    public void AddProgressAttackRate(float atkRate)
-    {
-        ProgressData.HeroData.AttackRateBonus += atkRate;
-    }
-    public void AddProgressProjectileSpeed(float projSpeed)
-    {
-        ProgressData.HeroData.ProjectileSpeedBonus += projSpeed;
-    }
-    public void AddProgressCollectablesPickRange(float pickRange)
-    {
-        ProgressData.HeroData.CollectablesPickRangeBonus += pickRange;
-    }
-    public void AddProgressCollectablesValueBoost(int valueBoost)
-    {
-        ProgressData.HeroData.CollectablesValueBonus += valueBoost;
-    }
-    public void AddProgresstMultiShot(int multiShot)
-    {
-        ProgressData.HeroData.MultishotTargetsBonus += multiShot;
+        foreach (int id in allIds)
+        {
+            ProgressData.PurchasedCardCount.Add(id, 0);
+        }
     }
 
     public HeroProgressData GetHeroData()

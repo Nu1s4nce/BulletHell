@@ -11,4 +11,5 @@ public class WeaponsConfigData
     public float AttackRate;
     public float ProjectileSpeed;
     public GameObject weaponPrefab;
+    public GameObject weaponProjectilePrefab;
 }

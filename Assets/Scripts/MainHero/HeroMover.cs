@@ -57,6 +57,7 @@ public class HeroMover : MonoBehaviour
     private void MovePlayer()
     {
         _direction = Vector2.ClampMagnitude(_direction, 1);
-        rb.MovePosition(rb.position + (GetHeroStats().MoveSpeed + GetHeroStatsBonus().MoveSpeedBonus) * Time.fixedDeltaTime * _direction);
+        rb.MovePosition(rb.position + (GetHeroStats().MoveSpeed + GetHeroStatsBonus().HeroStatsData[StatId.MoveSpeed]) * Time.fixedDeltaTime * _direction);
     }
+    
 }

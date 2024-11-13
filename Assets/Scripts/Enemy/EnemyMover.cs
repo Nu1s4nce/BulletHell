@@ -2,10 +2,11 @@
 using Zenject;
 
 [RequireComponent(typeof(EnemyAnimator))]
-public class EnemyMover : MonoBehaviour
+public class EnemyMover : MonoBehaviour, IIdHolder
 {
+    private int _enemyId;
+    
     private EnemyAnimator _enemyAnimator;
-    private EnemyConfigData _enemyData;
     
     private IHeroProvider _heroProvider;
     private IConfigProvider _configProvider;
@@ -19,10 +20,8 @@ public class EnemyMover : MonoBehaviour
 
     private void Awake()
     {
-        _enemyData = _configProvider.GetEnemyConfig(0);
         _enemyAnimator = GetComponent<EnemyAnimator>();
     }
-    private void OnEnable() => _enemyData = _configProvider.GetEnemyConfig(0);
 
     private void Update()
     {
@@ -32,10 +31,21 @@ public class EnemyMover : MonoBehaviour
 
     private void Move()
     {
-        Vector3 distanceFromPlayer = (_heroProvider.GetHeroPosition() - transform.position).normalized;
-        if (Vector3.Distance(_heroProvider.GetHeroPosition(), transform.position) > _enemyData.DistanceToAttack)
+        Vector3 moveDirection = (_heroProvider.GetHeroPosition() - transform.position).normalized;
+        
+        if (Vector3.Distance(_heroProvider.GetHeroPosition(), transform.position) > GetEnemyConfig().DistanceToAttack)
         {
-            transform.position += distanceFromPlayer * (_enemyData.Speed * Time.deltaTime);
+            transform.position += moveDirection * (GetEnemyConfig().Speed * Time.deltaTime);
         }
+    }
+    
+    private EnemyConfigData GetEnemyConfig()
+    {
+        return _configProvider.GetEnemyConfig(_enemyId);
+    }
+
+    public void SetId(int id)
+    {
+        _enemyId = id;
     }
 }

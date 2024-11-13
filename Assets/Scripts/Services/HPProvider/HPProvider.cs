@@ -2,8 +2,10 @@
 
 public class HPProvider : IHpProvider
 {
-    private IConfigProvider _configProvider;
-    private IProgressService _progressService;
+    private readonly IConfigProvider _configProvider;
+    private readonly IProgressService _progressService;
+
+    private float _currentHealth;
 
     public event Action PlayerHpChanged;
     
@@ -13,31 +15,36 @@ public class HPProvider : IHpProvider
         _configProvider = configProvider;
     }
     
-    public void SetHeroHp(float hp)
+    public void InitHeroHp()
     {
-        _progressService.GetHeroData().CurrentHealth = hp;
+        _currentHealth = _progressService.GetHeroData().HeroStatsData[StatId.MaxHealth];
         PlayerHpChanged?.Invoke();
     }
 
     public void AddHeroMaxAndCurrentHp(float hp)
     {
-        _progressService.GetHeroData().MaxHealthBonus += hp;
-        _progressService.GetHeroData().CurrentHealth += hp;
+        _progressService.GetHeroData().HeroStatsData[StatId.MaxHealth] += hp;
+        _currentHealth += hp;
         PlayerHpChanged?.Invoke();
     }
     public void RemoveHeroMaxHp(float hp)
     {
-        _progressService.GetHeroData().MaxHealthBonus -= hp;
+        _progressService.GetHeroData().HeroStatsData[StatId.MaxHealth] -= hp;
+        PlayerHpChanged?.Invoke();
+    }
+    public void RemoveHeroCurrentHp(float hp)
+    {
+        _currentHealth -= hp;
         PlayerHpChanged?.Invoke();
     }
 
     public float GetHeroCurrentHp()
     {
-        return _progressService.GetHeroData().CurrentHealth;
+        return _currentHealth;
     }
     
     public float GetHeroMaxHp()
     {
-        return _configProvider.GetHeroConfig().MaxHealth + _progressService.GetHeroData().MaxHealthBonus;
+        return _configProvider.GetHeroConfig().MaxHealth + _progressService.GetHeroData().HeroStatsData[StatId.MaxHealth];
     }
 }

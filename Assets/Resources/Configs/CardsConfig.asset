@@ -17,8 +17,8 @@ MonoBehaviour:
     SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 1102750877, guid: c94278db7b3ac9f42bcfa4650aa84669, type: 3}
-    - {fileID: 809058815, guid: c94278db7b3ac9f42bcfa4650aa84669, type: 3}
     - {fileID: 1327818277, guid: c94278db7b3ac9f42bcfa4650aa84669, type: 3}
+    - {fileID: 1385302593, guid: c94278db7b3ac9f42bcfa4650aa84669, type: 3}
     - {fileID: 1263409677, guid: c94278db7b3ac9f42bcfa4650aa84669, type: 3}
     - {fileID: -2106378426, guid: c94278db7b3ac9f42bcfa4650aa84669, type: 3}
     - {fileID: 1191575939, guid: c94278db7b3ac9f42bcfa4650aa84669, type: 3}
@@ -66,7 +66,7 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 3
     - Name: 
       Entry: 7
       Data: 3|NormalCardConfig, Assembly-CSharp
@@ -82,51 +82,127 @@ MonoBehaviour:
     - Name: CardName
       Entry: 1
       Data: Palka
-    - Name: CardsInPool
+    - Name: PoolLimit
       Entry: 3
       Data: 100
     - Name: CardCost
       Entry: 3
       Data: 40
-    - Name: CardCostImage
-      Entry: 10
-      Data: 1
-    - Name: DamageBoost
-      Entry: 4
-      Data: 1
-    - Name: MaxHealthBoost
-      Entry: 4
-      Data: 0
-    - Name: MoveSpeedBoost
-      Entry: 4
-      Data: 0
-    - Name: AttackRangeBoost
-      Entry: 4
-      Data: 0
-    - Name: AttackRateBoost
-      Entry: 4
-      Data: 0
-    - Name: ProjectileSpeedBoost
-      Entry: 4
-      Data: 0
-    - Name: CollectablesPickRangeBoost
-      Entry: 4
-      Data: 0
-    - Name: CollectablesValueBoost
+    - Name: CurrencyType
       Entry: 3
       Data: 0
-    - Name: MultiShotBoost
+    - Name: Stats
+      Entry: 7
+      Data: 4|System.Collections.Generic.Dictionary`2[[StatId, Assembly-CSharp],[System.Single,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 5|System.Collections.Generic.EnumEqualityComparer`1[[StatId, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
       Entry: 3
       Data: 0
+    - Name: $v
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 8
       Data: 
     - Name: 
       Entry: 7
-      Data: 4|NormalCardConfig, Assembly-CSharp
+      Data: 6|NormalCardConfig, Assembly-CSharp
     - Name: CardId
       Entry: 3
       Data: 1
+    - Name: CardImage
+      Entry: 10
+      Data: 1
+    - Name: CardBorder
+      Entry: 6
+      Data: 
+    - Name: CardName
+      Entry: 1
+      Data: Beginner's book
+    - Name: PoolLimit
+      Entry: 3
+      Data: 100
+    - Name: CardCost
+      Entry: 3
+      Data: 30
+    - Name: CurrencyType
+      Entry: 3
+      Data: 0
+    - Name: Stats
+      Entry: 7
+      Data: 7|System.Collections.Generic.Dictionary`2[[StatId, Assembly-CSharp],[System.Single,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 8|System.Collections.Generic.EnumEqualityComparer`1[[StatId, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 4
+      Data: 10
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 9|NormalCardConfig, Assembly-CSharp
+    - Name: CardId
+      Entry: 3
+      Data: 2
     - Name: CardImage
       Entry: 10
       Data: 2
@@ -135,43 +211,44 @@ MonoBehaviour:
       Data: 
     - Name: CardName
       Entry: 1
-      Data: Beginner's book
-    - Name: CardsInPool
+      Data: Horse
+    - Name: PoolLimit
       Entry: 3
       Data: 100
     - Name: CardCost
       Entry: 3
-      Data: 30
-    - Name: CardCostImage
-      Entry: 10
+      Data: 58
+    - Name: CurrencyType
+      Entry: 3
+      Data: 0
+    - Name: Stats
+      Entry: 7
+      Data: 10|System.Collections.Generic.Dictionary`2[[StatId, Assembly-CSharp],[System.Single,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 8
+    - Name: 
+      Entry: 12
       Data: 1
-    - Name: DamageBoost
-      Entry: 4
-      Data: 0
-    - Name: MaxHealthBoost
-      Entry: 4
-      Data: 10
-    - Name: MoveSpeedBoost
-      Entry: 4
-      Data: 0
-    - Name: AttackRangeBoost
-      Entry: 4
-      Data: 0
-    - Name: AttackRateBoost
-      Entry: 4
-      Data: 0
-    - Name: ProjectileSpeedBoost
-      Entry: 4
-      Data: 0
-    - Name: CollectablesPickRangeBoost
-      Entry: 4
-      Data: 0
-    - Name: CollectablesValueBoost
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
       Entry: 3
-      Data: 0
-    - Name: MultiShotBoost
-      Entry: 3
-      Data: 0
+      Data: 2
+    - Name: $v
+      Entry: 4
+      Data: 0.1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -192,14 +269,14 @@ MonoBehaviour:
       Data: 1
     - Name: $v
       Entry: 7
-      Data: 5|System.Collections.Generic.List`1[[NormalCardConfig, Assembly-CSharp]],
+      Data: 11|System.Collections.Generic.List`1[[NormalCardConfig, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 6|NormalCardConfig, Assembly-CSharp
+      Data: 12|NormalCardConfig, Assembly-CSharp
     - Name: CardId
       Entry: 3
       Data: 20
@@ -212,42 +289,55 @@ MonoBehaviour:
     - Name: CardName
       Entry: 1
       Data: Tangle
-    - Name: CardsInPool
+    - Name: PoolLimit
       Entry: 3
-      Data: 20
+      Data: 1
     - Name: CardCost
       Entry: 3
       Data: 60
-    - Name: CardCostImage
-      Entry: 10
-      Data: 1
-    - Name: DamageBoost
+    - Name: CurrencyType
+      Entry: 3
+      Data: 0
+    - Name: Stats
+      Entry: 7
+      Data: 13|System.Collections.Generic.Dictionary`2[[StatId, Assembly-CSharp],[System.Single,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 8
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
       Entry: 4
       Data: 2
-    - Name: MaxHealthBoost
-      Entry: 4
-      Data: 0
-    - Name: MoveSpeedBoost
-      Entry: 4
-      Data: 0
-    - Name: AttackRangeBoost
-      Entry: 4
-      Data: 0
-    - Name: AttackRateBoost
-      Entry: 4
-      Data: 0.02
-    - Name: ProjectileSpeedBoost
-      Entry: 4
-      Data: 0
-    - Name: CollectablesPickRangeBoost
-      Entry: 4
-      Data: 0
-    - Name: CollectablesValueBoost
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
       Entry: 3
-      Data: 0
-    - Name: MultiShotBoost
-      Entry: 3
-      Data: 0
+      Data: 1
+    - Name: $v
+      Entry: 4
+      Data: 10
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -268,14 +358,14 @@ MonoBehaviour:
       Data: 2
     - Name: $v
       Entry: 7
-      Data: 7|System.Collections.Generic.List`1[[NormalCardConfig, Assembly-CSharp]],
+      Data: 14|System.Collections.Generic.List`1[[NormalCardConfig, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 8|NormalCardConfig, Assembly-CSharp
+      Data: 15|NormalCardConfig, Assembly-CSharp
     - Name: CardId
       Entry: 3
       Data: 40
@@ -288,42 +378,53 @@ MonoBehaviour:
     - Name: CardName
       Entry: 1
       Data: White crow's feather
-    - Name: CardsInPool
+    - Name: PoolLimit
       Entry: 3
       Data: 10
     - Name: CardCost
       Entry: 3
       Data: 100
-    - Name: CardCostImage
-      Entry: 10
-      Data: 1
-    - Name: DamageBoost
-      Entry: 4
-      Data: 0
-    - Name: MaxHealthBoost
-      Entry: 4
-      Data: 0
-    - Name: MoveSpeedBoost
-      Entry: 4
-      Data: 0
-    - Name: AttackRangeBoost
-      Entry: 4
-      Data: 0
-    - Name: AttackRateBoost
-      Entry: 4
-      Data: 0
-    - Name: ProjectileSpeedBoost
-      Entry: 4
-      Data: 0
-    - Name: CollectablesPickRangeBoost
-      Entry: 4
-      Data: 0
-    - Name: CollectablesValueBoost
+    - Name: CurrencyType
       Entry: 3
       Data: 0
-    - Name: MultiShotBoost
-      Entry: 3
+    - Name: Stats
+      Entry: 7
+      Data: 16|System.Collections.Generic.Dictionary`2[[StatId, Assembly-CSharp],[System.Single,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 17|System.Collections.Generic.EnumEqualityComparer`1[[StatId, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
       Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 8
+    - Name: $v
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -344,14 +445,14 @@ MonoBehaviour:
       Data: 3
     - Name: $v
       Entry: 7
-      Data: 9|System.Collections.Generic.List`1[[NormalCardConfig, Assembly-CSharp]],
+      Data: 18|System.Collections.Generic.List`1[[NormalCardConfig, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
       Data: 2
     - Name: 
       Entry: 7
-      Data: 10|NormalCardConfig, Assembly-CSharp
+      Data: 19|NormalCardConfig, Assembly-CSharp
     - Name: CardId
       Entry: 3
       Data: 60
@@ -364,48 +465,85 @@ MonoBehaviour:
     - Name: CardName
       Entry: 1
       Data: Yellow Pearl
-    - Name: CardsInPool
+    - Name: PoolLimit
       Entry: 3
-      Data: 4
+      Data: 10
     - Name: CardCost
       Entry: 3
       Data: 720
-    - Name: CardCostImage
-      Entry: 10
-      Data: 1
-    - Name: DamageBoost
-      Entry: 4
-      Data: 15
-    - Name: MaxHealthBoost
-      Entry: 4
-      Data: 30
-    - Name: MoveSpeedBoost
-      Entry: 4
-      Data: 0
-    - Name: AttackRangeBoost
-      Entry: 4
-      Data: 10
-    - Name: AttackRateBoost
-      Entry: 4
-      Data: 0.1
-    - Name: ProjectileSpeedBoost
-      Entry: 4
-      Data: 0
-    - Name: CollectablesPickRangeBoost
-      Entry: 4
-      Data: 0
-    - Name: CollectablesValueBoost
+    - Name: CurrencyType
       Entry: 3
       Data: 0
-    - Name: MultiShotBoost
+    - Name: Stats
+      Entry: 7
+      Data: 20|System.Collections.Generic.Dictionary`2[[StatId, Assembly-CSharp],[System.Single,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 17
+    - Name: 
+      Entry: 12
+      Data: 4
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
       Entry: 3
-      Data: 1
+      Data: 0
+    - Name: $v
+      Entry: 4
+      Data: 40
     - Name: 
       Entry: 8
       Data: 
     - Name: 
       Entry: 7
-      Data: 11|NormalCardConfig, Assembly-CSharp
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 4
+      Data: 18
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 3
+    - Name: $v
+      Entry: 4
+      Data: 0.2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 8
+    - Name: $v
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 21|NormalCardConfig, Assembly-CSharp
     - Name: CardId
       Entry: 3
       Data: 61
@@ -418,42 +556,55 @@ MonoBehaviour:
     - Name: CardName
       Entry: 1
       Data: King's crown
-    - Name: CardsInPool
+    - Name: PoolLimit
       Entry: 3
-      Data: 5
+      Data: 10
     - Name: CardCost
       Entry: 3
       Data: 920
-    - Name: CardCostImage
-      Entry: 10
-      Data: 1
-    - Name: DamageBoost
-      Entry: 4
-      Data: 55
-    - Name: MaxHealthBoost
-      Entry: 4
-      Data: 110
-    - Name: MoveSpeedBoost
-      Entry: 4
-      Data: 0
-    - Name: AttackRangeBoost
-      Entry: 4
-      Data: 0
-    - Name: AttackRateBoost
-      Entry: 4
-      Data: 0
-    - Name: ProjectileSpeedBoost
-      Entry: 4
-      Data: 0
-    - Name: CollectablesPickRangeBoost
-      Entry: 4
-      Data: 0.1
-    - Name: CollectablesValueBoost
-      Entry: 3
-      Data: 1
-    - Name: MultiShotBoost
+    - Name: CurrencyType
       Entry: 3
       Data: 0
+    - Name: Stats
+      Entry: 7
+      Data: 22|System.Collections.Generic.Dictionary`2[[StatId, Assembly-CSharp],[System.Single,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 17
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 4
+      Data: 80
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 6
+    - Name: $v
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -474,14 +625,14 @@ MonoBehaviour:
       Data: 4
     - Name: $v
       Entry: 7
-      Data: 12|System.Collections.Generic.List`1[[NormalCardConfig, Assembly-CSharp]],
+      Data: 23|System.Collections.Generic.List`1[[NormalCardConfig, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
       Data: 2
     - Name: 
       Entry: 7
-      Data: 13|NormalCardConfig, Assembly-CSharp
+      Data: 24|NormalCardConfig, Assembly-CSharp
     - Name: CardId
       Entry: 3
       Data: 80
@@ -494,48 +645,85 @@ MonoBehaviour:
     - Name: CardName
       Entry: 1
       Data: Ace
-    - Name: CardsInPool
+    - Name: PoolLimit
       Entry: 3
-      Data: 2
+      Data: 5
     - Name: CardCost
       Entry: 3
       Data: 1000
-    - Name: CardCostImage
-      Entry: 10
-      Data: 1
-    - Name: DamageBoost
-      Entry: 4
-      Data: 60
-    - Name: MaxHealthBoost
-      Entry: 4
-      Data: 0
-    - Name: MoveSpeedBoost
-      Entry: 4
-      Data: 0
-    - Name: AttackRangeBoost
-      Entry: 4
-      Data: 0
-    - Name: AttackRateBoost
-      Entry: 4
-      Data: 0.2
-    - Name: ProjectileSpeedBoost
-      Entry: 4
-      Data: 0
-    - Name: CollectablesPickRangeBoost
-      Entry: 4
-      Data: 0
-    - Name: CollectablesValueBoost
+    - Name: CurrencyType
       Entry: 3
       Data: 0
-    - Name: MultiShotBoost
+    - Name: Stats
+      Entry: 7
+      Data: 25|System.Collections.Generic.Dictionary`2[[StatId, Assembly-CSharp],[System.Single,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 17
+    - Name: 
+      Entry: 12
+      Data: 4
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
       Entry: 3
+      Data: 5
+    - Name: $v
+      Entry: 4
       Data: 1
     - Name: 
       Entry: 8
       Data: 
     - Name: 
       Entry: 7
-      Data: 14|NormalCardConfig, Assembly-CSharp
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 4
+    - Name: $v
+      Entry: 4
+      Data: 0.1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 4
+      Data: 100
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 26|NormalCardConfig, Assembly-CSharp
     - Name: CardId
       Entry: 3
       Data: 81
@@ -548,42 +736,43 @@ MonoBehaviour:
     - Name: CardName
       Entry: 1
       Data: Diamond
-    - Name: CardsInPool
+    - Name: PoolLimit
       Entry: 3
-      Data: 2
+      Data: 5
     - Name: CardCost
       Entry: 3
       Data: 1000
-    - Name: CardCostImage
-      Entry: 10
+    - Name: CurrencyType
+      Entry: 3
+      Data: 0
+    - Name: Stats
+      Entry: 7
+      Data: 27|System.Collections.Generic.Dictionary`2[[StatId, Assembly-CSharp],[System.Single,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 17
+    - Name: 
+      Entry: 12
       Data: 1
-    - Name: DamageBoost
-      Entry: 4
-      Data: 10
-    - Name: MaxHealthBoost
-      Entry: 4
-      Data: 10
-    - Name: MoveSpeedBoost
-      Entry: 4
-      Data: 0
-    - Name: AttackRangeBoost
-      Entry: 4
-      Data: 0
-    - Name: AttackRateBoost
-      Entry: 4
-      Data: 0
-    - Name: ProjectileSpeedBoost
-      Entry: 4
-      Data: 0
-    - Name: CollectablesPickRangeBoost
-      Entry: 4
-      Data: 0
-    - Name: CollectablesValueBoost
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
       Entry: 3
       Data: 0
-    - Name: MultiShotBoost
-      Entry: 3
-      Data: 5
+    - Name: $v
+      Entry: 4
+      Data: 100
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -604,7 +793,7 @@ MonoBehaviour:
       Data: 
     - Name: AllUniqueCardsByRareness
       Entry: 7
-      Data: 15|System.Collections.Generic.Dictionary`2[[RarenessOfCard, Assembly-CSharp],[System.Collections.Generic.List`1[[UniqueCardConfig,
+      Data: 28|System.Collections.Generic.Dictionary`2[[RarenessOfCard, Assembly-CSharp],[System.Collections.Generic.List`1[[UniqueCardConfig,
         Assembly-CSharp]], mscorlib]], mscorlib
     - Name: comparer
       Entry: 9
@@ -620,7 +809,7 @@ MonoBehaviour:
       Data: 0
     - Name: $v
       Entry: 7
-      Data: 16|System.Collections.Generic.List`1[[UniqueCardConfig, Assembly-CSharp]],
+      Data: 29|System.Collections.Generic.List`1[[UniqueCardConfig, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
@@ -642,7 +831,7 @@ MonoBehaviour:
       Data: 1
     - Name: $v
       Entry: 7
-      Data: 17|System.Collections.Generic.List`1[[UniqueCardConfig, Assembly-CSharp]],
+      Data: 30|System.Collections.Generic.List`1[[UniqueCardConfig, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
@@ -664,7 +853,7 @@ MonoBehaviour:
       Data: 2
     - Name: $v
       Entry: 7
-      Data: 18|System.Collections.Generic.List`1[[UniqueCardConfig, Assembly-CSharp]],
+      Data: 31|System.Collections.Generic.List`1[[UniqueCardConfig, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
@@ -686,7 +875,7 @@ MonoBehaviour:
       Data: 3
     - Name: $v
       Entry: 7
-      Data: 19|System.Collections.Generic.List`1[[UniqueCardConfig, Assembly-CSharp]],
+      Data: 32|System.Collections.Generic.List`1[[UniqueCardConfig, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
@@ -708,7 +897,7 @@ MonoBehaviour:
       Data: 4
     - Name: $v
       Entry: 7
-      Data: 20|System.Collections.Generic.List`1[[UniqueCardConfig, Assembly-CSharp]],
+      Data: 33|System.Collections.Generic.List`1[[UniqueCardConfig, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
@@ -730,11 +919,11 @@ MonoBehaviour:
       Data: 
     - Name: AllCardColorsByRareness
       Entry: 7
-      Data: 21|System.Collections.Generic.Dictionary`2[[RarenessOfCard, Assembly-CSharp],[CardsRarenessColors,
+      Data: 34|System.Collections.Generic.Dictionary`2[[RarenessOfCard, Assembly-CSharp],[CardsRarenessColors,
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 22|System.Collections.Generic.EnumEqualityComparer`1[[RarenessOfCard,
+      Data: 35|System.Collections.Generic.EnumEqualityComparer`1[[RarenessOfCard,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
@@ -756,7 +945,7 @@ MonoBehaviour:
       Data: 0
     - Name: $v
       Entry: 7
-      Data: 23|CardsRarenessColors, Assembly-CSharp
+      Data: 36|CardsRarenessColors, Assembly-CSharp
     - Name: PrimaryColor
       Entry: 7
       Data: UnityEngine.Color, UnityEngine.CoreModule
@@ -807,7 +996,7 @@ MonoBehaviour:
       Data: 1
     - Name: $v
       Entry: 7
-      Data: 24|CardsRarenessColors, Assembly-CSharp
+      Data: 37|CardsRarenessColors, Assembly-CSharp
     - Name: PrimaryColor
       Entry: 7
       Data: UnityEngine.Color, UnityEngine.CoreModule
@@ -858,7 +1047,7 @@ MonoBehaviour:
       Data: 2
     - Name: $v
       Entry: 7
-      Data: 25|CardsRarenessColors, Assembly-CSharp
+      Data: 38|CardsRarenessColors, Assembly-CSharp
     - Name: PrimaryColor
       Entry: 7
       Data: UnityEngine.Color, UnityEngine.CoreModule
@@ -909,7 +1098,7 @@ MonoBehaviour:
       Data: 3
     - Name: $v
       Entry: 7
-      Data: 26|CardsRarenessColors, Assembly-CSharp
+      Data: 39|CardsRarenessColors, Assembly-CSharp
     - Name: PrimaryColor
       Entry: 7
       Data: UnityEngine.Color, UnityEngine.CoreModule
@@ -960,7 +1149,7 @@ MonoBehaviour:
       Data: 4
     - Name: $v
       Entry: 7
-      Data: 27|CardsRarenessColors, Assembly-CSharp
+      Data: 40|CardsRarenessColors, Assembly-CSharp
     - Name: PrimaryColor
       Entry: 7
       Data: UnityEngine.Color, UnityEngine.CoreModule
