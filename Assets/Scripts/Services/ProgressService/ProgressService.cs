@@ -7,6 +7,8 @@ public class ProgressService : IProgressService
     
     public event Action CurrencyAmountChanged;
     public event Action AttackRateChanged;
+    public event Action<float> HPChanged;
+    
 
     public int GetMainCurrency()
     {
@@ -33,6 +35,15 @@ public class ProgressService : IProgressService
     public void AddStat(StatId statId, float value)
     {
         ProgressData.HeroData.HeroStatsData[statId] += value;
+        switch (statId)
+        {
+            case StatId.MaxHealth:
+                HPChanged?.Invoke(value);
+                break;
+            case StatId.AttackRate:
+                AttackRateChanged?.Invoke();
+                break;
+        }
     }
 
     public void InitStats()

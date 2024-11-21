@@ -33,19 +33,19 @@ public class HPHandler : MonoBehaviour
         _initialRightMask = _rectMask2D.padding.z;
     }
 
-    private void SetValue(float value)
+    private void SetValue()
     {
-        var targetWidth = value * _maxRightMask / _hpProvider.GetHeroMaxHp();
+        var targetWidth = _hpProvider.GetHeroCurrentHp() * _maxRightMask / _hpProvider.GetHeroMaxHp();
         var newRightMask = _maxRightMask + _initialRightMask - targetWidth;
         var padding = _rectMask2D.padding;
         padding.z = newRightMask;
         _rectMask2D.padding = padding;
-        _healthBarText.SetText(value.ToString(CultureInfo.InvariantCulture) + "/" + _hpProvider.GetHeroMaxHp());
+        _healthBarText.SetText(_hpProvider.GetHeroCurrentHp() + "/" + _hpProvider.GetHeroMaxHp());
     }
 
     private void UpdateHp()
     {
-        SetValue(_hpProvider.GetHeroCurrentHp());
+        SetValue();
     }
 
     private HeroConfigData GetHeroStats()

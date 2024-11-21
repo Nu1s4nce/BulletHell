@@ -33,11 +33,10 @@ public class LevelInitializer : IInitializable
         }
         _progressService.InitPurchasedCardCount(cardIds);
         _progressService.InitStats();
-        _progressService.AddStat(StatId.MaxHealth, 1000);
+        _hpProvider.InitHeroHp();
         
         _gameFactory.CreateHero(new Vector3(0,0,0));
         
-        _hpProvider.InitHeroHp();
         _progressService.SetMainCurrency(10000);
     }
 }

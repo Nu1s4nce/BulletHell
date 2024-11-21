@@ -8,12 +8,12 @@ public class CardsConfig : SerializedScriptableObject
     public Dictionary<RarenessOfCard, List<NormalCardConfig>> AllNormalCardsByRareness;
     public Dictionary<RarenessOfCard, List<UniqueCardConfig>> AllUniqueCardsByRareness;
     public Dictionary<RarenessOfCard, CardsRarenessColors> AllCardColorsByRareness;
-    
-    
 }
 
 public class CardsRarenessColors
 {
     public Color PrimaryColor;
     public Color SecondaryColor;
+    public Color BorderColor;
+    public Material RarenessMaterial;
 }

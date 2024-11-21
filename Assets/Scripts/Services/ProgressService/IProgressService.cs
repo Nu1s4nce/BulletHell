@@ -6,6 +6,7 @@ public interface IProgressService
     public PlayerProgressData ProgressData { get; set; }
     public event Action CurrencyAmountChanged;
     public event Action AttackRateChanged;
+    public event Action<float> HPChanged;
 
     public int GetMainCurrency();
     public void InitStats();

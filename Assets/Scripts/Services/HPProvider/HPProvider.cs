@@ -17,7 +17,8 @@ public class HPProvider : IHpProvider
     
     public void InitHeroHp()
     {
-        _currentHealth = _progressService.GetHeroData().HeroStatsData[StatId.MaxHealth];
+        _currentHealth = _configProvider.GetHeroConfig().MaxHealth + _progressService.GetHeroData().HeroStatsData[StatId.MaxHealth];
+        _progressService.HPChanged += UpdateHeroHP;
         PlayerHpChanged?.Invoke();
     }
 
@@ -35,6 +36,12 @@ public class HPProvider : IHpProvider
     public void RemoveHeroCurrentHp(float hp)
     {
         _currentHealth -= hp;
+        PlayerHpChanged?.Invoke();
+    }
+
+    private void UpdateHeroHP(float value)
+    {
+        _currentHealth += value;
         PlayerHpChanged?.Invoke();
     }
 

@@ -39,7 +39,7 @@ public class TargetProjectileMover : MonoBehaviour
 
     private void Update()
     {
-        
+        DestroyOnTargetLoss();
     }
 
     private void AngleThrowing()
@@ -74,7 +74,7 @@ public class TargetProjectileMover : MonoBehaviour
     {
         if (!Target)
         {
-            _tweener.Kill();
+            Destroy(gameObject);
         }
     }
 }

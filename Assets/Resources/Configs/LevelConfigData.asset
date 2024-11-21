@@ -23,7 +23,7 @@ MonoBehaviour:
     Speed: 1
     MaxHp: 15
     Damage: 4
-    DistanceToAttack: 2
+    DistanceToAttack: 3.5
     AttackRate: 1
     ProjectileSpeed: 8
     EnemyPrefab: {fileID: 3689493898225815682, guid: 2fddf191eaa3be04b8985f77966b6a4e, type: 3}
@@ -32,14 +32,14 @@ MonoBehaviour:
     Speed: 2
     MaxHp: 10
     Damage: 2
-    DistanceToAttack: 0.8
+    DistanceToAttack: 1
     AttackRate: 1
     ProjectileSpeed: 0
     EnemyPrefab: {fileID: 2183450613416476641, guid: f54ffeb6ee4c09a428cf3b3ddefefb7c, type: 3}
     EnemyProjectilePrefab: {fileID: 0}
   Weapons:
   - Id: 0
-    Damage: 5
+    Damage: 1
     MultishotTargets: 4
     AttackRange: 3
     AttackRate: 1

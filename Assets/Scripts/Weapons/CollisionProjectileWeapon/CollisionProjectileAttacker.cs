@@ -46,19 +46,21 @@ public class CollisionProjectileAttacker : MonoBehaviour
 
     private void Attack()
     {
-        List<Transform> nearestTarget = _targetFinder.GetXNearestTargets(1);
-        if (nearestTarget.Count == 0) return;
-
-        if (Vector3.Distance(transform.position, nearestTarget[0].position) <=
-            GetWeaponStats().AttackRange + _progressService.GetHeroData().HeroStatsData[StatId.AttackRange])
+        List<Transform> nearestTargets = _targetFinder.GetXNearestTargets(GetWeaponStats().MultishotTargets + (int)_progressService.GetHeroData().HeroStatsData[StatId.MultiShotTargets]);
+        if (nearestTargets.Count == 0) return;
+        foreach (var target in nearestTargets)
         {
-            _gameFactory.CreateCollisionProjectile(
-                GetWeaponStats().weaponProjectilePrefab,
-                transform.position,
-                nearestTarget[0],
-                GetWeaponStats().Damage,
-                GetWeaponStats().ProjectileSpeed + _progressService.GetHeroData().HeroStatsData[StatId.ProjectileSpeed]
-            );
+            if (Vector3.Distance(transform.position, nearestTargets[0].position) <=
+                GetWeaponStats().AttackRange + _progressService.GetHeroData().HeroStatsData[StatId.AttackRange])
+            {
+                _gameFactory.CreateCollisionProjectile(
+                    GetWeaponStats().weaponProjectilePrefab,
+                    transform.position,
+                    nearestTargets[0],
+                    GetWeaponStats().Damage,
+                    GetWeaponStats().ProjectileSpeed + _progressService.GetHeroData().HeroStatsData[StatId.ProjectileSpeed]
+                );
+            }
         }
     }
 

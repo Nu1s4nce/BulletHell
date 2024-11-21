@@ -1,12 +1,15 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class CardsGenerator : ICardsGenerator
 {
     private IConfigProvider _configProvider;
+    private IProgressService _progressService;
 
-    public CardsGenerator(IConfigProvider configProvider)
+    public CardsGenerator(IConfigProvider configProvider, IProgressService progressService)
     {
+        _progressService = progressService;
         _configProvider = configProvider;
     }
 
@@ -14,20 +17,38 @@ public class CardsGenerator : ICardsGenerator
     {
         return GetRandomItemByChance(GetCardsChancesConfig().TypeOfCard);
     }
-
-    public RarenessOfCard GetRandomRarenessOfCard()
-    {
-        return GetRandomItemByChance(GetCardsChancesConfig().RarenessOfCards);
-    }
     
     public CardsRarenessColors GetColorByRareness(RarenessOfCard rarenessOfCard)
     {
         return GetCardsConfig().AllCardColorsByRareness[rarenessOfCard];
     }
     
-    public NormalCardConfig GenerateNormalCard(RarenessOfCard rarenessOfCard)
+    public NormalCardConfig GenerateNormalCard()
     {
-        return GetRandomItem(GetCardsConfig().AllNormalCardsByRareness[rarenessOfCard]);
+        var mainDict = GetCardsConfig().AllNormalCardsByRareness;
+        Dictionary<RarenessOfCard, List<NormalCardConfig>> tempDict = new();
+        
+        Dictionary<RarenessOfCard, float> cardsRareness = GetCardsChancesConfig().RarenessOfCards;
+        Dictionary<RarenessOfCard, float> cardsRarenessTemp = new();
+        
+
+        foreach (var card in mainDict)
+        {
+            List<NormalCardConfig> tempList = new();
+            foreach (var cardConfig in card.Value)
+            {
+                if (cardConfig.PoolLimit - _progressService.ProgressData.PurchasedCardCount[cardConfig.CardId] > 0)
+                {
+                    tempList.Add(cardConfig);
+                }
+            }
+            if (tempList.Count == 0) continue;
+            tempDict.Add(card.Key, tempList);
+            cardsRarenessTemp.Add(card.Key, cardsRareness[card.Key]);
+        }
+
+        RarenessOfCard cardRareness = GetRandomItemByChance(cardsRarenessTemp);
+        return GetRandomItem(tempDict[cardRareness]);
     }
 
     public UniqueCardConfig GenerateUniqueCard(RarenessOfCard rarenessOfCard)

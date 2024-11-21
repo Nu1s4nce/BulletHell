@@ -57,11 +57,11 @@ public class Collectable : MonoBehaviour
     private void UpdateFly(float flyProgress)
     {
         transform.position = Vector3.Lerp(_startPos, _heroProvider.GetHeroPosition(), flyProgress);
-        transform.localScale = Vector3.Lerp(_startScale, new Vector3(0.15f,0.15f,0.15f), flyProgress);
+        transform.localScale = Vector3.Lerp(_startScale, new Vector3(2f,2f,0), flyProgress);
     }
     private void UpdateScale(float scaleProgress)
     {
-        transform.localScale = Vector3.Lerp(_startScale, new Vector3(0.5f,0.5f,0), scaleProgress);
+        transform.localScale = Vector3.Lerp(_startScale, new Vector3(3f,3f,0), scaleProgress);
     }
 
     private HeroProgressData GetProgressData()

@@ -18,6 +18,7 @@ public class CardHandler : MonoBehaviour, IPointerEnterHandler, IPointerClickHan
     [SerializeField] private Image _cardIconBackground;
     [SerializeField] private Image _cardBorderIcon;
     [SerializeField] private Image _cardCostIcon;
+    [SerializeField] private Image _cardEffect;
 
     [SerializeField] private int _cardId;
 
@@ -69,16 +70,25 @@ public class CardHandler : MonoBehaviour, IPointerEnterHandler, IPointerClickHan
         CardClicked?.Invoke(_cardId);
     }
 
-    public void SetupNormalCard(NormalCardConfig cardConfig, RarenessOfCard rarenessOfCard)
+    public void SetupNormalCard(NormalCardConfig cardConfig)
     {
         _card = cardConfig;
+        RarenessOfCard rarenessOfCard = default;
+        foreach (var kvp in _configProvider.GetCardsConfig().AllNormalCardsByRareness)
+        {
+            if (kvp.Value.Contains(cardConfig))
+            {
+                rarenessOfCard = kvp.Key;
+                break; 
+            }
+        }
         SetupNormalCardUI(cardConfig, rarenessOfCard);
     }
 
-    public void SetupUniqueCard(UniqueCardConfig cardConfig, RarenessOfCard rarenessOfCard)
+    public void SetupUniqueCard(UniqueCardConfig cardConfig)
     {
         _card = cardConfig;
-        SetupUniqueCardUI(cardConfig, rarenessOfCard);
+        //SetupUniqueCardUI(cardConfig, rarenessOfCard);
     }
 
     private void SetupNormalCardUI(NormalCardConfig cardConfig, RarenessOfCard rarenessOfCard)
@@ -88,15 +98,21 @@ public class CardHandler : MonoBehaviour, IPointerEnterHandler, IPointerClickHan
 
         _cardCostText.text = _card.CardCost.ToString();
 
+        CardsRarenessColors cardsColors = _cardsGenerator.GetColorByRareness(rarenessOfCard);
 
         _cardIcon.sprite = cardConfig.CardImage;
-        _cardIconBackground.color = _cardsGenerator.GetColorByRareness(rarenessOfCard).PrimaryColor;
-        _cardNameText.color = _cardsGenerator.GetColorByRareness(rarenessOfCard).PrimaryColor;
+        _cardIconBackground.color = cardsColors.PrimaryColor;
+        _cardNameText.color = cardsColors.PrimaryColor;
+        
+        _cardEffect.material = new Material(cardsColors.RarenessMaterial)
+        {
+            color = cardsColors.SecondaryColor
+        };
 
         if (cardConfig.CardBorder != null)
         {
             _cardBorderIcon.sprite = cardConfig.CardBorder;
-            _cardBorderIcon.color = _cardsGenerator.GetColorByRareness(rarenessOfCard).SecondaryColor;
+            _cardBorderIcon.color = cardsColors.BorderColor;
             _cardBorderIcon.gameObject.SetActive(true);
         }
         else _cardBorderIcon.gameObject.SetActive(false);
@@ -119,7 +135,7 @@ public class CardHandler : MonoBehaviour, IPointerEnterHandler, IPointerClickHan
         if (cardConfig.CardBorder != null)
         {
             _cardBorderIcon.sprite = cardConfig.CardBorder;
-            _cardBorderIcon.color = _cardsGenerator.GetColorByRareness(rarenessOfCard).SecondaryColor;
+            _cardBorderIcon.color = _cardsGenerator.GetColorByRareness(rarenessOfCard).BorderColor;
             _cardBorderIcon.gameObject.SetActive(true);
         }
         else _cardBorderIcon.gameObject.SetActive(false);
@@ -133,7 +149,10 @@ public class CardHandler : MonoBehaviour, IPointerEnterHandler, IPointerClickHan
         descriptionText.text = "";
         foreach (var stat in normalCardConfig.Stats)
         {
-            descriptionText.text += _statsTextPresentation[stat.Key] + " + " + stat.Value + "\n";
+            if (stat.Value < 1)
+                descriptionText.text += _statsTextPresentation[stat.Key] + " + " + stat.Value * 100 + "%" + "\n";
+            else
+                descriptionText.text += _statsTextPresentation[stat.Key] + " + " + stat.Value + "\n";
         }
     }
 
