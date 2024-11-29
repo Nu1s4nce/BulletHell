@@ -14,6 +14,7 @@ public class CardHandler : MonoBehaviour, IPointerEnterHandler, IPointerClickHan
     [SerializeField] private TMP_Text _cardNameText;
     [SerializeField] private TMP_Text _cardDescriptionText;
     [SerializeField] private TMP_Text _cardCostText;
+    [SerializeField] private TMP_Text _cardRarenessText;
     [SerializeField] private Image _cardIcon;
     [SerializeField] private Image _cardIconBackground;
     [SerializeField] private Image _cardBorderIcon;
@@ -33,6 +34,14 @@ public class CardHandler : MonoBehaviour, IPointerEnterHandler, IPointerClickHan
         {StatId.CollectablesPickRange, "Дальность сбора"},
         {StatId.CollectablesValue, "Валюта"},
         {StatId.MultiShotTargets, "Количество целей"},
+    };
+    private Dictionary<RarenessOfCard, string> _rarenessTextPresentation = new()
+    {
+        {RarenessOfCard.Common, "Обычная"},
+        {RarenessOfCard.Rare, "Редкая"},
+        {RarenessOfCard.Mythic, "Мистическая"},
+        {RarenessOfCard.Legendary, "Легендарная"},
+        {RarenessOfCard.Rainbow, "Радужная"},
     };
 
     private int _cardCost;
@@ -93,22 +102,26 @@ public class CardHandler : MonoBehaviour, IPointerEnterHandler, IPointerClickHan
 
     private void SetupNormalCardUI(NormalCardConfig cardConfig, RarenessOfCard rarenessOfCard)
     {
-        _cardNameText.text = cardConfig.CardName;
         HandleNormalCardStatsToShow(cardConfig, _cardDescriptionText);
-
-        _cardCostText.text = _card.CardCost.ToString();
-
-        CardsRarenessColors cardsColors = _cardsGenerator.GetColorByRareness(rarenessOfCard);
-
-        _cardIcon.sprite = cardConfig.CardImage;
-        _cardIconBackground.color = cardsColors.PrimaryColor;
-        _cardNameText.color = cardsColors.PrimaryColor;
         
+        CardsRarenessColors cardsColors = _cardsGenerator.GetColorByRareness(rarenessOfCard);
+        
+        //текст редкости
+        _cardRarenessText.text = _rarenessTextPresentation[rarenessOfCard];
+        _cardRarenessText.color = cardsColors.PrimaryColor;
+        //иконка
+        _cardIcon.sprite = cardConfig.CardImage;
+        //задний фон иконки
+        _cardIconBackground.color = cardsColors.PrimaryColor;
+        //название карточки и цвет
+        _cardNameText.text = cardConfig.CardName;
+        _cardNameText.color = cardsColors.SecondaryColor;
+        //шейдер
         _cardEffect.material = new Material(cardsColors.RarenessMaterial)
         {
-            color = cardsColors.SecondaryColor
+            color = cardsColors.MaterialColor
         };
-
+        //бордер
         if (cardConfig.CardBorder != null)
         {
             _cardBorderIcon.sprite = cardConfig.CardBorder;
@@ -117,7 +130,8 @@ public class CardHandler : MonoBehaviour, IPointerEnterHandler, IPointerClickHan
         }
         else _cardBorderIcon.gameObject.SetActive(false);
 
-        
+        //стоимость
+        _cardCostText.text = _card.CardCost.ToString();
         _cardCostIcon.sprite = _configProvider.GetCurrenciesConfig().CurrenciesConfig[cardConfig.CurrencyType];
     }
 

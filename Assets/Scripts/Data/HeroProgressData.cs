@@ -18,4 +18,5 @@ public enum StatId
     CollectablesPickRange,
     CollectablesValue,
     MultiShotTargets,
+    FoodHealValue
 }

@@ -15,13 +15,16 @@ MonoBehaviour:
   HeroConfigData:
     MaxHealth: 100
     MoveSpeed: 5
+    FoodHealValue: 20
     CollectablesPickRange: 1
+    CollectablesNumberMin: 1
+    CollectablesNumberMax: 5
     WeaponPrefab: {fileID: 3997604137571920375, guid: e1832286d9f10c54f87e41b2371b58ff, type: 3}
     HeroPrefab: {fileID: 1858068814687193572, guid: e74e03dbd5589004f8c54aedf86f929e, type: 3}
   Enemies:
   - EnemyId: 0
     Speed: 1
-    MaxHp: 15
+    MaxHp: 5
     Damage: 4
     DistanceToAttack: 3.5
     AttackRate: 1
@@ -39,9 +42,9 @@ MonoBehaviour:
     EnemyProjectilePrefab: {fileID: 0}
   Weapons:
   - Id: 0
-    Damage: 1
-    MultishotTargets: 4
-    AttackRange: 3
+    Damage: 5
+    MultishotTargets: 1
+    AttackRange: 4
     AttackRate: 1
     ProjectileSpeed: 4
     weaponPrefab: {fileID: 1746825002339336682, guid: 0782361c25d21dd4abd24ad5fdae44c6, type: 3}
@@ -55,7 +58,7 @@ MonoBehaviour:
     weaponPrefab: {fileID: 6677493759275679445, guid: 1a195c46fffb95b4ca3a35bc3833df3f, type: 3}
     weaponProjectilePrefab: {fileID: 0}
   - Id: 2
-    Damage: 1
+    Damage: 5
     MultishotTargets: 0
     AttackRange: 3
     AttackRate: 0.3
@@ -63,4 +66,5 @@ MonoBehaviour:
     weaponPrefab: {fileID: 6849565278139979255, guid: a902102f0d1191645936f02f8246cb9a, type: 3}
     weaponProjectilePrefab: {fileID: 1347247707529628471, guid: 6ef60daf9fb58bb48b49b9f69dc7a478, type: 3}
   textPopUp: {fileID: 4011174951360883237, guid: 06145494c249e344c8dfa02fee2a0caf, type: 3}
-  collectable: {fileID: 615511723435171864, guid: cd9cce3bbe120514c944a53cb6e96085, type: 3}
+  currencyPrefab: {fileID: 615511723435171864, guid: cd9cce3bbe120514c944a53cb6e96085, type: 3}
+  healFoodPrefab: {fileID: 7632372010175326364, guid: dcdc305bf69192d49839fab00985e93b, type: 3}

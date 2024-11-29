@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -18,10 +19,14 @@ public class ShopHandler : MonoBehaviour
 
     private ICardsGenerator _cardsGenerator;
     private IProgressService _progressService;
+    private IScoreService _scoreService;
+    private ITimeService _time;
 
     [Inject]
-    private void Construct(ICardsGenerator cardsGenerator, IProgressService progressService)
+    private void Construct(ICardsGenerator cardsGenerator, IProgressService progressService, IScoreService scoreService, ITimeService timeService)
     {
+        _time = timeService;
+        _scoreService = scoreService;
         _progressService = progressService;
         _cardsGenerator = cardsGenerator;
     }
@@ -33,6 +38,15 @@ public class ShopHandler : MonoBehaviour
         {
             cardHandler.CardClicked += OnCardClick;
         }
+    }
+
+    private void OnEnable()
+    {
+        _time.StopTime();
+    }
+    private void OnDisable()
+    {
+        _time.StartTime();
     }
 
     private void Start()
@@ -67,6 +81,9 @@ public class ShopHandler : MonoBehaviour
         {
             _progressService.RemoveMainCurrency(cardCost);
             _progressService.ProgressData.PurchasedCardCount[_cards[id].CardId] += 1;
+            
+            _scoreService.AddScore(_cards[id].ScorePoints);
+            
             AddStats(id);
             _cards.Clear();
             RefreshShop();

@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class CardsGenerator : ICardsGenerator
 {
-    private IConfigProvider _configProvider;
-    private IProgressService _progressService;
+    private readonly IConfigProvider _configProvider;
+    private readonly IProgressService _progressService;
 
     public CardsGenerator(IConfigProvider configProvider, IProgressService progressService)
     {
@@ -15,7 +13,7 @@ public class CardsGenerator : ICardsGenerator
 
     public CardType GetTypeOfCardToGenerate()
     {
-        return GetRandomItemByChance(GetCardsChancesConfig().TypeOfCard);
+        return RandomService.GetRandomItemByChance(GetCardsChancesConfig().TypeOfCard);
     }
     
     public CardsRarenessColors GetColorByRareness(RarenessOfCard rarenessOfCard)
@@ -47,13 +45,13 @@ public class CardsGenerator : ICardsGenerator
             cardsRarenessTemp.Add(card.Key, cardsRareness[card.Key]);
         }
 
-        RarenessOfCard cardRareness = GetRandomItemByChance(cardsRarenessTemp);
-        return GetRandomItem(tempDict[cardRareness]);
+        RarenessOfCard cardRareness = RandomService.GetRandomItemByChance(cardsRarenessTemp);
+        return RandomService.GetRandomItem(tempDict[cardRareness]);
     }
 
     public UniqueCardConfig GenerateUniqueCard(RarenessOfCard rarenessOfCard)
     {
-        return GetRandomItem(GetCardsConfig().AllUniqueCardsByRareness[rarenessOfCard]);
+        return RandomService.GetRandomItem(GetCardsConfig().AllUniqueCardsByRareness[rarenessOfCard]);
     }
     
     private CardsChancesConfig GetCardsChancesConfig()
@@ -65,45 +63,7 @@ public class CardsGenerator : ICardsGenerator
         return _configProvider.GetCardsConfig();
     }
     
-    private T GetRandomItem<T>(List<T>listToRandomize)
-    {
-        int randomNum = Random.Range(0, listToRandomize.Count);
-        return listToRandomize[randomNum];
-    }
-    private T GetRandomItemByChance<T>(Dictionary<T, float> dict)
-    {
-        List<float> tempChancesList = new List<float>();
-        List<T> tempItem = new List<T>();
-        
-        foreach (var item in dict)
-        {
-            tempItem.Add(item.Key);
-            tempChancesList.Add(item.Value);
-        }
-
-        int index = Choose(tempChancesList.ToArray());
-        return tempItem[index];
-    }
     
-    private int Choose (float[] probs) {
-
-        float total = 0;
-
-        foreach (float elem in probs) {
-            total += elem;
-        }
-
-        float randomPoint = Random.value * total;
-
-        for (int i = 0; i < probs.Length; i++)
-        {
-            if (randomPoint < probs[i]) {
-                return i;
-            }
-            randomPoint -= probs[i];
-        }
-        return probs.Length - 1;
-    }
 
     
 }

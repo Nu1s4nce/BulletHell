@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 using Zenject;
 
@@ -84,10 +85,10 @@ public class GameFactory : IGameFactory
         return textPopup;
     }
 
-    public GameObject CreateCollectable(Vector3 pos)
+    public GameObject CreateCollectable(Vector3 pos, CollectableType collectableType)
     {
-        GameObject collectablePrefab = _configProvider.GetCollectablePrefab();
-        GameObject collectable = _diContainer.InstantiatePrefab(collectablePrefab, pos, Quaternion.identity, null);
+        GameObject collectablePrefab = _configProvider.GetLootChancesConfig().CollectablePrefabs[collectableType];
+        GameObject collectable = _diContainer.InstantiatePrefab(collectablePrefab, pos, Quaternion.identity, null);;
         return collectable;
     }
 }

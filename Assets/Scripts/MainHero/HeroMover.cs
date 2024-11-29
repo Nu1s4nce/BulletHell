@@ -11,10 +11,12 @@ public class HeroMover : MonoBehaviour
     private IInputService _inputService;
     private IProgressService _progressService;
     private IConfigProvider _configProvider;
+    private ITimeService _time;
 
     [Inject]
-    public void Construct(IProgressService progressService, IInputService inputService, IConfigProvider configProvider)
+    public void Construct(IProgressService progressService, IInputService inputService, IConfigProvider configProvider, ITimeService timeService)
     {
+        _time = timeService;
         _configProvider = configProvider;
         _progressService = progressService;
         _inputService = inputService;
@@ -57,7 +59,7 @@ public class HeroMover : MonoBehaviour
     private void MovePlayer()
     {
         _direction = Vector2.ClampMagnitude(_direction, 1);
-        rb.MovePosition(rb.position + (GetHeroStats().MoveSpeed + GetHeroStatsBonus().HeroStatsData[StatId.MoveSpeed]) * Time.fixedDeltaTime * _direction);
+        rb.MovePosition(rb.position + (GetHeroStats().MoveSpeed + GetHeroStatsBonus().HeroStatsData[StatId.MoveSpeed]) * _time.FixedDeltaTime * _direction);
     }
     
 }

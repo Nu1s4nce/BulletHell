@@ -10,6 +10,7 @@ public class SceneInstaller : MonoInstaller
         Container.Bind<ICameraProvider>().To<CameraProvider>().AsSingle().WithArguments(mainCamera);
         
         Container.Bind<IGameFactory>().To<GameFactory>().AsSingle();
+        Container.Bind<IScoreService>().To<ScoreService>().AsSingle();
         Container.Bind<IHeroProvider>().To<HeroProvider>().AsSingle();
         Container.Bind<ITargetFinder>().To<TargetFinder>().AsSingle();
         Container.Bind<IHpProvider>().To<HPProvider>().AsSingle();

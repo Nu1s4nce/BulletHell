@@ -1,18 +1,18 @@
-﻿using UnityEngine;
-
-public class TimerService
+﻿public class Timer
 {
     private float _timerTime;
     private float _currentTime;
-    
-    public TimerService(float timerTime)
+    private readonly ITimeService _time;
+
+    public Timer(float timerTime, ITimeService timeService)
     {
         _timerTime = _currentTime = timerTime;
+        _time = timeService;
     }
 
     public void UpdateTimer()
     {
-        _currentTime -= Time.deltaTime;
+        _currentTime -= _time.DeltaTime;
     }
     public void ChangeTimerMaxTime(float time)
     {

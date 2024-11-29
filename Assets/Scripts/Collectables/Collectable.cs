@@ -7,14 +7,18 @@ public class Collectable : MonoBehaviour
     private Vector3 _startPos;
     private Vector3 _startScale;
     private bool _isFlying;
+
+    [SerializeField] private CollectableType _collectableType;
     
     private IHeroProvider _heroProvider;
     private IConfigProvider _configProvider;
     private IProgressService _progressService;
+    private IHpProvider _hpProvider;
 
     [Inject]
-    public void Construct(IHeroProvider heroProvider, IConfigProvider configProvider, IProgressService progressService)
+    public void Construct(IHeroProvider heroProvider, IConfigProvider configProvider, IProgressService progressService, IHpProvider hpProvider)
     {
+        _hpProvider = hpProvider;
         _progressService = progressService;
         _configProvider = configProvider;
         _heroProvider = heroProvider;
@@ -28,10 +32,18 @@ public class Collectable : MonoBehaviour
 
     public void Update()
     {
-        if (CanCollect())
+        if (!CanCollect()) return;
+
+        Collect();
+        
+        switch (_collectableType)
         {
-            Collect();
-            _progressService.AddMainCurrency(1 + (int)GetProgressData().HeroStatsData[StatId.CollectablesValue]);
+            case CollectableType.MainCurrency:
+                _progressService.AddMainCurrency(1 + (int)GetProgressData().HeroStatsData[StatId.CollectablesValue]);
+                break;
+            case CollectableType.Food:
+                _hpProvider.AddHeroCurrentHp(_configProvider.GetHeroConfig().FoodHealValue + GetProgressData().HeroStatsData[StatId.FoodHealValue]);
+                break;
         }
     }
 
@@ -68,4 +80,10 @@ public class Collectable : MonoBehaviour
     {
         return _progressService.GetHeroData();
     }
+}
+
+public enum CollectableType
+{
+    MainCurrency = 0,
+    Food = 1
 }

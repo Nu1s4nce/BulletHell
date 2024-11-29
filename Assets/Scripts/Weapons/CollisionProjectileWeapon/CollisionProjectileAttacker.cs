@@ -6,17 +6,19 @@ public class CollisionProjectileAttacker : MonoBehaviour
 {
     [SerializeField] private int _weaponId;
 
-    private TimerService _timer;
+    private Timer _timer;
 
     private IConfigProvider _configProvider;
     private ITargetFinder _targetFinder;
     private IGameFactory _gameFactory;
     private IProgressService _progressService;
+    private ITimeService _time;
 
     [Inject]
     private void Construct(IConfigProvider configProvider, ITargetFinder targetFinder, IGameFactory gameFactory,
-        IProgressService progressService)
+        IProgressService progressService, ITimeService timeService)
     {
+        _time = timeService;
         _progressService = progressService;
         _gameFactory = gameFactory;
         _targetFinder = targetFinder;
@@ -26,7 +28,7 @@ public class CollisionProjectileAttacker : MonoBehaviour
     private void Awake()
     {
         _progressService.AttackRateChanged += UpdateAttackRate;
-        _timer = new TimerService(GetWeaponStats().AttackRate - _progressService.GetHeroData().HeroStatsData[StatId.AttackRate]);
+        _timer = new Timer(GetWeaponStats().AttackRate - _progressService.GetHeroData().HeroStatsData[StatId.AttackRate], _time);
     }
 
     private void Update()

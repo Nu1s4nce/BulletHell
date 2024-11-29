@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 public class EnemyProjectileMover : MonoBehaviour
 {
@@ -8,8 +9,13 @@ public class EnemyProjectileMover : MonoBehaviour
     private Rigidbody2D rb;
 
     private Vector2 _direction;
-    
-    private ITargetFinder _targetFinder;
+    private ITimeService _timeService;
+
+    [Inject]
+    public void Construct(ITimeService timeService)
+    {
+        _timeService = timeService;
+    }
     
     private void Awake()
     {
@@ -32,7 +38,7 @@ public class EnemyProjectileMover : MonoBehaviour
     }
     private void Move()
     {
-        rb.AddForce(_direction * ProjectileSpeed ,ForceMode2D.Impulse);
+        rb.AddForce(_direction * ProjectileSpeed * Time.deltaTime,ForceMode2D.Impulse);
     }
 
     private void RotateProjectile()

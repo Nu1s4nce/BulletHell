@@ -7,7 +7,10 @@ public class HeroConfigData
 {
     public float MaxHealth;
     public float MoveSpeed;
+    public float FoodHealValue;
     public float CollectablesPickRange;
+    public float CollectablesNumberMin;
+    public float CollectablesNumberMax;
     
     public GameObject WeaponPrefab;
     public GameObject HeroPrefab;

@@ -19,8 +19,15 @@ MonoBehaviour:
     - {fileID: 1102750877, guid: c94278db7b3ac9f42bcfa4650aa84669, type: 3}
     - {fileID: 1327818277, guid: c94278db7b3ac9f42bcfa4650aa84669, type: 3}
     - {fileID: 1385302593, guid: c94278db7b3ac9f42bcfa4650aa84669, type: 3}
+    - {fileID: 1042278258, guid: c94278db7b3ac9f42bcfa4650aa84669, type: 3}
+    - {fileID: 1365294363, guid: c94278db7b3ac9f42bcfa4650aa84669, type: 3}
     - {fileID: 1263409677, guid: c94278db7b3ac9f42bcfa4650aa84669, type: 3}
+    - {fileID: 862903724, guid: c94278db7b3ac9f42bcfa4650aa84669, type: 3}
+    - {fileID: -223667153, guid: c94278db7b3ac9f42bcfa4650aa84669, type: 3}
     - {fileID: -2106378426, guid: c94278db7b3ac9f42bcfa4650aa84669, type: 3}
+    - {fileID: -156029933, guid: c94278db7b3ac9f42bcfa4650aa84669, type: 3}
+    - {fileID: 1906133614, guid: c94278db7b3ac9f42bcfa4650aa84669, type: 3}
+    - {fileID: -643199174, guid: c94278db7b3ac9f42bcfa4650aa84669, type: 3}
     - {fileID: 1191575939, guid: c94278db7b3ac9f42bcfa4650aa84669, type: 3}
     - {fileID: -1254974027, guid: 9c877e2df3af03d46a3bbdf93415ec9b, type: 3}
     - {fileID: 21300000, guid: 4ec89f3852228ce44988b6de9302149a, type: 3}
@@ -29,6 +36,7 @@ MonoBehaviour:
     - {fileID: 1745155543, guid: 9c877e2df3af03d46a3bbdf93415ec9b, type: 3}
     - {fileID: -1679160312, guid: c94278db7b3ac9f42bcfa4650aa84669, type: 3}
     - {fileID: 630977601, guid: 9c877e2df3af03d46a3bbdf93415ec9b, type: 3}
+    - {fileID: 1206834577, guid: c94278db7b3ac9f42bcfa4650aa84669, type: 3}
     - {fileID: 2100000, guid: 256da456a157f084a80364edf74edc01, type: 2}
     - {fileID: 2100000, guid: fdca7ebd39c24f3408577928c0f1c26a, type: 2}
     SerializedBytesString: 
@@ -68,7 +76,7 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
-      Data: 3
+      Data: 5
     - Name: 
       Entry: 7
       Data: 3|NormalCardConfig, Assembly-CSharp
@@ -93,6 +101,9 @@ MonoBehaviour:
     - Name: CurrencyType
       Entry: 3
       Data: 0
+    - Name: ScorePoints
+      Entry: 4
+      Data: 20
     - Name: Stats
       Entry: 7
       Data: 4|System.Collections.Generic.Dictionary`2[[StatId, Assembly-CSharp],[System.Single,
@@ -158,6 +169,9 @@ MonoBehaviour:
     - Name: CurrencyType
       Entry: 3
       Data: 0
+    - Name: ScorePoints
+      Entry: 4
+      Data: 20
     - Name: Stats
       Entry: 7
       Data: 7|System.Collections.Generic.Dictionary`2[[StatId, Assembly-CSharp],[System.Single,
@@ -223,6 +237,9 @@ MonoBehaviour:
     - Name: CurrencyType
       Entry: 3
       Data: 0
+    - Name: ScorePoints
+      Entry: 4
+      Data: 20
     - Name: Stats
       Entry: 7
       Data: 10|System.Collections.Generic.Dictionary`2[[StatId, Assembly-CSharp],[System.Single,
@@ -255,6 +272,154 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: 
+      Entry: 7
+      Data: 11|NormalCardConfig, Assembly-CSharp
+    - Name: CardId
+      Entry: 3
+      Data: 3
+    - Name: CardImage
+      Entry: 10
+      Data: 3
+    - Name: CardBorder
+      Entry: 6
+      Data: 
+    - Name: CardName
+      Entry: 1
+      Data: Steel axe
+    - Name: PoolLimit
+      Entry: 3
+      Data: 100
+    - Name: CardCost
+      Entry: 3
+      Data: 36
+    - Name: CurrencyType
+      Entry: 3
+      Data: 0
+    - Name: ScorePoints
+      Entry: 4
+      Data: 20
+    - Name: Stats
+      Entry: 7
+      Data: 12|System.Collections.Generic.Dictionary`2[[StatId, Assembly-CSharp],[System.Single,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 13|System.Collections.Generic.EnumEqualityComparer`1[[StatId, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 3
+    - Name: $v
+      Entry: 4
+      Data: 0.1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 14|NormalCardConfig, Assembly-CSharp
+    - Name: CardId
+      Entry: 3
+      Data: 4
+    - Name: CardImage
+      Entry: 10
+      Data: 4
+    - Name: CardBorder
+      Entry: 6
+      Data: 
+    - Name: CardName
+      Entry: 1
+      Data: Staff of dexterity
+    - Name: PoolLimit
+      Entry: 3
+      Data: 100
+    - Name: CardCost
+      Entry: 3
+      Data: 40
+    - Name: CurrencyType
+      Entry: 3
+      Data: 0
+    - Name: ScorePoints
+      Entry: 4
+      Data: 20
+    - Name: Stats
+      Entry: 7
+      Data: 15|System.Collections.Generic.Dictionary`2[[StatId, Assembly-CSharp],[System.Single,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 16|System.Collections.Generic.EnumEqualityComparer`1[[StatId, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 4
+    - Name: $v
+      Entry: 4
+      Data: 0.02
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
       Entry: 13
       Data: 
     - Name: 
@@ -271,20 +436,20 @@ MonoBehaviour:
       Data: 1
     - Name: $v
       Entry: 7
-      Data: 11|System.Collections.Generic.List`1[[NormalCardConfig, Assembly-CSharp]],
+      Data: 17|System.Collections.Generic.List`1[[NormalCardConfig, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 3
     - Name: 
       Entry: 7
-      Data: 12|NormalCardConfig, Assembly-CSharp
+      Data: 18|NormalCardConfig, Assembly-CSharp
     - Name: CardId
       Entry: 3
-      Data: 20
+      Data: 40
     - Name: CardImage
       Entry: 10
-      Data: 3
+      Data: 5
     - Name: CardBorder
       Entry: 6
       Data: 
@@ -300,9 +465,12 @@ MonoBehaviour:
     - Name: CurrencyType
       Entry: 3
       Data: 0
+    - Name: ScorePoints
+      Entry: 4
+      Data: 40
     - Name: Stats
       Entry: 7
-      Data: 13|System.Collections.Generic.Dictionary`2[[StatId, Assembly-CSharp],[System.Single,
+      Data: 19|System.Collections.Generic.Dictionary`2[[StatId, Assembly-CSharp],[System.Single,
         mscorlib]], mscorlib
     - Name: comparer
       Entry: 9
@@ -344,6 +512,134 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: 
+      Entry: 7
+      Data: 20|NormalCardConfig, Assembly-CSharp
+    - Name: CardId
+      Entry: 3
+      Data: 41
+    - Name: CardImage
+      Entry: 10
+      Data: 6
+    - Name: CardBorder
+      Entry: 6
+      Data: 
+    - Name: CardName
+      Entry: 1
+      Data: Health potion
+    - Name: PoolLimit
+      Entry: 3
+      Data: 52
+    - Name: CardCost
+      Entry: 3
+      Data: 124
+    - Name: CurrencyType
+      Entry: 3
+      Data: 0
+    - Name: ScorePoints
+      Entry: 4
+      Data: 40
+    - Name: Stats
+      Entry: 7
+      Data: 21|System.Collections.Generic.Dictionary`2[[StatId, Assembly-CSharp],[System.Single,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 13
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 4
+      Data: 25
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 4
+      Data: 0.01
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 22|NormalCardConfig, Assembly-CSharp
+    - Name: CardId
+      Entry: 3
+      Data: 42
+    - Name: CardImage
+      Entry: 10
+      Data: 7
+    - Name: CardBorder
+      Entry: 6
+      Data: 
+    - Name: CardName
+      Entry: 1
+      Data: Horn
+    - Name: PoolLimit
+      Entry: 3
+      Data: 25
+    - Name: CardCost
+      Entry: 3
+      Data: 86
+    - Name: CurrencyType
+      Entry: 3
+      Data: 0
+    - Name: ScorePoints
+      Entry: 4
+      Data: 40
+    - Name: Stats
+      Entry: 7
+      Data: 23|System.Collections.Generic.Dictionary`2[[StatId, Assembly-CSharp],[System.Single,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 13
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 4
+      Data: 0.04
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
       Entry: 13
       Data: 
     - Name: 
@@ -360,20 +656,20 @@ MonoBehaviour:
       Data: 2
     - Name: $v
       Entry: 7
-      Data: 14|System.Collections.Generic.List`1[[NormalCardConfig, Assembly-CSharp]],
+      Data: 24|System.Collections.Generic.List`1[[NormalCardConfig, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 4
     - Name: 
       Entry: 7
-      Data: 15|NormalCardConfig, Assembly-CSharp
+      Data: 25|NormalCardConfig, Assembly-CSharp
     - Name: CardId
       Entry: 3
-      Data: 40
+      Data: 80
     - Name: CardImage
       Entry: 10
-      Data: 4
+      Data: 8
     - Name: CardBorder
       Entry: 6
       Data: 
@@ -389,13 +685,16 @@ MonoBehaviour:
     - Name: CurrencyType
       Entry: 3
       Data: 0
+    - Name: ScorePoints
+      Entry: 4
+      Data: 75
     - Name: Stats
       Entry: 7
-      Data: 16|System.Collections.Generic.Dictionary`2[[StatId, Assembly-CSharp],[System.Single,
+      Data: 26|System.Collections.Generic.Dictionary`2[[StatId, Assembly-CSharp],[System.Single,
         mscorlib]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 17|System.Collections.Generic.EnumEqualityComparer`1[[StatId, Assembly-CSharp]],
+      Data: 27|System.Collections.Generic.EnumEqualityComparer`1[[StatId, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
@@ -431,6 +730,204 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: 
+      Entry: 7
+      Data: 28|NormalCardConfig, Assembly-CSharp
+    - Name: CardId
+      Entry: 3
+      Data: 81
+    - Name: CardImage
+      Entry: 10
+      Data: 9
+    - Name: CardBorder
+      Entry: 6
+      Data: 
+    - Name: CardName
+      Entry: 1
+      Data: Bag of gold
+    - Name: PoolLimit
+      Entry: 3
+      Data: 20
+    - Name: CardCost
+      Entry: 3
+      Data: 160
+    - Name: CurrencyType
+      Entry: 3
+      Data: 0
+    - Name: ScorePoints
+      Entry: 4
+      Data: 75
+    - Name: Stats
+      Entry: 7
+      Data: 29|System.Collections.Generic.Dictionary`2[[StatId, Assembly-CSharp],[System.Single,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 13
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 7
+    - Name: $v
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 30|NormalCardConfig, Assembly-CSharp
+    - Name: CardId
+      Entry: 3
+      Data: 82
+    - Name: CardImage
+      Entry: 10
+      Data: 10
+    - Name: CardBorder
+      Entry: 6
+      Data: 
+    - Name: CardName
+      Entry: 1
+      Data: Book of power
+    - Name: PoolLimit
+      Entry: 3
+      Data: 40
+    - Name: CardCost
+      Entry: 3
+      Data: 120
+    - Name: CurrencyType
+      Entry: 3
+      Data: 0
+    - Name: ScorePoints
+      Entry: 4
+      Data: 75
+    - Name: Stats
+      Entry: 7
+      Data: 31|System.Collections.Generic.Dictionary`2[[StatId, Assembly-CSharp],[System.Single,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 13
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 4
+      Data: 35
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 32|NormalCardConfig, Assembly-CSharp
+    - Name: CardId
+      Entry: 3
+      Data: 83
+    - Name: CardImage
+      Entry: 10
+      Data: 11
+    - Name: CardBorder
+      Entry: 6
+      Data: 
+    - Name: CardName
+      Entry: 1
+      Data: Chilli
+    - Name: PoolLimit
+      Entry: 3
+      Data: 20
+    - Name: CardCost
+      Entry: 3
+      Data: 200
+    - Name: CurrencyType
+      Entry: 3
+      Data: 0
+    - Name: ScorePoints
+      Entry: 4
+      Data: 75
+    - Name: Stats
+      Entry: 7
+      Data: 33|System.Collections.Generic.Dictionary`2[[StatId, Assembly-CSharp],[System.Single,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 13
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 4
+      Data: 6
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 4
+      Data: 0.1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
       Entry: 13
       Data: 
     - Name: 
@@ -447,23 +944,23 @@ MonoBehaviour:
       Data: 3
     - Name: $v
       Entry: 7
-      Data: 18|System.Collections.Generic.List`1[[NormalCardConfig, Assembly-CSharp]],
+      Data: 34|System.Collections.Generic.List`1[[NormalCardConfig, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
       Data: 2
     - Name: 
       Entry: 7
-      Data: 19|NormalCardConfig, Assembly-CSharp
+      Data: 35|NormalCardConfig, Assembly-CSharp
     - Name: CardId
       Entry: 3
-      Data: 60
+      Data: 120
     - Name: CardImage
       Entry: 10
-      Data: 5
+      Data: 12
     - Name: CardBorder
       Entry: 10
-      Data: 6
+      Data: 13
     - Name: CardName
       Entry: 1
       Data: Yellow Pearl
@@ -476,13 +973,16 @@ MonoBehaviour:
     - Name: CurrencyType
       Entry: 3
       Data: 0
+    - Name: ScorePoints
+      Entry: 4
+      Data: 120
     - Name: Stats
       Entry: 7
-      Data: 20|System.Collections.Generic.Dictionary`2[[StatId, Assembly-CSharp],[System.Single,
+      Data: 36|System.Collections.Generic.Dictionary`2[[StatId, Assembly-CSharp],[System.Single,
         mscorlib]], mscorlib
     - Name: comparer
       Entry: 9
-      Data: 17
+      Data: 27
     - Name: 
       Entry: 12
       Data: 4
@@ -545,16 +1045,16 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 21|NormalCardConfig, Assembly-CSharp
+      Data: 37|NormalCardConfig, Assembly-CSharp
     - Name: CardId
       Entry: 3
-      Data: 61
+      Data: 121
     - Name: CardImage
       Entry: 10
-      Data: 7
+      Data: 14
     - Name: CardBorder
       Entry: 10
-      Data: 8
+      Data: 15
     - Name: CardName
       Entry: 1
       Data: King's crown
@@ -567,13 +1067,16 @@ MonoBehaviour:
     - Name: CurrencyType
       Entry: 3
       Data: 0
+    - Name: ScorePoints
+      Entry: 4
+      Data: 120
     - Name: Stats
       Entry: 7
-      Data: 22|System.Collections.Generic.Dictionary`2[[StatId, Assembly-CSharp],[System.Single,
+      Data: 38|System.Collections.Generic.Dictionary`2[[StatId, Assembly-CSharp],[System.Single,
         mscorlib]], mscorlib
     - Name: comparer
       Entry: 9
-      Data: 17
+      Data: 27
     - Name: 
       Entry: 12
       Data: 2
@@ -627,23 +1130,23 @@ MonoBehaviour:
       Data: 4
     - Name: $v
       Entry: 7
-      Data: 23|System.Collections.Generic.List`1[[NormalCardConfig, Assembly-CSharp]],
+      Data: 39|System.Collections.Generic.List`1[[NormalCardConfig, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 3
     - Name: 
       Entry: 7
-      Data: 24|NormalCardConfig, Assembly-CSharp
+      Data: 40|NormalCardConfig, Assembly-CSharp
     - Name: CardId
       Entry: 3
-      Data: 80
+      Data: 160
     - Name: CardImage
       Entry: 10
-      Data: 9
+      Data: 16
     - Name: CardBorder
       Entry: 10
-      Data: 10
+      Data: 17
     - Name: CardName
       Entry: 1
       Data: Ace
@@ -656,13 +1159,16 @@ MonoBehaviour:
     - Name: CurrencyType
       Entry: 3
       Data: 0
+    - Name: ScorePoints
+      Entry: 4
+      Data: 200
     - Name: Stats
       Entry: 7
-      Data: 25|System.Collections.Generic.Dictionary`2[[StatId, Assembly-CSharp],[System.Single,
+      Data: 41|System.Collections.Generic.Dictionary`2[[StatId, Assembly-CSharp],[System.Single,
         mscorlib]], mscorlib
     - Name: comparer
       Entry: 9
-      Data: 17
+      Data: 27
     - Name: 
       Entry: 12
       Data: 4
@@ -725,16 +1231,16 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 26|NormalCardConfig, Assembly-CSharp
+      Data: 42|NormalCardConfig, Assembly-CSharp
     - Name: CardId
       Entry: 3
-      Data: 81
+      Data: 161
     - Name: CardImage
       Entry: 10
-      Data: 11
+      Data: 18
     - Name: CardBorder
       Entry: 10
-      Data: 12
+      Data: 19
     - Name: CardName
       Entry: 1
       Data: Diamond
@@ -747,13 +1253,16 @@ MonoBehaviour:
     - Name: CurrencyType
       Entry: 3
       Data: 0
+    - Name: ScorePoints
+      Entry: 4
+      Data: 200
     - Name: Stats
       Entry: 7
-      Data: 27|System.Collections.Generic.Dictionary`2[[StatId, Assembly-CSharp],[System.Single,
+      Data: 43|System.Collections.Generic.Dictionary`2[[StatId, Assembly-CSharp],[System.Single,
         mscorlib]], mscorlib
     - Name: comparer
       Entry: 9
-      Data: 17
+      Data: 27
     - Name: 
       Entry: 12
       Data: 1
@@ -766,6 +1275,76 @@ MonoBehaviour:
     - Name: $v
       Entry: 4
       Data: 100
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 44|NormalCardConfig, Assembly-CSharp
+    - Name: CardId
+      Entry: 3
+      Data: 162
+    - Name: CardImage
+      Entry: 10
+      Data: 20
+    - Name: CardBorder
+      Entry: 6
+      Data: 
+    - Name: CardName
+      Entry: 1
+      Data: Royal king
+    - Name: PoolLimit
+      Entry: 3
+      Data: 3
+    - Name: CardCost
+      Entry: 3
+      Data: 1400
+    - Name: CurrencyType
+      Entry: 3
+      Data: 0
+    - Name: ScorePoints
+      Entry: 4
+      Data: 200
+    - Name: Stats
+      Entry: 7
+      Data: 45|System.Collections.Generic.Dictionary`2[[StatId, Assembly-CSharp],[System.Single,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 13
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 7
+    - Name: $v
+      Entry: 4
+      Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 6
+    - Name: $v
+      Entry: 4
+      Data: 2
     - Name: 
       Entry: 8
       Data: 
@@ -795,7 +1374,7 @@ MonoBehaviour:
       Data: 
     - Name: AllUniqueCardsByRareness
       Entry: 7
-      Data: 28|System.Collections.Generic.Dictionary`2[[RarenessOfCard, Assembly-CSharp],[System.Collections.Generic.List`1[[UniqueCardConfig,
+      Data: 46|System.Collections.Generic.Dictionary`2[[RarenessOfCard, Assembly-CSharp],[System.Collections.Generic.List`1[[UniqueCardConfig,
         Assembly-CSharp]], mscorlib]], mscorlib
     - Name: comparer
       Entry: 9
@@ -811,7 +1390,7 @@ MonoBehaviour:
       Data: 0
     - Name: $v
       Entry: 7
-      Data: 29|System.Collections.Generic.List`1[[UniqueCardConfig, Assembly-CSharp]],
+      Data: 47|System.Collections.Generic.List`1[[UniqueCardConfig, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
@@ -833,7 +1412,7 @@ MonoBehaviour:
       Data: 1
     - Name: $v
       Entry: 7
-      Data: 30|System.Collections.Generic.List`1[[UniqueCardConfig, Assembly-CSharp]],
+      Data: 48|System.Collections.Generic.List`1[[UniqueCardConfig, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
@@ -855,7 +1434,7 @@ MonoBehaviour:
       Data: 2
     - Name: $v
       Entry: 7
-      Data: 31|System.Collections.Generic.List`1[[UniqueCardConfig, Assembly-CSharp]],
+      Data: 49|System.Collections.Generic.List`1[[UniqueCardConfig, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
@@ -877,7 +1456,7 @@ MonoBehaviour:
       Data: 3
     - Name: $v
       Entry: 7
-      Data: 32|System.Collections.Generic.List`1[[UniqueCardConfig, Assembly-CSharp]],
+      Data: 50|System.Collections.Generic.List`1[[UniqueCardConfig, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
@@ -899,7 +1478,7 @@ MonoBehaviour:
       Data: 4
     - Name: $v
       Entry: 7
-      Data: 33|System.Collections.Generic.List`1[[UniqueCardConfig, Assembly-CSharp]],
+      Data: 51|System.Collections.Generic.List`1[[UniqueCardConfig, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
@@ -921,11 +1500,11 @@ MonoBehaviour:
       Data: 
     - Name: AllCardColorsByRareness
       Entry: 7
-      Data: 34|System.Collections.Generic.Dictionary`2[[RarenessOfCard, Assembly-CSharp],[CardsRarenessColors,
+      Data: 52|System.Collections.Generic.Dictionary`2[[RarenessOfCard, Assembly-CSharp],[CardsRarenessColors,
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 35|System.Collections.Generic.EnumEqualityComparer`1[[RarenessOfCard,
+      Data: 53|System.Collections.Generic.EnumEqualityComparer`1[[RarenessOfCard,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
@@ -947,7 +1526,7 @@ MonoBehaviour:
       Data: 0
     - Name: $v
       Entry: 7
-      Data: 36|CardsRarenessColors, Assembly-CSharp
+      Data: 54|CardsRarenessColors, Assembly-CSharp
     - Name: PrimaryColor
       Entry: 7
       Data: UnityEngine.Color, UnityEngine.CoreModule
@@ -980,7 +1559,7 @@ MonoBehaviour:
       Data: 1
     - Name: 
       Entry: 4
-      Data: 0
+      Data: 1
     - Name: 
       Entry: 8
       Data: 
@@ -1004,7 +1583,25 @@ MonoBehaviour:
       Data: 
     - Name: RarenessMaterial
       Entry: 10
-      Data: 13
+      Data: 21
+    - Name: MaterialColor
+      Entry: 7
+      Data: UnityEngine.Color, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -1019,7 +1616,7 @@ MonoBehaviour:
       Data: 1
     - Name: $v
       Entry: 7
-      Data: 37|CardsRarenessColors, Assembly-CSharp
+      Data: 55|CardsRarenessColors, Assembly-CSharp
     - Name: PrimaryColor
       Entry: 7
       Data: UnityEngine.Color, UnityEngine.CoreModule
@@ -1043,16 +1640,16 @@ MonoBehaviour:
       Data: UnityEngine.Color, UnityEngine.CoreModule
     - Name: 
       Entry: 4
-      Data: 1
+      Data: 0.286274523
+    - Name: 
+      Entry: 4
+      Data: 0.368627459
     - Name: 
       Entry: 4
       Data: 1
     - Name: 
       Entry: 4
       Data: 1
-    - Name: 
-      Entry: 4
-      Data: 0
     - Name: 
       Entry: 8
       Data: 
@@ -1076,7 +1673,25 @@ MonoBehaviour:
       Data: 
     - Name: RarenessMaterial
       Entry: 10
-      Data: 13
+      Data: 21
+    - Name: MaterialColor
+      Entry: 7
+      Data: UnityEngine.Color, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -1091,7 +1706,7 @@ MonoBehaviour:
       Data: 2
     - Name: $v
       Entry: 7
-      Data: 38|CardsRarenessColors, Assembly-CSharp
+      Data: 56|CardsRarenessColors, Assembly-CSharp
     - Name: PrimaryColor
       Entry: 7
       Data: UnityEngine.Color, UnityEngine.CoreModule
@@ -1115,13 +1730,13 @@ MonoBehaviour:
       Data: UnityEngine.Color, UnityEngine.CoreModule
     - Name: 
       Entry: 4
-      Data: 0.764151
+      Data: 1
     - Name: 
       Entry: 4
-      Data: 0.1477839
+      Data: 1
     - Name: 
       Entry: 4
-      Data: 0.1477839
+      Data: 1
     - Name: 
       Entry: 4
       Data: 1
@@ -1148,7 +1763,25 @@ MonoBehaviour:
       Data: 
     - Name: RarenessMaterial
       Entry: 10
-      Data: 13
+      Data: 21
+    - Name: MaterialColor
+      Entry: 7
+      Data: UnityEngine.Color, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 0.033018887
+    - Name: 
+      Entry: 4
+      Data: 0.033018887
+    - Name: 
+      Entry: 4
+      Data: 0.392156869
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -1163,7 +1796,7 @@ MonoBehaviour:
       Data: 3
     - Name: $v
       Entry: 7
-      Data: 39|CardsRarenessColors, Assembly-CSharp
+      Data: 57|CardsRarenessColors, Assembly-CSharp
     - Name: PrimaryColor
       Entry: 7
       Data: UnityEngine.Color, UnityEngine.CoreModule
@@ -1187,13 +1820,13 @@ MonoBehaviour:
       Data: UnityEngine.Color, UnityEngine.CoreModule
     - Name: 
       Entry: 4
-      Data: 0.9150943
+      Data: 1
     - Name: 
       Entry: 4
-      Data: 0.842143357
+      Data: 1
     - Name: 
       Entry: 4
-      Data: 0.341002136
+      Data: 1
     - Name: 
       Entry: 4
       Data: 1
@@ -1220,7 +1853,25 @@ MonoBehaviour:
       Data: 
     - Name: RarenessMaterial
       Entry: 10
-      Data: 14
+      Data: 22
+    - Name: MaterialColor
+      Entry: 7
+      Data: UnityEngine.Color, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 0.7173116
+    - Name: 
+      Entry: 4
+      Data: 0.033018887
+    - Name: 
+      Entry: 4
+      Data: 0.392156869
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -1235,7 +1886,7 @@ MonoBehaviour:
       Data: 4
     - Name: $v
       Entry: 7
-      Data: 40|CardsRarenessColors, Assembly-CSharp
+      Data: 58|CardsRarenessColors, Assembly-CSharp
     - Name: PrimaryColor
       Entry: 7
       Data: UnityEngine.Color, UnityEngine.CoreModule
@@ -1259,13 +1910,13 @@ MonoBehaviour:
       Data: UnityEngine.Color, UnityEngine.CoreModule
     - Name: 
       Entry: 4
-      Data: 0.247435808
+      Data: 1
     - Name: 
       Entry: 4
-      Data: 0.9716981
+      Data: 1
     - Name: 
       Entry: 4
-      Data: 0.1787558
+      Data: 1
     - Name: 
       Entry: 4
       Data: 1
@@ -1292,7 +1943,25 @@ MonoBehaviour:
       Data: 
     - Name: RarenessMaterial
       Entry: 10
-      Data: 14
+      Data: 22
+    - Name: MaterialColor
+      Entry: 7
+      Data: UnityEngine.Color, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.396080345
+    - Name: 
+      Entry: 4
+      Data: 0.9056604
+    - Name: 
+      Entry: 4
+      Data: 0.234959081
+    - Name: 
+      Entry: 4
+      Data: 0.431372553
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 8
       Data: 

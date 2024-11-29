@@ -8,7 +8,7 @@ public class AuraWeaponAttacker : MonoBehaviour
 {
     [SerializeField] private int _weaponId;
     
-    private TimerService _timer;
+    private Timer _timer;
     private List<Transform> _targetsList;
     
     private WeaponDamageHandler _weaponDamageHandler;
@@ -17,10 +17,12 @@ public class AuraWeaponAttacker : MonoBehaviour
     private IHeroProvider _heroProvider;
     private IConfigProvider _configProvider;
     private IProgressService _progressService;
+    private ITimeService _time;
 
     [Inject]
-    public void Construct(IHeroProvider heroProvider, ITargetFinder targetFinder, IConfigProvider configProvider, IProgressService progressService)
+    public void Construct(IHeroProvider heroProvider, ITargetFinder targetFinder, IConfigProvider configProvider, IProgressService progressService, ITimeService timeService)
     {
+        _time = timeService;
         _progressService = progressService;
         _configProvider = configProvider;
         _heroProvider = heroProvider;
@@ -32,7 +34,7 @@ public class AuraWeaponAttacker : MonoBehaviour
 
         _targetsList = new List<Transform>();
         
-        _timer = new TimerService(GetWeaponStats().AttackRate - _progressService.GetHeroData().HeroStatsData[StatId.AttackRate]);
+        _timer = new Timer(GetWeaponStats().AttackRate - _progressService.GetHeroData().HeroStatsData[StatId.AttackRate], _time);
         _targetFinder.targetsChanged += UpdateTargetsList;
     }
     

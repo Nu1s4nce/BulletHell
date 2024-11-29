@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4113626310880955396}
   - component: {fileID: 3975440414092701620}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CollisionWithBullets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 768
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -89,12 +89,13 @@ GameObject:
   - component: {fileID: 4324689416605492961}
   - component: {fileID: 1113926239629009723}
   - component: {fileID: 4943121463326840539}
+  - component: {fileID: 6479494542539226839}
   - component: {fileID: 6040773302213019946}
   - component: {fileID: 2811761234266899071}
   - component: {fileID: -5148451150798689750}
   - component: {fileID: -513642435343665083}
   - component: {fileID: 6287929668488057282}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Minotaur
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,7 +187,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -219,6 +220,33 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.21134867, y: 0.06145151}
   m_EdgeRadius: 0
+--- !u!50 &6479494542539226839
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2183450613416476641}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!95 &6040773302213019946
 Animator:
   serializedVersion: 7
@@ -303,7 +331,7 @@ GameObject:
   - component: {fileID: 3451103978301523215}
   - component: {fileID: 3004999278606695381}
   - component: {fileID: 5953413587931999540}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AttackCollision
   m_TagString: Untagged
   m_Icon: {fileID: 0}

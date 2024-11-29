@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "LevelConfigData", menuName = "LevelConfigData")]
 public class LevelConfigData : ScriptableObject
@@ -13,5 +14,4 @@ public class LevelConfigData : ScriptableObject
 
     [Header("Helper Prefabs")]
     public GameObject textPopUp;
-    public GameObject collectable;
 }

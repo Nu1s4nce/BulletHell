@@ -9,7 +9,7 @@ public class CollisionProjectileMover : MonoBehaviour
 
     private Vector2 _direction;
     
-    private TimerService _lifeTimer;
+    private Timer _lifeTimer;
     
     private ITargetFinder _targetFinder;
     

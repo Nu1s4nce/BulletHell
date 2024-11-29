@@ -15,5 +15,8 @@ public class CardsRarenessColors
     public Color PrimaryColor;
     public Color SecondaryColor;
     public Color BorderColor;
+    
+    [Header("Material")]
     public Material RarenessMaterial;
+    public Color MaterialColor;
 }

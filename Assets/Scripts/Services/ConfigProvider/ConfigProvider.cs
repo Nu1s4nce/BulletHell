@@ -4,11 +4,13 @@ public class ConfigProvider : IConfigProvider
 {
     private const string LevelConfigPath = "Configs/LevelConfigData";
     private const string CardsChancesConfigPath = "Configs/CardsChancesConfig";
+    private const string LootChancesConfigPath = "Configs/LootChancesConfig";
     private const string CardsConfigPath = "Configs/CardsConfig";
     private const string CurrenciesConfigPath = "Configs/CurrenciesConfigData";
     
     public LevelConfigData LevelConfig { get; private set; }
     public CardsChancesConfig CardsChancesConfig { get; private set; }
+    public LootChancesConfig LootChancesConfig { get; private set; }
     public CurrenciesConfigData CurrenciesConfigData { get; private set; }
     public CardsConfig CardsConfig { get; private set; }
 
@@ -16,6 +18,7 @@ public class ConfigProvider : IConfigProvider
     {
         LevelConfig = Resources.Load<LevelConfigData>(LevelConfigPath);
         CardsChancesConfig = Resources.Load<CardsChancesConfig>(CardsChancesConfigPath);
+        LootChancesConfig = Resources.Load<LootChancesConfig>(LootChancesConfigPath);
         CurrenciesConfigData = Resources.Load<CurrenciesConfigData>(CurrenciesConfigPath);
         CardsConfig = Resources.Load<CardsConfig>(CardsConfigPath);
     }
@@ -24,6 +27,12 @@ public class ConfigProvider : IConfigProvider
     {
         return CardsChancesConfig;
     }
+
+    public LootChancesConfig GetLootChancesConfig()
+    {
+        return LootChancesConfig;
+    }
+
     public CurrenciesConfigData GetCurrenciesConfig()
     {
         return CurrenciesConfigData;
@@ -47,9 +56,5 @@ public class ConfigProvider : IConfigProvider
     public GameObject GetTextPrefab()
     {
         return LevelConfig.textPopUp;
-    }
-    public GameObject GetCollectablePrefab()
-    {
-        return LevelConfig.collectable;
     }
 }

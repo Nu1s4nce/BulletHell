@@ -8,18 +8,21 @@ public class EnemyAttacker : MonoBehaviour, IIdHolder
     private int _enemyId;
 
     private EnemyAnimator _enemyAnimator;
-    
-    private TimerService _timer;
-    
+
+    private Timer _timer;
+
     public EnemyAttackType attackType;
 
     private IConfigProvider _configProvider;
     private IHeroProvider _heroProvider;
     private IGameFactory _gameFactory;
+    private ITimeService _time;
 
     [Inject]
-    public void Construct(IConfigProvider configProvider, IHeroProvider heroProvider, IGameFactory gameFactory)
+    public void Construct(IConfigProvider configProvider, IHeroProvider heroProvider, IGameFactory gameFactory,
+        ITimeService timeService)
     {
+        _time = timeService;
         _gameFactory = gameFactory;
         _heroProvider = heroProvider;
         _configProvider = configProvider;
@@ -32,8 +35,8 @@ public class EnemyAttacker : MonoBehaviour, IIdHolder
 
     private void Start()
     {
-        _timer = new TimerService(GetEnemyConfig().AttackRate);
-        if(attackType == EnemyAttackType.Melee)
+        _timer = new Timer(GetEnemyConfig().AttackRate, _time);
+        if (attackType == EnemyAttackType.Melee)
             _attackCollisionHandler.onAttackZoneEnter += DealDamageToHero;
     }
 
@@ -55,10 +58,9 @@ public class EnemyAttacker : MonoBehaviour, IIdHolder
 
     private void Attack()
     {
-        Debug.Log("Атака");
         _enemyAnimator.PlayAttack();
     }
-    
+
     private void DealDamageToHero()
     {
         if (_heroProvider.Hero.TryGetComponent(out IDamageable damageable))
@@ -66,6 +68,7 @@ public class EnemyAttacker : MonoBehaviour, IIdHolder
             damageable.ApplyDamage(GetEnemyConfig().Damage);
         }
     }
+
     public void CreateEnemyProjectile()
     {
         _gameFactory.CreateCollisionProjectile(

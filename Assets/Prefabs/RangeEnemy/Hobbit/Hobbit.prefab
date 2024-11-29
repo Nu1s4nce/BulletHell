@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3209632140524852342}
   - component: {fileID: 1230368779795875232}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CollisionWithBullets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,12 +89,13 @@ GameObject:
   - component: {fileID: 1090582617623422307}
   - component: {fileID: 9154968112169244957}
   - component: {fileID: 3810363707774753176}
+  - component: {fileID: 5457978309532175091}
   - component: {fileID: 4231022113897710280}
   - component: {fileID: 5554400073423217997}
   - component: {fileID: -7836464886557679187}
   - component: {fileID: 5023929445770013302}
   - component: {fileID: 4955270879592588913}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hobbit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -218,6 +219,33 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.100488976, y: 0.030364588}
   m_EdgeRadius: 0
+--- !u!50 &5457978309532175091
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3689493898225815682}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!95 &4231022113897710280
 Animator:
   serializedVersion: 7

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using Zenject;
 
 [RequireComponent(typeof(EnemyAnimator))]
@@ -6,8 +7,11 @@ public class EnemyDamageHandler : MonoBehaviour, IDamageable, IIdHolder
 {
     private int _enemyId;
     private float _currentHp;
+
+    private Dictionary<CollectableType, float> tempDict = new();
     
     private EnemyAnimator _enemyAnimator;
+    private readonly LootGenerator _lootGenerator = new();
     
     private IConfigProvider _configProvider;
     private ITargetFinder _targetFinder;
@@ -22,8 +26,14 @@ public class EnemyDamageHandler : MonoBehaviour, IDamageable, IIdHolder
     }
     private void Awake()
     {
-        _currentHp = _configProvider.GetEnemyConfig(_enemyId).MaxHp;
         _enemyAnimator = GetComponent<EnemyAnimator>();
+    }
+
+    private void Start()
+    {
+        _currentHp = _configProvider.GetEnemyConfig(_enemyId).MaxHp;
+        tempDict.Add(CollectableType.MainCurrency, GetCollectableChances().CollectableChances[CollectableType.MainCurrency]);
+        tempDict.Add(CollectableType.Food, GetCollectableChances().CollectableChances[CollectableType.Food]);
     }
 
     private void OnEnable()
@@ -36,12 +46,11 @@ public class EnemyDamageHandler : MonoBehaviour, IDamageable, IIdHolder
         _enemyAnimator.PlayDamageReceive();
         HandleTextPopup(damage);
         _currentHp -= damage;
+
+        if (!(_currentHp <= 0)) return;
         
-        if (_currentHp <= 0)
-        {
-            Dead();
-            SpawnCollectableAfterDeath();
-        }
+        Dead();
+        SpawnCollectablesAfterDeath();
     }
 
     private void HandleTextPopup(float dmg)
@@ -56,9 +65,33 @@ public class EnemyDamageHandler : MonoBehaviour, IDamageable, IIdHolder
         Destroy(gameObject);
     }
 
-    private void SpawnCollectableAfterDeath()
+    private void SpawnCollectablesAfterDeath()
     {
-        _gameFactory.CreateCollectable(transform.position);
+        List<CollectableType> spawnList = _lootGenerator.GetLoot(tempDict);
+
+        foreach (var collectable in spawnList)
+        {
+            if (collectable == CollectableType.MainCurrency)
+            {
+                int randCount = Random.Range(1, 6);
+                for (int i = 0; i < randCount; i++)
+                {
+                    Vector3 pos = transform.position;
+                    float randX = Random.Range(pos.x - 0.5f, pos.x + 0.5f);
+                    float randY = Random.Range(pos.y - 0.5f, pos.y + 0.5f);
+                    _gameFactory.CreateCollectable(new Vector3(randX, randY, 0), CollectableType.MainCurrency);
+                }
+            }
+            else
+            {
+                _gameFactory.CreateCollectable(transform.position, collectable);
+            }
+        }
+    }
+
+    private LootChancesConfig GetCollectableChances()
+    {
+        return _configProvider.LootChancesConfig;
     }
 
     public void SetId(int id)

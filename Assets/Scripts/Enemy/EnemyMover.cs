@@ -10,10 +10,12 @@ public class EnemyMover : MonoBehaviour, IIdHolder
     
     private IHeroProvider _heroProvider;
     private IConfigProvider _configProvider;
+    private ITimeService _time;
 
     [Inject]
-    public void Construct(IHeroProvider heroProvider, IConfigProvider configProvider)
+    public void Construct(IHeroProvider heroProvider, IConfigProvider configProvider, ITimeService timeService)
     {
+        _time = timeService;
         _configProvider = configProvider;
         _heroProvider = heroProvider;
     }
@@ -35,7 +37,7 @@ public class EnemyMover : MonoBehaviour, IIdHolder
         
         if (Vector3.Distance(_heroProvider.GetHeroPosition(), transform.position) > GetEnemyConfig().DistanceToAttack)
         {
-            transform.position += moveDirection * (GetEnemyConfig().Speed * Time.deltaTime);
+            transform.position += moveDirection * (GetEnemyConfig().Speed * _time.DeltaTime);
         }
     }
     

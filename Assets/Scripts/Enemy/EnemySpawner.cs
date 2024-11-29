@@ -11,29 +11,31 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float difficultyTimerInterval = 10;
     [SerializeField] private int numberOfEnemiesToSpawn;
 
-    private TimerService _spawnTimer;
-    private TimerService _difficultyTimer;
+    private Timer _spawnTimer;
+    private Timer _difficultyTimer;
     
     private IGameFactory _gameFactory;
     private ICameraProvider _cameraProvider;
+    private ITimeService _time;
 
     [Inject]
-    public void Construct(IGameFactory gameFactory, ICameraProvider cameraProvider)
+    public void Construct(IGameFactory gameFactory, ICameraProvider cameraProvider, ITimeService timeService)
     {
+        _time = timeService;
         _cameraProvider = cameraProvider;
         _gameFactory = gameFactory;
     }
 
     private void Awake()
     {
-        _spawnTimer = new TimerService(spawnInterval);
-        _difficultyTimer = new TimerService(difficultyTimerInterval);
+        _spawnTimer = new Timer(spawnInterval, _time);
+        _difficultyTimer = new Timer(difficultyTimerInterval, _time);
     }
 
     private void Start()
     {
         SpawnEnemies(0, enemiesStartPoolCount);
-        SpawnEnemies(1,enemiesStartPoolCount);
+        SpawnEnemies(1, enemiesStartPoolCount);
     }
 
     private void Update()

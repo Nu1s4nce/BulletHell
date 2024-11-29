@@ -3,6 +3,5 @@ using UnityEngine;
 
 public class NormalCardConfig : Card
 {
-    [Header("Buffs")] 
-    public Dictionary<StatId, float> Stats = new();
+    [Header("Buffs")] public Dictionary<StatId, float> Stats = new();
 }

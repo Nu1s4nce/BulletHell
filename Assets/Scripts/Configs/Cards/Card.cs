@@ -12,4 +12,7 @@ public class Card
     [Header("Price tag")]
     public int CardCost;
     public Currencies CurrencyType;
+    
+    [Header("ScorePoints")] 
+    public float ScorePoints;
 }
