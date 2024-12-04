@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 public class CollisionProjectileMover : MonoBehaviour
 {
@@ -12,7 +13,13 @@ public class CollisionProjectileMover : MonoBehaviour
     private Timer _lifeTimer;
     
     private ITargetFinder _targetFinder;
-    
+    private ITimeService _time;
+
+    [Inject]
+    public void Construct(ITimeService timeService)
+    {
+        _time = timeService;
+    }
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -25,7 +32,7 @@ public class CollisionProjectileMover : MonoBehaviour
         RotateProjectile();
         Move();
     }
-
+    
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.TryGetComponent(out IDamageable damageable))
@@ -35,7 +42,7 @@ public class CollisionProjectileMover : MonoBehaviour
     }
     private void Move()
     {
-        rb.AddForce(_direction * ProjectileSpeed ,ForceMode2D.Impulse);
+        rb.AddForce(_direction * ProjectileSpeed * _time.DeltaTime,ForceMode2D.Impulse);
     }
 
     private void RotateProjectile()

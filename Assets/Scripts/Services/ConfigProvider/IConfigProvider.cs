@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public interface IConfigProvider
 {
@@ -12,6 +13,7 @@ public interface IConfigProvider
     CardsConfig GetCardsConfig();
     HeroConfigData GetHeroConfig();
     EnemyConfigData GetEnemyConfig(int id);
+    public List<EnemyConfigData> GetEnemies();
     WeaponsConfigData GetWeaponsConfig(int id);
     GameObject GetTextPrefab();
 }

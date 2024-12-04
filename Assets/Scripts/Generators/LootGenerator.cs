@@ -12,6 +12,7 @@ public class LootGenerator
                 finalCollectableList.Add(collectable.Key);
             }
         }
+
         return finalCollectableList;
     }
 }

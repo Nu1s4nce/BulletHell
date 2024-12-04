@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4113626310880955396}
   - component: {fileID: 3975440414092701620}
-  m_Layer: 7
+  - component: {fileID: 5760673530160001043}
+  m_Layer: 8
   m_Name: CollisionWithBullets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +46,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 768
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -78,6 +79,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.29122773, y: 0.4094239}
   m_EdgeRadius: 0
+--- !u!114 &5760673530160001043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185048449526263250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ebb498e117c450fbfc3860c0e7f9c36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyAnimator: {fileID: -5148451150798689750}
 --- !u!1 &2183450613416476641
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,7 +108,6 @@ GameObject:
   - component: {fileID: 2811761234266899071}
   - component: {fileID: -5148451150798689750}
   - component: {fileID: -513642435343665083}
-  - component: {fileID: 6287929668488057282}
   m_Layer: 7
   m_Name: Minotaur
   m_TagString: Untagged
@@ -187,7 +200,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -228,7 +241,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2183450613416476641}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -308,18 +321,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0091ba4cb8d54e9784b22a825b24df6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6287929668488057282
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2183450613416476641}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ebb498e117c450fbfc3860c0e7f9c36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7380097655108226514
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,7 +370,7 @@ PolygonCollider2D:
     m_Bits: 64
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -399,13 +400,13 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.21912248, y: 0.239332}
+    - - {x: 0.12411872, y: 0.35122532}
       - {x: 0.18068203, y: 0.07609889}
-      - {x: 0.09290546, y: -0.15114024}
-      - {x: 0.16036153, y: -0.21895152}
-      - {x: 0.26066685, y: -0.20016949}
+      - {x: 0.02851402, y: -0.26092234}
+      - {x: 0.12763801, y: -0.35406798}
+      - {x: 0.34405905, y: -0.33106357}
       - {x: 0.38308865, y: 0.0614786}
-      - {x: 0.36568645, y: 0.30588678}
+      - {x: 0.38152036, y: 0.37133384}
   m_UseDelaunayMesh: 0
 --- !u!114 &5953413587931999540
 MonoBehaviour:

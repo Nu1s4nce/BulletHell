@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 7244047618409639897}
   - component: {fileID: 2337594033734371040}
   - component: {fileID: 6810779477389557868}
-  - component: {fileID: -2242101783022434766}
   m_Layer: 6
   m_Name: Hero
   m_TagString: Untagged
@@ -214,18 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3728ab2487d400fad4bf579dc370488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-2242101783022434766
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1858068814687193572}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4784ae4dd3a46e1b0f0c21331d9ecf8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _onDamageColor: {r: 0.5566038, g: 0.018378438, b: 0.018378438, a: 1}
 --- !u!1 &3464675279504803970
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,8 +224,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3605996748133939503}
   - component: {fileID: 8557341015699319826}
-  m_Layer: 6
-  m_Name: CollisionWithEnemies
+  - component: {fileID: 5382504425210873376}
+  m_Layer: 8
+  m_Name: CollisionWithEnemiesProjectiles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -304,6 +293,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.14103873, y: 0.2685057}
   m_EdgeRadius: 0
+--- !u!114 &5382504425210873376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3464675279504803970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4784ae4dd3a46e1b0f0c21331d9ecf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _heroAnimator: {fileID: 6810779477389557868}
 --- !u!1 &8659182270661137688
 GameObject:
   m_ObjectHideFlags: 0

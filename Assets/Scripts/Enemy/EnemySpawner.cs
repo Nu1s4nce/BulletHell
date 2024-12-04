@@ -6,9 +6,9 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private int enemiesStartPoolCount;
     [SerializeField] private float spawnPositionOffset;
-    [SerializeField] private float spawnPositionDistance = 2;
-    [SerializeField] private float spawnInterval = 2;
-    [SerializeField] private float difficultyTimerInterval = 10;
+    [SerializeField] private float spawnPositionDistance;
+    [SerializeField] private float spawnInterval;
+    [SerializeField] private float difficultyTimerInterval;
     [SerializeField] private int numberOfEnemiesToSpawn;
 
     private Timer _spawnTimer;
@@ -17,10 +17,12 @@ public class EnemySpawner : MonoBehaviour
     private IGameFactory _gameFactory;
     private ICameraProvider _cameraProvider;
     private ITimeService _time;
+    private IProgressService _progressService;
 
     [Inject]
-    public void Construct(IGameFactory gameFactory, ICameraProvider cameraProvider, ITimeService timeService)
+    public void Construct(IGameFactory gameFactory, ICameraProvider cameraProvider, ITimeService timeService, IProgressService progressService)
     {
+        _progressService = progressService;
         _time = timeService;
         _cameraProvider = cameraProvider;
         _gameFactory = gameFactory;
@@ -51,7 +53,7 @@ public class EnemySpawner : MonoBehaviour
 
         if (_difficultyTimer.CheckTimerEnd())
         {
-            //ChangeSpawnDifficulty();
+            ChangeSpawnDifficulty();
             _difficultyTimer.ResetTimer();
         }
     }
@@ -67,8 +69,26 @@ public class EnemySpawner : MonoBehaviour
 
     private void ChangeSpawnDifficulty()
     {
-        numberOfEnemiesToSpawn += 1;
-        spawnInterval -= 0.02f;
+        //numberOfEnemiesToSpawn += 1;
+        //spawnInterval -= 0.02f;
+        PowerUpEnemies();
+
+    }
+
+    private void PowerUpEnemies()
+    {
+        //hobbit
+        _progressService.GetEnemyProgressData().EnemyStatsData[0][EnemyStats.MaxHp] += 1;
+        _progressService.GetEnemyProgressData().EnemyStatsData[0][EnemyStats.Damage] += 1;
+        _progressService.GetEnemyProgressData().EnemyStatsData[0][EnemyStats.AttackRate] += 0.1f;
+        _progressService.GetEnemyProgressData().EnemyStatsData[0][EnemyStats.MoveSpeed] += 0.1f;
+        _progressService.GetEnemyProgressData().EnemyStatsData[0][EnemyStats.ProjectileSpeed] += 0.1f;
+        //minotaur
+        _progressService.GetEnemyProgressData().EnemyStatsData[1][EnemyStats.MaxHp] += 2;
+        _progressService.GetEnemyProgressData().EnemyStatsData[1][EnemyStats.Damage] += 1;
+        _progressService.GetEnemyProgressData().EnemyStatsData[1][EnemyStats.AttackRate] += 0.1f;
+        _progressService.GetEnemyProgressData().EnemyStatsData[1][EnemyStats.MoveSpeed] += 0.1f;
+        _progressService.GetEnemyProgressData().EnemyStatsData[1][EnemyStats.ProjectileSpeed] += 0.1f;
     }
     
     private Vector3 GetRandomSpawnPointOffScreen()

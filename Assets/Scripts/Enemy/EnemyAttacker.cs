@@ -17,11 +17,13 @@ public class EnemyAttacker : MonoBehaviour, IIdHolder
     private IHeroProvider _heroProvider;
     private IGameFactory _gameFactory;
     private ITimeService _time;
+    private IProgressService _progressService;
 
     [Inject]
     public void Construct(IConfigProvider configProvider, IHeroProvider heroProvider, IGameFactory gameFactory,
-        ITimeService timeService)
+        ITimeService timeService, IProgressService progressService)
     {
+        _progressService = progressService;
         _time = timeService;
         _gameFactory = gameFactory;
         _heroProvider = heroProvider;
@@ -35,7 +37,7 @@ public class EnemyAttacker : MonoBehaviour, IIdHolder
 
     private void Start()
     {
-        _timer = new Timer(GetEnemyConfig().AttackRate, _time);
+        _timer = new Timer(GetEnemyConfig().AttackRate - _progressService.GetEnemyProgressData().EnemyStatsData[_enemyId][EnemyStats.AttackRate], _time);
         if (attackType == EnemyAttackType.Melee)
             _attackCollisionHandler.onAttackZoneEnter += DealDamageToHero;
     }
@@ -63,10 +65,7 @@ public class EnemyAttacker : MonoBehaviour, IIdHolder
 
     private void DealDamageToHero()
     {
-        if (_heroProvider.Hero.TryGetComponent(out IDamageable damageable))
-        {
-            damageable.ApplyDamage(GetEnemyConfig().Damage);
-        }
+        _heroProvider.Hero.GetComponentInChildren<IDamageable>().ApplyDamage(GetEnemyConfig().Damage);
     }
 
     public void CreateEnemyProjectile()
@@ -75,8 +74,8 @@ public class EnemyAttacker : MonoBehaviour, IIdHolder
             GetEnemyConfig().EnemyProjectilePrefab,
             transform.position,
             _heroProvider.Hero.transform,
-            GetEnemyConfig().Damage,
-            GetEnemyConfig().ProjectileSpeed
+            GetEnemyConfig().Damage + _progressService.GetEnemyProgressData().EnemyStatsData[_enemyId][EnemyStats.Damage],
+            GetEnemyConfig().ProjectileSpeed + _progressService.GetEnemyProgressData().EnemyStatsData[_enemyId][EnemyStats.ProjectileSpeed]
         );
     }
 

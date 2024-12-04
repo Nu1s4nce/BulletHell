@@ -9,12 +9,12 @@ public class EnemyProjectileMover : MonoBehaviour
     private Rigidbody2D rb;
 
     private Vector2 _direction;
-    private ITimeService _timeService;
+    private ITimeService _time;
 
     [Inject]
     public void Construct(ITimeService timeService)
     {
-        _timeService = timeService;
+        _time = timeService;
     }
     
     private void Awake()
@@ -38,7 +38,7 @@ public class EnemyProjectileMover : MonoBehaviour
     }
     private void Move()
     {
-        rb.AddForce(_direction * ProjectileSpeed * Time.deltaTime,ForceMode2D.Impulse);
+        rb.AddForce(_direction * ProjectileSpeed * _time.DeltaTime,ForceMode2D.Impulse);
     }
 
     private void RotateProjectile()

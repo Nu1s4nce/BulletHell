@@ -30,7 +30,15 @@ public class HPProvider : IHpProvider
     }
     public void AddHeroCurrentHp(float hp)
     {
-        _currentHealth += hp;
+        if(_currentHealth >= GetHeroMaxHp()) return;
+        if (GetHeroMaxHp() - _currentHealth >= hp)
+        {
+            _currentHealth += hp;
+        }
+        else
+        {
+            _currentHealth = GetHeroMaxHp();
+        }
         PlayerHpChanged?.Invoke();
     }
     public void RemoveHeroMaxHp(float hp)

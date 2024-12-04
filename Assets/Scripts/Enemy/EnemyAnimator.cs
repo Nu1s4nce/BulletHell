@@ -1,5 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
+using Zenject;
 
 public class EnemyAnimator : MonoBehaviour
 {
@@ -8,9 +9,16 @@ public class EnemyAnimator : MonoBehaviour
 
     [SerializeField] private Color _onDamageColor;
     private Tween _onDamageTween;
-    
-    private readonly int _attacking = Animator.StringToHash("Attacking");
 
+    private readonly int _attacking = Animator.StringToHash("Attacking");
+    
+    private ITargetFinder _targetFinder;
+
+    [Inject]
+    public void Construct(ITargetFinder targetFinder)
+    {
+        _targetFinder = targetFinder;
+    }
     private void Awake()
     {
         _animator = GetComponent<Animator>();
@@ -33,11 +41,20 @@ public class EnemyAnimator : MonoBehaviour
 
     public void LookAt(Vector3 target)
     {
-        _spriteRenderer.flipX = target.x < transform.position.x;
+        transform.rotation =
+            target.x > transform.position.x ?
+                new Quaternion(0, 0, 0, 0) :
+                new Quaternion(0, -180, 0, 0);
     }
 
     private void OnDestroy()
     {
         _onDamageTween.Kill();
+    }
+
+    public void PlayDeadAndDestroyObject()
+    {
+        _targetFinder.RemoveTarget(transform);
+        Destroy(gameObject);
     }
 }

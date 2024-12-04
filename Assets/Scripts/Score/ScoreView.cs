@@ -1,5 +1,4 @@
-﻿using System;
-using DG.Tweening;
+﻿using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using Zenject;
@@ -28,12 +27,6 @@ public class ScoreView : MonoBehaviour
         _scoreTimer = new Timer(_scoreRate, _time);
         _scoreService.OnScoreChanged += UpdateScoreView;
     }
-
-    private void Start()
-    {
-        DisplayAnimation();
-    }
-
     private void Update()
     {
         _scoreTimer.UpdateTimer();
@@ -43,20 +36,14 @@ public class ScoreView : MonoBehaviour
             _scoreTimer.ResetTimer();
         }
     }
-
     
     private void UpdateScoreView()
     {
         DOVirtual.Float(current, _scoreService.GetScore(), 0.2f, (x) =>
         {
             _scoreText.text = "Score : " + (int)x;
-        }).OnComplete(DisplayAnimation);
+        });
         
         current = _scoreService.GetScore();
-    }
-
-    private void DisplayAnimation()
-    {
-        
     }
 }

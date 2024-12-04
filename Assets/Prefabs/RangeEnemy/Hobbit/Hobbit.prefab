@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3209632140524852342}
   - component: {fileID: 1230368779795875232}
-  m_Layer: 7
+  - component: {fileID: 7381346590495879134}
+  m_Layer: 8
   m_Name: CollisionWithBullets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,6 +79,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.12158626, y: 0.16950557}
   m_EdgeRadius: 0
+--- !u!114 &7381346590495879134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3054034649419003928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ebb498e117c450fbfc3860c0e7f9c36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyAnimator: {fileID: -7836464886557679187}
 --- !u!1 &3689493898225815682
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,7 +107,6 @@ GameObject:
   - component: {fileID: 4231022113897710280}
   - component: {fileID: 5554400073423217997}
   - component: {fileID: -7836464886557679187}
-  - component: {fileID: 5023929445770013302}
   - component: {fileID: 4955270879592588913}
   m_Layer: 7
   m_Name: Hobbit
@@ -227,7 +240,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3689493898225815682}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -293,18 +306,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _onDamageColor: {r: 0.41509432, g: 0.123353496, b: 0.123353496, a: 1}
---- !u!114 &5023929445770013302
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3689493898225815682}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ebb498e117c450fbfc3860c0e7f9c36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4955270879592588913
 MonoBehaviour:
   m_ObjectHideFlags: 0

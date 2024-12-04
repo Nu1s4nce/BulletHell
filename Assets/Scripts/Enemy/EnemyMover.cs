@@ -5,16 +5,19 @@ using Zenject;
 public class EnemyMover : MonoBehaviour, IIdHolder
 {
     private int _enemyId;
-    
+
     private EnemyAnimator _enemyAnimator;
-    
+
     private IHeroProvider _heroProvider;
     private IConfigProvider _configProvider;
     private ITimeService _time;
+    private IProgressService _progressService;
 
     [Inject]
-    public void Construct(IHeroProvider heroProvider, IConfigProvider configProvider, ITimeService timeService)
+    public void Construct(IHeroProvider heroProvider, IConfigProvider configProvider, ITimeService timeService,
+        IProgressService progressService)
     {
+        _progressService = progressService;
         _time = timeService;
         _configProvider = configProvider;
         _heroProvider = heroProvider;
@@ -34,13 +37,16 @@ public class EnemyMover : MonoBehaviour, IIdHolder
     private void Move()
     {
         Vector3 moveDirection = (_heroProvider.GetHeroPosition() - transform.position).normalized;
-        
+
         if (Vector3.Distance(_heroProvider.GetHeroPosition(), transform.position) > GetEnemyConfig().DistanceToAttack)
         {
-            transform.position += moveDirection * (GetEnemyConfig().Speed * _time.DeltaTime);
+            float speed = GetEnemyConfig().Speed +
+                          _progressService.GetEnemyProgressData().EnemyStatsData[_enemyId][
+                              EnemyStats.MoveSpeed];
+            transform.position += moveDirection * (speed * _time.DeltaTime);
         }
     }
-    
+
     private EnemyConfigData GetEnemyConfig()
     {
         return _configProvider.GetEnemyConfig(_enemyId);

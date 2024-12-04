@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ConfigProvider : IConfigProvider
@@ -48,6 +49,10 @@ public class ConfigProvider : IConfigProvider
     public EnemyConfigData GetEnemyConfig(int id)
     {
         return LevelConfig.Enemies[id];
+    }
+    public List<EnemyConfigData> GetEnemies()
+    {
+        return LevelConfig.Enemies;
     }
     public WeaponsConfigData GetWeaponsConfig(int id)
     {

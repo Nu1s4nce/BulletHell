@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class PlayerProgressData
 {
     public HeroProgressData HeroData = new();
+    public EnemyProgressData EnemyData = new();
     public Dictionary<Currencies, int> CurrenciesData = new();
     public Dictionary<int, int> PurchasedCardCount = new();
 

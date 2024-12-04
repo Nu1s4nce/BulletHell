@@ -2,7 +2,6 @@
 using UnityEngine;
 using Zenject;
 
-[RequireComponent(typeof(EnemyAnimator))]
 public class EnemyDamageHandler : MonoBehaviour, IDamageable, IIdHolder
 {
     private int _enemyId;
@@ -10,28 +9,26 @@ public class EnemyDamageHandler : MonoBehaviour, IDamageable, IIdHolder
 
     private Dictionary<CollectableType, float> tempDict = new();
     
-    private EnemyAnimator _enemyAnimator;
-    private readonly LootGenerator _lootGenerator = new();
+    [SerializeField] private EnemyAnimator _enemyAnimator;
     
+    private readonly LootGenerator _lootGenerator = new();
+    private Dictionary<CollectableType, float> _possibleLoot;
+
     private IConfigProvider _configProvider;
-    private ITargetFinder _targetFinder;
     private IGameFactory _gameFactory;
+    private IProgressService _progressService;
 
     [Inject]
-    public void Construct(IConfigProvider configProvider, ITargetFinder targetFinder, IGameFactory gameFactory)
+    public void Construct(IConfigProvider configProvider, IGameFactory gameFactory, IProgressService progressService)
     {
+        _progressService = progressService;
         _gameFactory = gameFactory;
-        _targetFinder = targetFinder;
         _configProvider = configProvider;
-    }
-    private void Awake()
-    {
-        _enemyAnimator = GetComponent<EnemyAnimator>();
     }
 
     private void Start()
     {
-        _currentHp = _configProvider.GetEnemyConfig(_enemyId).MaxHp;
+        _currentHp = _configProvider.GetEnemyConfig(_enemyId).MaxHp + _progressService.GetEnemyProgressData().EnemyStatsData[_enemyId][EnemyStats.MaxHp];
         tempDict.Add(CollectableType.MainCurrency, GetCollectableChances().CollectableChances[CollectableType.MainCurrency]);
         tempDict.Add(CollectableType.Food, GetCollectableChances().CollectableChances[CollectableType.Food]);
     }
@@ -48,9 +45,7 @@ public class EnemyDamageHandler : MonoBehaviour, IDamageable, IIdHolder
         _currentHp -= damage;
 
         if (!(_currentHp <= 0)) return;
-        
-        Dead();
-        SpawnCollectablesAfterDeath();
+        DeadHandler();
     }
 
     private void HandleTextPopup(float dmg)
@@ -59,10 +54,10 @@ public class EnemyDamageHandler : MonoBehaviour, IDamageable, IIdHolder
         _gameFactory.CreateTextPopup(dmg, textPos);
     }
 
-    private void Dead()
+    private void DeadHandler()
     {
-        _targetFinder.RemoveTarget(transform);
-        Destroy(gameObject);
+        SpawnCollectablesAfterDeath();
+        _enemyAnimator.PlayDeadAndDestroyObject();
     }
 
     private void SpawnCollectablesAfterDeath()

@@ -9,7 +9,7 @@ public class LevelInitializer : IInitializable
     private IHpProvider _hpProvider;
     private IProgressService _progressService;
 
-    private List<int> cardIds = new();
+    private List<int> _cardIds = new();
 
     [Inject]
     private void Construct(IConfigProvider configProvider, IGameFactory gameFactory, IHpProvider hpProvider, IProgressService progressService)
@@ -28,15 +28,22 @@ public class LevelInitializer : IInitializable
         {
             foreach (var card in item.Value)
             {
-                cardIds.Add(card.CardId);
+                _cardIds.Add(card.CardId);
             }
         }
-        _progressService.InitPurchasedCardCount(cardIds);
+        _progressService.InitPurchasedCardCount(_cardIds);
+        
         _progressService.InitStats();
+        
+        foreach (var enemy in _configProvider.GetEnemies())
+        {
+            _progressService.InitEnemyStats(enemy.EnemyId);
+        }
+        
         _hpProvider.InitHeroHp();
         
         _gameFactory.CreateHero(new Vector3(0,0,0));
         
-        _progressService.SetMainCurrency(10000);
+        _progressService.SetMainCurrency(0);
     }
 }
