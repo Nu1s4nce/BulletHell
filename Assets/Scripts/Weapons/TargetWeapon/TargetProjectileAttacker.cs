@@ -28,8 +28,7 @@ public class TargetProjectileAttacker : MonoBehaviour
     private void Awake()
     {
         _progressService.AttackRateChanged += UpdateAttackRate;
-        _timer = new Timer(
-            GetWeaponStats().AttackRate - _progressService.GetHeroData().HeroStatsData[StatId.AttackRate], _time);
+        _timer = new Timer(GetAttackRate(), _time);
     }
 
     private void Update()
@@ -44,8 +43,13 @@ public class TargetProjectileAttacker : MonoBehaviour
 
     private void UpdateAttackRate()
     {
-        _timer.ChangeTimerMaxTime(GetWeaponStats().AttackRate -
-                                  _progressService.GetHeroData().HeroStatsData[StatId.AttackRate]);
+        _timer.ChangeTimerMaxTime(GetAttackRate());
+    }
+    
+    private float GetAttackRate()
+    {
+        return (GetWeaponStats().AttackRate - _progressService.GetHeroData().HeroStatsData[StatId.AttackRate]) * 100 /
+               (100 + _progressService.GetHeroData().HeroStatsData[StatId.AttackSpeed]);
     }
 
     private void Attack()

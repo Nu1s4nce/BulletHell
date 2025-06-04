@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using System;
+using DG.Tweening;
 using UnityEngine;
 using Zenject;
 
@@ -14,10 +15,12 @@ public class Collectable : MonoBehaviour
     private IConfigProvider _configProvider;
     private IProgressService _progressService;
     private IHpProvider _hpProvider;
+    private ISoundManager _soundManager;
 
     [Inject]
-    public void Construct(IHeroProvider heroProvider, IConfigProvider configProvider, IProgressService progressService, IHpProvider hpProvider)
+    public void Construct(IHeroProvider heroProvider, IConfigProvider configProvider, IProgressService progressService, IHpProvider hpProvider, ISoundManager soundManager)
     {
+        _soundManager = soundManager;
         _hpProvider = hpProvider;
         _progressService = progressService;
         _configProvider = configProvider;
@@ -39,11 +42,15 @@ public class Collectable : MonoBehaviour
         switch (_collectableType)
         {
             case CollectableType.MainCurrency:
-                _progressService.AddMainCurrency(1 + (int)GetProgressData().HeroStatsData[StatId.CollectablesValue]);
+                _progressService.AddMainCurrency((int)_configProvider.GetHeroConfig().CollectablesValue + (int)GetProgressData().HeroStatsData[StatId.CollectablesValue]);
+                _soundManager.PlayCurrencyPickUp();
                 break;
             case CollectableType.Food:
                 _hpProvider.AddHeroCurrentHp(_configProvider.GetHeroConfig().FoodHealValue + GetProgressData().HeroStatsData[StatId.FoodHealValue]);
+                _soundManager.PlayFoodPickUp();
                 break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
     }
 

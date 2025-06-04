@@ -295,6 +295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackCollisionHandler: {fileID: 5953413587931999540}
+  _collider2D: {fileID: 0}
   attackType: 0
 --- !u!114 &-5148451150798689750
 MonoBehaviour:

@@ -27,9 +27,10 @@ public class CardHandler : MonoBehaviour, IPointerEnterHandler, IPointerClickHan
     {
         {StatId.Damage, "Урон"},
         {StatId.MaxHealth, "Макс. HP"},
-        {StatId.MoveSpeed, "Скорость"},
+        {StatId.MoveSpeed, "Скорость передвижения"},
         {StatId.AttackRange, "Радиус атаки"},
-        {StatId.AttackRate, "Скорость атаки"},
+        {StatId.AttackRate, "Базовый интервал атак"},
+        {StatId.AttackSpeed, "Скорость атаки"},
         {StatId.ProjectileSpeed, "Скорость снарядов"},
         {StatId.CollectablesPickRange, "Дальность сбора"},
         {StatId.CollectablesValue, "Валюта"},
@@ -50,12 +51,14 @@ public class CardHandler : MonoBehaviour, IPointerEnterHandler, IPointerClickHan
 
     private ICardsGenerator _cardsGenerator;
     private IConfigProvider _configProvider;
+    private IProgressService _progressService;
 
     public event Action<int> CardClicked;
 
     [Inject]
-    public void Construct(ICardsGenerator cardsGenerator, IConfigProvider configProvider)
+    public void Construct(ICardsGenerator cardsGenerator, IConfigProvider configProvider, IProgressService progressService)
     {
+        _progressService = progressService;
         _configProvider = configProvider;
         _cardsGenerator = cardsGenerator;
     }
@@ -97,7 +100,16 @@ public class CardHandler : MonoBehaviour, IPointerEnterHandler, IPointerClickHan
     public void SetupUniqueCard(UniqueCardConfig cardConfig)
     {
         _card = cardConfig;
-        //SetupUniqueCardUI(cardConfig, rarenessOfCard);
+        RarenessOfCard rarenessOfCard = default;
+        foreach (var kvp in _configProvider.GetCardsConfig().AllUniqueCardsByRareness)
+        {
+            if (kvp.Value.Contains(cardConfig))
+            {
+                rarenessOfCard = kvp.Key;
+                break; 
+            }
+        }
+        SetupUniqueCardUI(cardConfig);
     }
 
     private void SetupNormalCardUI(NormalCardConfig cardConfig, RarenessOfCard rarenessOfCard)
@@ -122,7 +134,43 @@ public class CardHandler : MonoBehaviour, IPointerEnterHandler, IPointerClickHan
             color = cardsColors.MaterialColor
         };
         //бордер
-        if (cardConfig.CardBorder != null)
+        if (cardConfig.CardBorder)
+        {
+            _cardBorderIcon.sprite = cardConfig.CardBorder;
+            _cardBorderIcon.color = cardsColors.BorderColor;
+            _cardBorderIcon.gameObject.SetActive(true);
+        }
+        else _cardBorderIcon.gameObject.SetActive(false);
+
+        //стоимость
+        
+        _cardCostText.text = (_card.CardCost - _card.CardCost * _progressService.ProgressData.shopDiscount / 100).ToString();
+        _cardCostIcon.sprite = _configProvider.GetCurrenciesConfig().CurrenciesConfig[cardConfig.CurrencyType];
+    }
+
+    private void SetupUniqueCardUI(UniqueCardConfig cardConfig)
+    {
+        HandleUniqueCardStatsToShow(cardConfig, _cardDescriptionText);
+        CardsRarenessColors cardsColors = _cardsGenerator.GetUniqueCardColor();
+        
+        //текст редкости
+        _cardRarenessText.text = "Unique";
+        _cardRarenessText.color = cardsColors.PrimaryColor;
+        //иконка
+        _cardIcon.sprite = cardConfig.CardImage;
+        //задний фон иконки
+        _cardIconBackground.color = cardsColors.PrimaryColor;
+        //название карточки и цвет
+        _cardNameText.text = cardConfig.CardName;
+        _cardNameText.color = cardsColors.SecondaryColor;
+
+        //шейдер
+        _cardEffect.material = new Material(cardsColors.RarenessMaterial)
+        {
+            color = cardsColors.MaterialColor
+        };
+        
+        if (cardConfig.CardBorder)
         {
             _cardBorderIcon.sprite = cardConfig.CardBorder;
             _cardBorderIcon.color = cardsColors.BorderColor;
@@ -135,46 +183,18 @@ public class CardHandler : MonoBehaviour, IPointerEnterHandler, IPointerClickHan
         _cardCostIcon.sprite = _configProvider.GetCurrenciesConfig().CurrenciesConfig[cardConfig.CurrencyType];
     }
 
-    private void SetupUniqueCardUI(UniqueCardConfig cardConfig, RarenessOfCard rarenessOfCard)
-    {
-        _cardNameText.text = cardConfig.CardName;
-        HandleUniqueCardStatsToShow(cardConfig, _cardDescriptionText);
-
-        _cardCostText.text = _card.CardCost.ToString();
-
-        _cardIcon.sprite = cardConfig.CardImage;
-        _cardIconBackground.color = _cardsGenerator.GetColorByRareness(rarenessOfCard).PrimaryColor;
-        _cardNameText.color = _cardsGenerator.GetColorByRareness(rarenessOfCard).PrimaryColor;
-
-        if (cardConfig.CardBorder != null)
-        {
-            _cardBorderIcon.sprite = cardConfig.CardBorder;
-            _cardBorderIcon.color = _cardsGenerator.GetColorByRareness(rarenessOfCard).BorderColor;
-            _cardBorderIcon.gameObject.SetActive(true);
-        }
-        else _cardBorderIcon.gameObject.SetActive(false);
-
-        _cardCostIcon.sprite = _configProvider.GetCurrenciesConfig().CurrenciesConfig[cardConfig.CurrencyType];
-    }
-
 
     private void HandleNormalCardStatsToShow(NormalCardConfig normalCardConfig, TMP_Text descriptionText)
     {
         descriptionText.text = "";
         foreach (var stat in normalCardConfig.Stats)
         {
-            if (stat.Value < 1)
-                descriptionText.text += _statsTextPresentation[stat.Key] + " + " + stat.Value * 100 + "%" + "\n";
-            else
-                descriptionText.text += _statsTextPresentation[stat.Key] + " + " + stat.Value + "\n";
+            descriptionText.text += _statsTextPresentation[stat.Key] + " + " + stat.Value + "\n";
         }
     }
 
     private void HandleUniqueCardStatsToShow(UniqueCardConfig uniqueCardConfig, TMP_Text descriptionText)
     {
-        descriptionText.text = "";
-        if (uniqueCardConfig.WeaponType != 0)
-        {
-        }
+        descriptionText.text = uniqueCardConfig.Description;
     }
 }

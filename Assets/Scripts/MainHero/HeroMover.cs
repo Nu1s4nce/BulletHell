@@ -7,14 +7,15 @@ public class HeroMover : MonoBehaviour
 
     private Rigidbody2D rb;
     private HeroAnimator _heroAnimator;
-    
+
     private IInputService _inputService;
     private IProgressService _progressService;
     private IConfigProvider _configProvider;
     private ITimeService _time;
 
     [Inject]
-    public void Construct(IProgressService progressService, IInputService inputService, IConfigProvider configProvider, ITimeService timeService)
+    public void Construct(IProgressService progressService, IInputService inputService, IConfigProvider configProvider,
+        ITimeService timeService)
     {
         _time = timeService;
         _configProvider = configProvider;
@@ -26,8 +27,8 @@ public class HeroMover : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         _heroAnimator = GetComponent<HeroAnimator>();
-        
     }
+
     private void Update()
     {
         MovementDirection();
@@ -42,6 +43,7 @@ public class HeroMover : MonoBehaviour
     {
         return _configProvider.GetHeroConfig();
     }
+
     private HeroProgressData GetHeroStatsBonus()
     {
         return _progressService.GetHeroData();
@@ -51,15 +53,15 @@ public class HeroMover : MonoBehaviour
     {
         _direction = _inputService.GetKeyboardInput();
         _heroAnimator.LookAt(_direction);
-        
-        if(_direction.x != 0 || _direction.y != 0) _heroAnimator.PlayRun();
+
+        if (_direction.x != 0 || _direction.y != 0) _heroAnimator.PlayRun();
         else _heroAnimator.PlayIdle();
     }
 
     private void MovePlayer()
     {
         _direction = Vector2.ClampMagnitude(_direction, 1);
-        rb.MovePosition(rb.position + (GetHeroStats().MoveSpeed + GetHeroStatsBonus().HeroStatsData[StatId.MoveSpeed]) * _time.FixedDeltaTime * _direction);
+        rb.MovePosition(rb.position + (GetHeroStats().MoveSpeed + GetHeroStatsBonus().HeroStatsData[StatId.MoveSpeed]) *
+            _time.FixedDeltaTime * _direction);
     }
-    
 }

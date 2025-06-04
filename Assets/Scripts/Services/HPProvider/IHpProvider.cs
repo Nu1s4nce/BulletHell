@@ -10,4 +10,5 @@ public interface IHpProvider
     public void RemoveHeroCurrentHp(float hp);
     public void RemoveHeroMaxHp(float hp);
     public event Action PlayerHpChanged;
+    public event Action PlayerDead;
 }

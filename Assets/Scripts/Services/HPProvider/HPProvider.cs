@@ -8,6 +8,7 @@ public class HPProvider : IHpProvider
     private float _currentHealth;
 
     public event Action PlayerHpChanged;
+    public event Action PlayerDead;
     
     public HPProvider(IConfigProvider configProvider, IProgressService progressService)
     {
@@ -50,6 +51,7 @@ public class HPProvider : IHpProvider
     {
         _currentHealth -= hp;
         PlayerHpChanged?.Invoke();
+        if(_currentHealth <= 0) PlayerDead?.Invoke();
     }
 
     private void UpdateHeroHP(float value)

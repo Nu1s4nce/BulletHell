@@ -6,6 +6,7 @@ public interface IProgressService
     public PlayerProgressData ProgressData { get; set; }
     public event Action CurrencyAmountChanged;
     public event Action AttackRateChanged;
+    public event Action EnemyKilled;
     public event Action<float> HPChanged;
 
     public int GetMainCurrency();
@@ -14,6 +15,8 @@ public interface IProgressService
     public void SetMainCurrency(int count);
     public void AddMainCurrency(int count);
     public void RemoveMainCurrency(int count);
+    public int GetNumberOfKills();
+    public void AddNumberOfKills(int amount);
     public HeroProgressData GetHeroData();
     public EnemyProgressData GetEnemyProgressData();
     public void AddStat(StatId statId, float value);

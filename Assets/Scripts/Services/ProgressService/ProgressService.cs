@@ -7,7 +7,9 @@ public class ProgressService : IProgressService
 
     public event Action CurrencyAmountChanged;
     public event Action AttackRateChanged;
+    public event Action EnemyKilled;
     public event Action<float> HPChanged;
+    
 
 
     public int GetMainCurrency()
@@ -72,6 +74,17 @@ public class ProgressService : IProgressService
         {
             ProgressData.PurchasedCardCount.Add(id, 0);
         }
+    }
+
+    public int GetNumberOfKills()
+    {
+        return ProgressData.enemyKilled;
+    }
+
+    public void AddNumberOfKills(int amount)
+    {
+        ProgressData.enemyKilled += amount;
+        EnemyKilled?.Invoke();
     }
 
     public HeroProgressData GetHeroData()

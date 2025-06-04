@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
+using Random = UnityEngine.Random;
 
 public class ShopHandler : MonoBehaviour
 {
@@ -21,10 +22,15 @@ public class ShopHandler : MonoBehaviour
     private IProgressService _progressService;
     private IScoreService _scoreService;
     private ITimeService _time;
+    private ISoundManager _soundManager;
+    private IConfigProvider _configProvider;
 
     [Inject]
-    private void Construct(ICardsGenerator cardsGenerator, IProgressService progressService, IScoreService scoreService, ITimeService timeService)
+    private void Construct(ICardsGenerator cardsGenerator, IProgressService progressService, IScoreService scoreService,
+        ITimeService timeService, ISoundManager soundManager, IConfigProvider configProvider)
     {
+        _configProvider = configProvider;
+        _soundManager = soundManager;
         _time = timeService;
         _scoreService = scoreService;
         _progressService = progressService;
@@ -42,31 +48,36 @@ public class ShopHandler : MonoBehaviour
 
     private void OnEnable()
     {
-        _time.StopTime();
+        _time.PauseGame();
     }
+
     private void OnDisable()
     {
-        _time.StartTime();
+        _time.ResumeGame();
     }
 
     private void Start()
     {
         RefreshShop();
+        _refreshButton.UpdateButtonCost(GetLevelConfigData().rerollCost +
+                                        _progressService.ProgressData.rerollCostMultiplier);
     }
 
     private void RefreshShopWithCost()
     {
-        if (_progressService.GetMainCurrency() >= GetProgressData().RefreshButtonCost)
+        int rerollCost = GetLevelConfigData().rerollCost + _progressService.ProgressData.rerollCostMultiplier;
+        if (_progressService.GetMainCurrency() >= rerollCost)
         {
-            _progressService.RemoveMainCurrency(GetProgressData().RefreshButtonCost);
+            _progressService.RemoveMainCurrency(rerollCost);
             RefreshShop();
-            GetProgressData().RefreshButtonCost += GetProgressData().RefreshButtonCostMultiplier;
-            _refreshButton.UpdateButtonCost(GetProgressData().RefreshButtonCost);
+            GetProgressData().rerollCostMultiplier += 2;
+            _refreshButton.UpdateButtonCost(rerollCost);
         }
     }
 
     private void RefreshShop()
     {
+        _soundManager.PlayRefreshShop();
         _cards.Clear();
         for (int i = 0; i < _cardHandlers.Count; i++)
         {
@@ -76,14 +87,23 @@ public class ShopHandler : MonoBehaviour
 
     private void OnCardClick(int id)
     {
-        int cardCost = _cards[id].CardCost;
+        int cardCost = 0;
+        if (_cardType == CardType.Normal)
+        {
+            cardCost = _cards[id].CardCost - _cards[id].CardCost * _progressService.ProgressData.shopDiscount / 100;
+        }
+        else if (_cardType == CardType.Unique)
+        {
+            cardCost = _cards[id].CardCost;
+        }
+
         if (cardCost <= _progressService.GetMainCurrency())
         {
             _progressService.RemoveMainCurrency(cardCost);
             _progressService.ProgressData.PurchasedCardCount[_cards[id].CardId] += 1;
-            
+
             _scoreService.AddScore(_cards[id].ScorePoints);
-            
+
             AddStats(id);
             _cards.Clear();
             RefreshShop();
@@ -106,6 +126,19 @@ public class ShopHandler : MonoBehaviour
         if (card.GetType() == typeof(UniqueCardConfig))
         {
             UniqueCardConfig uniqueCard = (UniqueCardConfig) card;
+            if (uniqueCard.CardId == 400) //Карта на скидку
+            {
+                _progressService.ProgressData.shopDiscount += 5;
+            }
+
+            if (uniqueCard.CardId == 401) //Mask of madness
+            {
+                int damage = Random.Range(-50, 51);
+                int attackSpeed = Random.Range(-100, 101);
+
+                _progressService.AddStat(StatId.Damage, damage);
+                _progressService.AddStat(StatId.AttackSpeed, attackSpeed);
+            }
         }
     }
 
@@ -116,7 +149,7 @@ public class ShopHandler : MonoBehaviour
         if (_cardType == CardType.Normal)
         {
             Card newCard = _cardsGenerator.GenerateNormalCard();
-            
+
             _cards.Add(newCard);
             _cardHandlers[index].SetupNormalCard((NormalCardConfig) newCard);
         }
@@ -132,5 +165,9 @@ public class ShopHandler : MonoBehaviour
     private PlayerProgressData GetProgressData()
     {
         return _progressService.ProgressData;
+    }
+    private LevelConfigData GetLevelConfigData()
+    {
+        return _configProvider.LevelConfig;
     }
 }

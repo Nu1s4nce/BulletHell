@@ -43,8 +43,8 @@ public class MainShopTrigger : MonoBehaviour
     {
         _isInShopZone = false;
         _isShopOpened = false;
+        if (!col) return;
         _shopEnterTextContainer.SetActive(_isInShopZone);
         _powerUpPanel.SetActive(_isShopOpened);
-        
     }
 }

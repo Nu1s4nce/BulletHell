@@ -5,6 +5,7 @@ using Zenject;
 public class EnemyAttacker : MonoBehaviour, IIdHolder
 {
     [SerializeField] private AttackCollisionHandler _attackCollisionHandler;
+    [SerializeField] private Collider2D _collider2D;
     private int _enemyId;
 
     private EnemyAnimator _enemyAnimator;
@@ -35,6 +36,8 @@ public class EnemyAttacker : MonoBehaviour, IIdHolder
         _enemyAnimator = GetComponent<EnemyAnimator>();
     }
 
+    
+    
     private void Start()
     {
         _timer = new Timer(GetEnemyConfig().AttackRate - _progressService.GetEnemyProgressData().EnemyStatsData[_enemyId][EnemyStats.AttackRate], _time);
@@ -65,6 +68,7 @@ public class EnemyAttacker : MonoBehaviour, IIdHolder
 
     private void DealDamageToHero()
     {
+        if (!_heroProvider.Hero) return;
         _heroProvider.Hero.GetComponentInChildren<IDamageable>().ApplyDamage(GetEnemyConfig().Damage);
     }
 
@@ -75,7 +79,8 @@ public class EnemyAttacker : MonoBehaviour, IIdHolder
             transform.position,
             _heroProvider.Hero.transform,
             GetEnemyConfig().Damage + _progressService.GetEnemyProgressData().EnemyStatsData[_enemyId][EnemyStats.Damage],
-            GetEnemyConfig().ProjectileSpeed + _progressService.GetEnemyProgressData().EnemyStatsData[_enemyId][EnemyStats.ProjectileSpeed]
+            GetEnemyConfig().ProjectileSpeed + _progressService.GetEnemyProgressData().EnemyStatsData[_enemyId][EnemyStats.ProjectileSpeed],
+            _collider2D
         );
     }
 

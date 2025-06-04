@@ -20,6 +20,10 @@ public class CardsGenerator : ICardsGenerator
     {
         return GetCardsConfig().AllCardColorsByRareness[rarenessOfCard];
     }
+    public CardsRarenessColors GetUniqueCardColor()
+    {
+        return GetCardsConfig().UniqueCardColors;
+    }
     
     public NormalCardConfig GenerateNormalCard()
     {
@@ -51,7 +55,30 @@ public class CardsGenerator : ICardsGenerator
 
     public UniqueCardConfig GenerateUniqueCard(RarenessOfCard rarenessOfCard)
     {
-        return RandomService.GetRandomItem(GetCardsConfig().AllUniqueCardsByRareness[rarenessOfCard]);
+        var mainDict = GetCardsConfig().AllUniqueCardsByRareness;
+        Dictionary<RarenessOfCard, List<UniqueCardConfig>> tempDict = new();
+        
+        Dictionary<RarenessOfCard, float> cardsRareness = GetCardsChancesConfig().RarenessOfCards;
+        Dictionary<RarenessOfCard, float> cardsRarenessTemp = new();
+        
+
+        foreach (var card in mainDict)
+        {
+            List<UniqueCardConfig> tempList = new();
+            foreach (var cardConfig in card.Value)
+            {
+                if (cardConfig.PoolLimit - _progressService.ProgressData.PurchasedCardCount[cardConfig.CardId] > 0)
+                {
+                    tempList.Add(cardConfig);
+                }
+            }
+            if (tempList.Count == 0) continue;
+            tempDict.Add(card.Key, tempList);
+            cardsRarenessTemp.Add(card.Key, cardsRareness[card.Key]);
+        }
+
+        RarenessOfCard cardRareness = RandomService.GetRandomItemByChance(cardsRarenessTemp);
+        return RandomService.GetRandomItem(tempDict[cardRareness]);
     }
     
     private CardsChancesConfig GetCardsChancesConfig()

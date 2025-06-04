@@ -22,15 +22,14 @@ public class LevelInitializer : IInitializable
 
     public void Initialize()
     {
+        Debug.Log("Initializing Level Initializer");
         _configProvider.Load();
-
-        foreach (var item in _configProvider.GetCardsConfig().AllNormalCardsByRareness)
-        {
-            foreach (var card in item.Value)
-            {
-                _cardIds.Add(card.CardId);
-            }
-        }
+        _progressService.ProgressData.HeroData.HeroStatsData.Clear();
+        _progressService.ProgressData.EnemyData.EnemyStatsData.Clear();
+        _progressService.ProgressData.PurchasedCardCount.Clear();
+        
+        AddAllCardsToPool();
+        
         _progressService.InitPurchasedCardCount(_cardIds);
         
         _progressService.InitStats();
@@ -45,5 +44,23 @@ public class LevelInitializer : IInitializable
         _gameFactory.CreateHero(new Vector3(0,0,0));
         
         _progressService.SetMainCurrency(0);
+    }
+
+    private void AddAllCardsToPool()
+    {
+        foreach (var item in _configProvider.GetCardsConfig().AllNormalCardsByRareness)
+        {
+            foreach (var card in item.Value)
+            {
+                _cardIds.Add(card.CardId);
+            }
+        }
+        foreach (var item in _configProvider.GetCardsConfig().AllUniqueCardsByRareness)
+        {
+            foreach (var card in item.Value)
+            {
+                _cardIds.Add(card.CardId);
+            }
+        }
     }
 }

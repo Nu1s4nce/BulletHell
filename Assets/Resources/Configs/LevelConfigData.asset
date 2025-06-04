@@ -15,8 +15,9 @@ MonoBehaviour:
   HeroConfigData:
     MaxHealth: 100
     MoveSpeed: 5
-    FoodHealValue: 20
+    FoodHealValue: 5
     CollectablesPickRange: 1
+    CollectablesValue: 1
     CollectablesNumberMin: 1
     CollectablesNumberMax: 5
     WeaponPrefab: {fileID: 3997604137571920375, guid: e1832286d9f10c54f87e41b2371b58ff, type: 3}
@@ -28,7 +29,7 @@ MonoBehaviour:
     Damage: 4
     DistanceToAttack: 3.5
     AttackRate: 1
-    ProjectileSpeed: 1000
+    ProjectileSpeed: 750
     EnemyPrefab: {fileID: 3689493898225815682, guid: 2fddf191eaa3be04b8985f77966b6a4e, type: 3}
     EnemyProjectilePrefab: {fileID: 1601025902171870610, guid: 260f359ccd6725e4daa97a2d0740d836, type: 3}
   - EnemyId: 1
@@ -40,12 +41,22 @@ MonoBehaviour:
     ProjectileSpeed: 0
     EnemyPrefab: {fileID: 2183450613416476641, guid: f54ffeb6ee4c09a428cf3b3ddefefb7c, type: 3}
     EnemyProjectilePrefab: {fileID: 0}
+  - EnemyId: 2
+    Speed: 2
+    MaxHp: 100
+    Damage: 25
+    DistanceToAttack: 1
+    AttackRate: 0.4
+    ProjectileSpeed: 0
+    EnemyPrefab: {fileID: 1424383095653874445, guid: 2fad0ec419ab0b546a490f8d31499f05, type: 3}
+    EnemyProjectilePrefab: {fileID: 0}
   Weapons:
   - Id: 0
     Damage: 5
-    MultishotTargets: 1
+    MultishotTargets: 2
     AttackRange: 4
     AttackRate: 1
+    AttackSpeed: 0
     ProjectileSpeed: 4
     weaponPrefab: {fileID: 1746825002339336682, guid: 0782361c25d21dd4abd24ad5fdae44c6, type: 3}
     weaponProjectilePrefab: {fileID: 3997604137571920375, guid: e1832286d9f10c54f87e41b2371b58ff, type: 3}
@@ -54,14 +65,16 @@ MonoBehaviour:
     MultishotTargets: 0
     AttackRange: 2
     AttackRate: 0.4
+    AttackSpeed: 0
     ProjectileSpeed: 0
     weaponPrefab: {fileID: 6677493759275679445, guid: 1a195c46fffb95b4ca3a35bc3833df3f, type: 3}
     weaponProjectilePrefab: {fileID: 0}
   - Id: 2
     Damage: 5
-    MultishotTargets: 0
+    MultishotTargets: 1
     AttackRange: 3
     AttackRate: 0.3
+    AttackSpeed: 0
     ProjectileSpeed: 3
     weaponPrefab: {fileID: 6849565278139979255, guid: a902102f0d1191645936f02f8246cb9a, type: 3}
     weaponProjectilePrefab: {fileID: 1347247707529628471, guid: 6ef60daf9fb58bb48b49b9f69dc7a478, type: 3}

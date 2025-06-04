@@ -69,10 +69,9 @@ public class EnemySpawner : MonoBehaviour
 
     private void ChangeSpawnDifficulty()
     {
-        //numberOfEnemiesToSpawn += 1;
+        numberOfEnemiesToSpawn += 1;
         //spawnInterval -= 0.02f;
         PowerUpEnemies();
-
     }
 
     private void PowerUpEnemies()
@@ -82,13 +81,12 @@ public class EnemySpawner : MonoBehaviour
         _progressService.GetEnemyProgressData().EnemyStatsData[0][EnemyStats.Damage] += 1;
         _progressService.GetEnemyProgressData().EnemyStatsData[0][EnemyStats.AttackRate] += 0.1f;
         _progressService.GetEnemyProgressData().EnemyStatsData[0][EnemyStats.MoveSpeed] += 0.1f;
-        _progressService.GetEnemyProgressData().EnemyStatsData[0][EnemyStats.ProjectileSpeed] += 0.1f;
+        _progressService.GetEnemyProgressData().EnemyStatsData[0][EnemyStats.ProjectileSpeed] += 40f;
         //minotaur
         _progressService.GetEnemyProgressData().EnemyStatsData[1][EnemyStats.MaxHp] += 2;
         _progressService.GetEnemyProgressData().EnemyStatsData[1][EnemyStats.Damage] += 1;
         _progressService.GetEnemyProgressData().EnemyStatsData[1][EnemyStats.AttackRate] += 0.1f;
         _progressService.GetEnemyProgressData().EnemyStatsData[1][EnemyStats.MoveSpeed] += 0.1f;
-        _progressService.GetEnemyProgressData().EnemyStatsData[1][EnemyStats.ProjectileSpeed] += 0.1f;
     }
     
     private Vector3 GetRandomSpawnPointOffScreen()

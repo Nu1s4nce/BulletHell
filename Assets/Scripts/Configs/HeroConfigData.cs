@@ -9,6 +9,7 @@ public class HeroConfigData
     public float MoveSpeed;
     public float FoodHealValue;
     public float CollectablesPickRange;
+    public float CollectablesValue;
     public float CollectablesNumberMin;
     public float CollectablesNumberMax;
     

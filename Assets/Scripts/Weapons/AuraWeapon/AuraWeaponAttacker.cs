@@ -30,14 +30,15 @@ public class AuraWeaponAttacker : MonoBehaviour
     }
     private void Awake()
     {
+        _progressService.AttackRateChanged += UpdateAttackRate;
+        _targetFinder.targetsChanged += UpdateTargetsList;
+        
         _weaponDamageHandler = GetComponent<WeaponDamageHandler>();
-
+        
         _targetsList = new List<Transform>();
         
-        _timer = new Timer(GetWeaponStats().AttackRate - _progressService.GetHeroData().HeroStatsData[StatId.AttackRate], _time);
-        _targetFinder.targetsChanged += UpdateTargetsList;
+        _timer = new Timer(GetAttackRate(), _time);
     }
-    
     private void Update()
     {
         _timer.UpdateTimer();
@@ -46,6 +47,16 @@ public class AuraWeaponAttacker : MonoBehaviour
             Attack();
             _timer.ResetTimer();
         }
+    }
+    private void UpdateAttackRate()
+    {
+        _timer.ChangeTimerMaxTime(GetAttackRate());
+    }
+    
+    private float GetAttackRate()
+    {
+        return (GetWeaponStats().AttackRate - _progressService.GetHeroData().HeroStatsData[StatId.AttackRate]) * 100 /
+               (100 + _progressService.GetHeroData().HeroStatsData[StatId.AttackSpeed]);
     }
 
     private void Attack()
@@ -75,5 +86,6 @@ public class AuraWeaponAttacker : MonoBehaviour
     private void OnDestroy()
     {
         _targetFinder.targetsChanged -= UpdateTargetsList;
+        _progressService.AttackRateChanged -= UpdateAttackRate;
     }
 }

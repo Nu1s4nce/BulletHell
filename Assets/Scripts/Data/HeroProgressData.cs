@@ -14,6 +14,7 @@ public enum StatId
     MoveSpeed,
     AttackRange,
     AttackRate,
+    AttackSpeed,
     ProjectileSpeed,
     CollectablesPickRange,
     CollectablesValue,

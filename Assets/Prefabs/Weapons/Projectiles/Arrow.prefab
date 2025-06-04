@@ -118,6 +118,7 @@ MonoBehaviour:
   ProjectileDamage: 0
   ProjectileSpeed: 0
   Target: {fileID: 0}
+  OwnCollider: {fileID: 0}
 --- !u!61 &3047007085655645073
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -131,10 +132,10 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

@@ -51,15 +51,16 @@ public class GameFactory : IGameFactory
         
         return inst;
     }
-    public GameObject CreateCollisionProjectile(GameObject prefab, Vector3 pos, Transform target, float damage, float speed)
+    public GameObject CreateCollisionProjectile(GameObject prefab, Vector3 pos, Transform target, float damage, float speed, Collider2D collider)
     {
         GameObject inst = CreateProjectile(prefab, pos);
         
-        if (inst.TryGetComponent(out CollisionProjectileMover collisionProjectileMovement))
+        if (inst.TryGetComponent(out CollisionProjectileMover collisionProjectileMover))
         {
-            collisionProjectileMovement.Target = target;
-            collisionProjectileMovement.ProjectileDamage = damage;
-            collisionProjectileMovement.ProjectileSpeed = speed;
+            collisionProjectileMover.Target = target;
+            collisionProjectileMover.ProjectileDamage = damage;
+            collisionProjectileMover.ProjectileSpeed = speed;
+            collisionProjectileMover.OwnCollider = collider;
         }
         
         return inst;

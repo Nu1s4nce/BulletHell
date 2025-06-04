@@ -57,6 +57,7 @@ public class EnemyDamageHandler : MonoBehaviour, IDamageable, IIdHolder
     private void DeadHandler()
     {
         SpawnCollectablesAfterDeath();
+        _progressService.AddNumberOfKills(1);
         _enemyAnimator.PlayDeadAndDestroyObject();
     }
 

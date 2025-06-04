@@ -319,4 +319,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackCollisionHandler: {fileID: 0}
+  _collider2D: {fileID: 1230368779795875232}
   attackType: 1
